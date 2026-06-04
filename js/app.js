@@ -57,6 +57,27 @@ const TAB_META = {
         subtitle: 'Truy lục nhanh các khái niệm khoa học chính trị.'
     }
 };
+
+const HERO_ORBIT_POINTS = [
+    { x: 168, y: -18, size: 68 },
+    { x: 58, y: 148, size: 58 },
+    { x: -158, y: 104, size: 62 },
+    { x: -184, y: -78, size: 58 },
+    { x: -36, y: -174, size: 64 },
+    { x: 178, y: 104, size: 56 },
+    { x: 118, y: -154, size: 60 }
+];
+
+const PLANET_VISUALS = {
+    1: { secondary: '#FBBF24', tertiary: '#A78BFA', deep: '#071A33', motifClass: 'motif-origin' },
+    2: { secondary: '#F97316', tertiary: '#38BDF8', deep: '#210A12', motifClass: 'motif-worker' },
+    3: { secondary: '#22D3EE', tertiary: '#FDE68A', deep: '#211A05', motifClass: 'motif-transition' },
+    4: { secondary: '#60A5FA', tertiary: '#FBBF24', deep: '#061B18', motifClass: 'motif-democracy' },
+    5: { secondary: '#EC4899', tertiary: '#38BDF8', deep: '#130B2F', motifClass: 'motif-social' },
+    6: { secondary: '#A78BFA', tertiary: '#FDE68A', deep: '#062532', motifClass: 'motif-harmony' },
+    7: { secondary: '#F43F5E', tertiary: '#FBBF24', deep: '#2A0B20', motifClass: 'motif-habitat' }
+};
+
 function htmlEscape(value) {
     return String(value ?? '')
         .replace(/&/g, '&amp;')
@@ -192,6 +213,8 @@ function initRouting() {
 function switchTab(tabId, options = {}) {
     if (!TAB_META[tabId]) tabId = 'overview';
     appState.currentTab = tabId;
+    document.body.dataset.activeTab = tabId;
+    document.body.classList.toggle('cosmic-scene-tab', tabId === 'overview' || tabId === 'chapters');
 
     document.querySelectorAll('.nav-item').forEach((item) => {
         item.classList.toggle('active', item.getAttribute('data-tab') === tabId);
@@ -274,6 +297,149 @@ function getKeyIdeas(chapter) {
     }));
 }
 
+function getPlanetVisualConfig(chapter) {
+    return PLANET_VISUALS[chapter.id] || PLANET_VISUALS[1];
+}
+
+function getPlanetVisualStyle(chapter) {
+    const config = getPlanetVisualConfig(chapter);
+    const theme = chapter.colorTheme || {};
+    return [
+        getChapterStyle(chapter),
+        `--planet-accent:${theme.accent || '#38BDF8'}`,
+        `--planet-secondary:${config.secondary}`,
+        `--planet-tertiary:${config.tertiary}`,
+        `--planet-deep:${config.deep}`
+    ].join(';');
+}
+
+function getPlanetMotifClass(chapter) {
+    return getPlanetVisualConfig(chapter).motifClass;
+}
+
+function trimText(value, limit = 150) {
+    const text = String(value || '').trim();
+    if (text.length <= limit) return text;
+    return `${text.slice(0, limit).trim()}...`;
+}
+
+function getHeroPlanetStyle(chapter, index) {
+    const point = HERO_ORBIT_POINTS[index] || HERO_ORBIT_POINTS[0];
+    return [
+        getPlanetVisualStyle(chapter),
+        `--orbit-x:${point.x}px`,
+        `--orbit-y:${point.y}px`,
+        `--node-size:${point.size}px`
+    ].join(';');
+}
+
+function buildHeroPlanetNodes() {
+    return CHAPTERS_DATA.map((chapter, index) => `
+        <button class="landing-planet-node ${getPlanetMotifClass(chapter)}" type="button" style="${getHeroPlanetStyle(chapter, index)}" data-chapter-index="${index}" aria-label="Khám phá ${htmlEscape(chapter.planet.name)}">
+            <span class="landing-planet-sphere" aria-hidden="true"></span>
+            <span class="landing-planet-code">${htmlEscape(chapter.planet.number || String(chapter.id).padStart(2, '0'))}</span>
+            <span class="landing-planet-tooltip">
+                <strong>${htmlEscape(chapter.planet.name)}</strong>
+                <small>${htmlEscape(chapter.stationName || chapter.shortTitle)}</small>
+            </span>
+        </button>
+    `).join('');
+}
+
+function buildMobilePlanetStrip() {
+    return CHAPTERS_DATA.map((chapter, index) => `
+        <button class="mobile-planet-chip ${getPlanetMotifClass(chapter)}" type="button" style="${getPlanetVisualStyle(chapter)}" data-chapter-index="${index}">
+            <span class="mobile-planet-orb" aria-hidden="true"></span>
+            <span>
+                <strong>${htmlEscape(chapter.planet.number || String(chapter.id).padStart(2, '0'))}</strong>
+                ${htmlEscape(chapter.stationName || chapter.shortTitle)}
+            </span>
+        </button>
+    `).join('');
+}
+
+function buildPlanetVisualHtml(chapter) {
+    const ideas = getKeyIdeas(chapter);
+    const satelliteIcons = ['fa-lightbulb', 'fa-satellite-dish', 'fa-crosshairs'];
+    return `
+        <div class="cosmic-planet-visual ${getPlanetMotifClass(chapter)}" style="${getPlanetVisualStyle(chapter)}" aria-label="Mô hình hành tinh ${htmlEscape(chapter.planet.name)}">
+            <div class="planet-particle-field" aria-hidden="true">
+                <span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <div class="planet-glow" aria-hidden="true"></div>
+            <div class="planet-orbit-ring planet-orbit-ring-a" aria-hidden="true"></div>
+            <div class="planet-orbit-ring planet-orbit-ring-b" aria-hidden="true"></div>
+            <div class="planet-orbit-ring planet-orbit-ring-c" aria-hidden="true"></div>
+            <div class="planet-core">
+                <div class="planet-surface"></div>
+                <div class="planet-rim-light"></div>
+                <div class="planet-shadow"></div>
+                <div class="planet-atmosphere"></div>
+            </div>
+            ${ideas.map((idea, ideaIndex) => `
+                <button class="planet-satellite sat-${ideaIndex + 1}" type="button" aria-label="${htmlEscape(idea.title)}">
+                    <i class="fa-solid ${satelliteIcons[ideaIndex] || 'fa-circle-dot'}"></i>
+                    <span>${htmlEscape(idea.title)}</span>
+                </button>
+            `).join('')}
+            <div class="planet-motif-layer" aria-hidden="true">
+                <span></span><span></span><span></span><span></span><span></span>
+            </div>
+        </div>
+    `;
+}
+
+function buildCoordinateRailHtml() {
+    return CHAPTERS_DATA.map((chapter, index) => {
+        const completed = appState.completedChapters.includes(chapter.id);
+        const keywords = getKeywords(chapter).slice(0, 2);
+        return `
+            <button class="coordinate-item ${index === appState.selectedChapterIndex ? 'active' : ''} ${completed ? 'completed' : ''}" type="button" style="${getPlanetVisualStyle(chapter)}" data-chapter-index="${index}">
+                <span class="coordinate-dot ${getPlanetMotifClass(chapter)}" aria-hidden="true"></span>
+                <span class="coordinate-copy">
+                    <span class="coordinate-code">${htmlEscape(chapter.planet.orbitLabel || `Planet ${chapter.id}`)}</span>
+                    <strong>${htmlEscape(chapter.stationName || chapter.shortTitle)}</strong>
+                    <span class="coordinate-keywords">${keywords.map((keyword) => `<em>${htmlEscape(keyword)}</em>`).join('')}</span>
+                </span>
+                <span class="coordinate-status">${completed ? 'Đã học' : 'Chưa học'}</span>
+            </button>
+        `;
+    }).join('');
+}
+
+function buildMissionCardsHtml(chapter) {
+    const examTip = (chapter.examTips || [])[0] || 'Nắm câu hỏi trung tâm, keyword và 3 ý chính trước khi đọc chi tiết.';
+    const cards = [
+        {
+            icon: 'fa-stopwatch',
+            label: 'Quick Scan',
+            title: '3 phút nắm chương',
+            text: trimText(chapter.quickUnderstand || chapter.description, 145)
+        },
+        {
+            icon: 'fa-compass-drafting',
+            label: 'Meaning Signal',
+            title: 'Vì sao cần học',
+            text: trimText(chapter.whyItMatters || chapter.objectives?.knowledge || '', 145)
+        },
+        {
+            icon: 'fa-bolt',
+            label: 'Exam Pulse',
+            title: 'Ôn thi trong 60 giây',
+            text: trimText(examTip, 145)
+        }
+    ];
+
+    return cards.map((card) => `
+        <article class="mission-card">
+            <span class="mission-card-icon"><i class="fa-solid ${card.icon}"></i></span>
+            <span class="mission-card-label">${htmlEscape(card.label)}</span>
+            <h3>${htmlEscape(card.title)}</h3>
+            <p>${htmlEscape(card.text)}</p>
+        </article>
+    `).join('');
+}
+
 function getNextChapter() {
     return CHAPTERS_DATA.find((chapter) => !appState.completedChapters.includes(chapter.id)) || CHAPTERS_DATA[0];
 }
@@ -304,14 +470,15 @@ function renderOverview() {
     pane.innerHTML = `
         <div class="page-stack">
             <!-- 1. Cosmic Hero -->
-            <section class="cosmic-hero-layout glass-panel" style="padding: 24px;">
-                <div class="hero-copy">
-                    <span class="hero-kicker" style="color: var(--station-accent, var(--primary));"><i class="fa-solid fa-shuttle-space"></i> Triển lãm Vũ trụ Tri thức MLN131</span>
-                    <h2 style="margin: 10px 0 14px; line-height: 1.1; font-family: var(--font-serif);">Vũ trụ tri thức Chủ nghĩa xã hội khoa học</h2>
-                    <p class="hero-lead" style="margin-bottom: 20px; color: var(--text-secondary);">Khám phá 7 hành tinh tri thức về xã hội, con người, dân chủ, nhà nước và con đường quá độ lên chủ nghĩa xã hội.</p>
+            <section class="cosmic-landing-scene" aria-label="MLN131 Cosmic Knowledge Exhibition">
+                <div class="cosmic-landing-nebula" aria-hidden="true"></div>
+                <div class="landing-copy">
+                    <span class="hero-kicker"><i class="fa-solid fa-shuttle-space"></i> MLN131 Cosmic Knowledge Exhibition</span>
+                    <h2>Vũ trụ tri thức Chủ nghĩa xã hội khoa học</h2>
+                    <p class="hero-lead">Khám phá 7 hành tinh lý luận qua bản đồ tri thức điện ảnh, tương tác và dễ ôn tập.</p>
                     <div class="hero-actions">
                         <button class="btn btn-primary" type="button" data-action="start-journey">
-                            Bắt đầu hành trình <i class="fa-solid fa-rocket"></i>
+                            <i class="fa-solid fa-rocket"></i> Bắt đầu khám phá
                         </button>
                         <button class="btn btn-secondary" type="button" data-action="scroll-galaxy">
                             <i class="fa-solid fa-circle-nodes"></i> Mở bản đồ vũ trụ
@@ -320,58 +487,35 @@ function renderOverview() {
                             <i class="fa-solid fa-bolt"></i> Ôn tập nhanh
                         </button>
                     </div>
+                    <div class="landing-signal-chips" aria-label="Từ khóa nổi bật">
+                        <span>Giai cấp công nhân</span>
+                        <span>Dân chủ</span>
+                        <span>Nhà nước</span>
+                        <span>Dân tộc</span>
+                        <span>Gia đình</span>
+                    </div>
                 </div>
-                <div class="orbit-map-container" aria-label="Bản đồ vũ trụ 7 hành tinh">
-                    <div class="floating-keyword-container">
-                        <span class="floating-chip" style="left: 10%; top: 15%; animation-delay: 0s;">Giai cấp công nhân</span>
-                        <span class="floating-chip" style="right: 15%; top: 20%; animation-delay: 2s;">Dân chủ</span>
-                        <span class="floating-chip" style="left: 20%; bottom: 15%; animation-delay: 4s;">Nhà nước</span>
-                        <span class="floating-chip" style="right: 20%; bottom: 25%; animation-delay: 1s;">Dân tộc</span>
-                        <span class="floating-chip" style="left: 45%; top: 5%; animation-delay: 3s;">Gia đình</span>
-                        <span class="floating-chip" style="right: 5%; bottom: 10%; animation-delay: 5s;">Quá độ</span>
-                    </div>
-                    <div class="orbit-ring orbit-ring-1"></div>
-                    <div class="orbit-ring orbit-ring-2"></div>
-                    <div class="orbit-ring orbit-ring-3"></div>
-                    <div class="sun-node">
+                <div class="landing-galaxy-stage" aria-label="Bản đồ vũ trụ 7 hành tinh">
+                    <div class="galaxy-core-glow" aria-hidden="true"></div>
+                    <div class="landing-orbit orbit-a" aria-hidden="true"></div>
+                    <div class="landing-orbit orbit-b" aria-hidden="true"></div>
+                    <div class="landing-orbit orbit-c" aria-hidden="true"></div>
+                    <div class="landing-orbit orbit-d" aria-hidden="true"></div>
+                    <div class="knowledge-core">
+                        <span>MLN131</span>
                         <strong>CNXHKH</strong>
-                        <small>Hạt nhân</small>
                     </div>
-                    <!-- Planet 1 (Ring 1, 0 deg) -->
-                    <div class="planet-node" style="--station-accent: #38BDF8; --station-bg: rgba(56,189,248,0.12); left: calc(50% + 85px - 22px); top: calc(50% + 0px - 22px);" data-chapter-index="0" title="Chương 1">
-                        01
-                        <span class="tooltip" style="--station-accent: #38BDF8;">Hành tinh Khởi nguồn</span>
+                    <div class="floating-keyword-container" aria-hidden="true">
+                        <span class="floating-chip" style="left: 8%; top: 18%; animation-delay: 0s;">Quy luật</span>
+                        <span class="floating-chip" style="right: 12%; top: 14%; animation-delay: 2s;">Đoàn kết</span>
+                        <span class="floating-chip" style="left: 12%; bottom: 20%; animation-delay: 4s;">Pháp quyền</span>
+                        <span class="floating-chip" style="right: 10%; bottom: 18%; animation-delay: 1s;">Quá độ</span>
+                        <span class="floating-chip" style="left: 46%; top: 7%; animation-delay: 3s;">1848</span>
                     </div>
-                    <!-- Planet 2 (Ring 1, 120 deg) -->
-                    <div class="planet-node" style="--station-accent: #DC2626; --station-bg: rgba(220,38,38,0.12); left: calc(50% - 43px - 22px); top: calc(50% + 74px - 22px);" data-chapter-index="1" title="Chương 2">
-                        02
-                        <span class="tooltip" style="--station-accent: #DC2626;">Hành tinh Công nhân</span>
-                    </div>
-                    <!-- Planet 3 (Ring 1, 240 deg) -->
-                    <div class="planet-node" style="--station-accent: #FBBF24; --station-bg: rgba(251,191,36,0.12); left: calc(50% - 43px - 22px); top: calc(50% - 74px - 22px);" data-chapter-index="2" title="Chương 3">
-                        03
-                        <span class="tooltip" style="--station-accent: #FBBF24;">Hành tinh Quá độ</span>
-                    </div>
-                    <!-- Planet 4 (Ring 2, 45 deg) -->
-                    <div class="planet-node" style="--station-accent: #10B981; --station-bg: rgba(16,185,129,0.12); left: calc(50% + 92px - 22px); top: calc(50% + 92px - 22px);" data-chapter-index="3" title="Chương 4">
-                        04
-                        <span class="tooltip" style="--station-accent: #10B981;">Hành tinh Dân chủ & Nhà nước</span>
-                    </div>
-                    <!-- Planet 5 (Ring 2, 225 deg) -->
-                    <div class="planet-node" style="--station-accent: #8B5CF6; --station-bg: rgba(139,92,246,0.12); left: calc(50% - 92px - 22px); top: calc(50% - 92px - 22px);" data-chapter-index="4" title="Chương 5">
-                        05
-                        <span class="tooltip" style="--station-accent: #8B5CF6;">Hành tinh Cơ cấu xã hội</span>
-                    </div>
-                    <!-- Planet 6 (Ring 3, 135 deg) -->
-                    <div class="planet-node" style="--station-accent: #06B6D4; --station-bg: rgba(6,182,212,0.12); left: calc(50% - 124px - 22px); top: calc(50% + 124px - 22px);" data-chapter-index="5" title="Chương 6">
-                        06
-                        <span class="tooltip" style="--station-accent: #06B6D4;">Hành tinh Đoàn kết</span>
-                    </div>
-                    <!-- Planet 7 (Ring 3, 315 deg) -->
-                    <div class="planet-node" style="--station-accent: #EC4899; --station-bg: rgba(236,72,153,0.12); left: calc(50% + 124px - 22px); top: calc(50% - 124px - 22px);" data-chapter-index="6" title="Chương 7">
-                        07
-                        <span class="tooltip" style="--station-accent: #EC4899;">Hành tinh Gia đình</span>
-                    </div>
+                    ${buildHeroPlanetNodes()}
+                </div>
+                <div class="mobile-planet-strip" aria-label="7 hành tinh tri thức">
+                    ${buildMobilePlanetStrip()}
                 </div>
             </section>
 
@@ -1042,27 +1186,25 @@ function renderChaptersTab() {
 
     const selected = getChapter(appState.selectedChapterIndex);
     pane.innerHTML = `
-        <div class="page-stack">
-            <div class="chapters-layout">
-                <aside class="chapter-selector">
-                    <select class="chapter-picker" id="chapterPicker" aria-label="Chọn chương">
-                        ${CHAPTERS_DATA.map((chapter, index) => `
-                            <option value="${index}" ${index === appState.selectedChapterIndex ? 'selected' : ''}>
-                                Chương ${chapter.id}: ${chapter.stationName || chapter.shortTitle}
-                            </option>
-                        `).join('')}
-                    </select>
-                    <div class="chapter-list">
-                        ${CHAPTERS_DATA.map((chapter, index) => `
-                            <button class="chapter-list-item ${index === appState.selectedChapterIndex ? 'active' : ''}" type="button" style="${getChapterStyle(chapter)}" data-chapter-index="${index}">
-                                <span>Chương ${chapter.id}</span>
-                                <strong>${htmlEscape(chapter.stationName || chapter.shortTitle)}</strong>
-                                <small class="muted">${appState.completedChapters.includes(chapter.id) ? 'Đã học' : 'Chưa học'}</small>
-                            </button>
-                        `).join('')}
+        <div class="planet-exploration-page" style="${getPlanetVisualStyle(selected)}">
+            <select class="chapter-picker planet-mobile-picker" id="chapterPicker" aria-label="Chọn hành tinh">
+                ${CHAPTERS_DATA.map((chapter, index) => `
+                    <option value="${index}" ${index === appState.selectedChapterIndex ? 'selected' : ''}>
+                        ${chapter.planet.orbitLabel}: ${chapter.stationName || chapter.shortTitle}
+                    </option>
+                `).join('')}
+            </select>
+            <div class="planet-exploration-layout">
+                <aside class="planet-coordinate-rail" aria-label="Planet Coordinates">
+                    <div class="coordinate-rail-header">
+                        <span>Planet Coordinates</span>
+                        <strong>7 trạm tri thức</strong>
+                    </div>
+                    <div class="planet-coordinate-list">
+                        ${buildCoordinateRailHtml()}
                     </div>
                 </aside>
-                <article class="chapter-story" id="chapterStory">
+                <article class="chapter-story planet-explorer" id="chapterStory">
                     ${buildChapterStoryHtml(selected, appState.selectedChapterIndex)}
                 </article>
             </div>
@@ -1085,54 +1227,39 @@ function renderChaptersTab() {
 function buildChapterStoryHtml(chapter, index) {
     const completed = appState.completedChapters.includes(chapter.id);
     return `
-        <section class="planet-story-hero" style="${getChapterStyle(chapter)}">
-            <div class="story-meta">
-                <span class="story-badge"><i class="${htmlEscape(chapter.icon || 'fa-solid fa-book')}"></i> Chương ${chapter.id}</span>
-                <span class="story-badge">${completed ? 'Đã hoàn thành' : 'Đang khám phá'}</span>
-            </div>
-            <div style="display: flex; flex-direction: column; gap: 8px;">
-                <h2 style="margin: 0 0 4px; font-family: var(--font-serif); font-size: 1.8rem; line-height: 1.2;">${htmlEscape(chapter.stationName || chapter.title)}</h2>
-                <p style="margin: 0; font-size: 0.95rem; color: var(--text-muted);">${htmlEscape(chapter.title)}</p>
-                <div class="planet-central-question-box">
-                    <h4>Câu hỏi dẫn đường</h4>
-                    <p>"${htmlEscape(chapter.centralQuestion || chapter.description)}"</p>
+        <section class="planet-exploration-scene ${getPlanetMotifClass(chapter)}" style="${getPlanetVisualStyle(chapter)}">
+            <div class="planet-scene-backdrop" aria-hidden="true"></div>
+            <div class="planet-hero-visual">
+                <div class="story-meta">
+                    <span class="story-badge"><i class="${htmlEscape(chapter.icon || 'fa-solid fa-book')}"></i> ${htmlEscape(chapter.planet.orbitLabel || `Planet ${chapter.id}`)}</span>
+                    <span class="story-badge">${completed ? 'Đã hoàn thành' : 'Đang khám phá'}</span>
                 </div>
-                <p class="muted" style="margin: 0; font-size: 0.85rem; line-height: 1.45;">${htmlEscape(chapter.oneLineSummary || chapter.description)}</p>
+                ${buildPlanetVisualHtml(chapter)}
             </div>
-            <div class="planet-story-visual-side">
-                <div class="planet-showcase-container" style="--station-accent: ${chapter.colorTheme.accent || '#38BDF8'}">
-                    <div class="planet-glow"></div>
-                    <div class="planet-orbit planet-orbit-1"></div>
-                    <div class="planet-orbit planet-orbit-2"></div>
-                    <div class="planet-core">
-                        <div class="planet-surface"></div>
-                        <div class="planet-shading"></div>
-                        <div class="planet-atmosphere"></div>
-                    </div>
-                    <div class="planet-satellite sat-1"><i class="fa-solid fa-user-astronaut"></i></div>
-                    <div class="planet-satellite sat-2"><i class="fa-solid fa-satellite"></i></div>
-                    <div class="planet-satellite sat-3"><i class="fa-solid fa-rocket"></i></div>
+            <aside class="mission-briefing-panel">
+                <span class="briefing-kicker">Mission Briefing</span>
+                <div class="briefing-planet-number">${htmlEscape(chapter.planet.number || String(chapter.id).padStart(2, '0'))}</div>
+                <h2>${htmlEscape(chapter.planet.name)}</h2>
+                <p class="briefing-chapter-title">${htmlEscape(chapter.title)}</p>
+                <div class="briefing-question">
+                    <span>Câu hỏi trung tâm</span>
+                    <strong>${htmlEscape(chapter.centralQuestion || chapter.description)}</strong>
                 </div>
-            </div>
+                <p class="briefing-summary">${htmlEscape(chapter.oneLineSummary || chapter.description)}</p>
+                <div class="briefing-actions">
+                    <button class="btn btn-primary" type="button" data-action="jump-model"><i class="fa-solid fa-diagram-project"></i> Xem mô hình</button>
+                    <button class="btn btn-secondary" type="button" data-action="jump-missions"><i class="fa-solid fa-stopwatch"></i> Học nhanh</button>
+                    <button class="btn btn-quiet" type="button" data-action="chapter-quiz"><i class="fa-solid fa-circle-question"></i> Làm quiz</button>
+                </div>
+            </aside>
         </section>
 
-        <section class="micro-grid" style="${getChapterStyle(chapter)}">
-            <article class="micro-card">
-                <h3>3 phút nắm chương</h3>
-                <p>${htmlEscape(chapter.quickUnderstand || chapter.description)}</p>
-            </article>
-            <article class="micro-card">
-                <h3>Vì sao cần học?</h3>
-                <p>${htmlEscape(chapter.whyItMatters || chapter.objectives?.knowledge || '')}</p>
-            </article>
-            <article class="micro-card">
-                <h3>Ôn thi trong 60 giây</h3>
-                <p>${htmlEscape((chapter.examTips || [])[0] || 'Nắm câu hỏi trung tâm, keyword và 3 ý chính trước khi đọc chi tiết.')}</p>
-            </article>
+        <section class="mission-card-deck" id="missionCards" style="${getPlanetVisualStyle(chapter)}">
+            ${buildMissionCardsHtml(chapter)}
         </section>
 
         <!-- Concept Model Section -->
-        <section class="concept-model-section" style="margin-top: 24px;">
+        <section class="concept-model-section" id="conceptModelSection" style="margin-top: 24px;">
             <div class="section-heading">
                 <h3>Mô hình khái niệm hành tinh</h3>
                 <p>Khám phá cấu trúc lý luận dưới dạng tương tác trực quan (Click vào các nút để xem chi tiết).</p>
@@ -1545,16 +1672,24 @@ function attachChapterStoryEvents(scope) {
         });
     }
 
-    scope.querySelector('[data-action="open-detail"]')?.addEventListener('click', () => {
+    scope.querySelector('[data-action="jump-model"]')?.addEventListener('click', () => {
+        scope.querySelector('#conceptModelSection')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    scope.querySelector('[data-action="jump-missions"]')?.addEventListener('click', () => {
+        scope.querySelector('#missionCards')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    scope.querySelectorAll('[data-action="open-detail"]').forEach((button) => button.addEventListener('click', () => {
         const firstDetail = scope.querySelector('#chapterDetails details');
         if (firstDetail) firstDetail.open = true;
         firstDetail?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
+    }));
 
-    scope.querySelector('[data-action="chapter-quiz"]')?.addEventListener('click', () => {
+    scope.querySelectorAll('[data-action="chapter-quiz"]').forEach((button) => button.addEventListener('click', () => {
         switchTab('quiz');
         startQuizMode(chapter.id);
-    });
+    }));
 
     scope.querySelector('[data-action="toggle-complete"]')?.addEventListener('click', () => {
         if (appState.completedChapters.includes(chapter.id)) {
