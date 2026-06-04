@@ -377,7 +377,7 @@ function buildPlanetVisualHtml(chapter) {
                 <div class="planet-atmosphere"></div>
             </div>
             ${ideas.map((idea, ideaIndex) => `
-                <button class="planet-satellite sat-${ideaIndex + 1}" type="button" aria-label="${htmlEscape(idea.title)}">
+                <button class="planet-satellite sat-${ideaIndex + 1}" type="button" aria-label="${htmlEscape(idea.title)}" aria-pressed="false">
                     <i class="fa-solid ${satelliteIcons[ideaIndex] || 'fa-circle-dot'}"></i>
                     <span>${htmlEscape(idea.title)}</span>
                 </button>
@@ -1525,6 +1525,32 @@ function buildChapterStoryHtml(chapter, index) {
 
 function attachChapterStoryEvents(scope) {
     const chapter = getChapter(appState.selectedChapterIndex);
+
+    const planetVisual = scope.querySelector('.cosmic-planet-visual');
+    if (planetVisual) {
+        const satellites = Array.from(planetVisual.querySelectorAll('.planet-satellite'));
+
+        const setActiveSatellite = (activeSatellite = null) => {
+            satellites.forEach((satellite) => {
+                const isActive = satellite === activeSatellite;
+                satellite.classList.toggle('active', isActive);
+                satellite.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+            });
+        };
+
+        satellites.forEach((satellite) => {
+            satellite.addEventListener('click', () => {
+                const isActive = satellite.classList.contains('active');
+                setActiveSatellite(isActive ? null : satellite);
+            });
+        });
+
+        scope.addEventListener('click', (event) => {
+            if (!event.target.closest('.planet-satellite')) {
+                setActiveSatellite();
+            }
+        });
+    }
 
     // Concept model nodes click listeners
     const conceptContainer = scope.querySelector('.concept-model-container');

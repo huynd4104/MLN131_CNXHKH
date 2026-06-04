@@ -4382,6 +4382,11 @@ body.light-theme.cosmic-scene-tab .icon-button {
     transform: translateX(-50%) translateY(0);
 }
 
+.cosmic-planet-visual .planet-satellite.active span {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
 .cosmic-planet-visual .sat-1 { top: 15%; left: 17%; animation: orbitFloat1 7s ease-in-out infinite; }
 .cosmic-planet-visual .sat-2 { top: 58%; right: 9%; animation: orbitFloat2 8s ease-in-out infinite; }
 .cosmic-planet-visual .sat-3 { bottom: 12%; left: 24%; animation: orbitFloat3 9s ease-in-out infinite; }
@@ -4901,6 +4906,10 @@ body.light-theme .mobile-planet-chip {
 
     .cosmic-planet-visual .planet-satellite span {
         display: none;
+    }
+
+    .cosmic-planet-visual .planet-satellite.active span {
+        display: block;
     }
 
     .mission-briefing-panel {
