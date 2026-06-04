@@ -1333,3 +1333,577 @@ MICRO_LEARNING_DATA.forEach((micro) => {
         Object.assign(chapter, micro);
     }
 });
+
+// Exhibition layer: concept models, media prompts, case studies and comparisons.
+// This enriches the existing learning data without changing the legacy quiz/flashcard schema.
+const EXHIBITION_DATA = [
+    {
+        id: 1,
+        room: {
+            number: "01",
+            name: "Khởi nguồn lý luận",
+            label: "Room 01",
+            visualMotif: "flow"
+        },
+        conceptModel: {
+            type: "flow",
+            title: "Từ không tưởng đến khoa học",
+            description: "Mô hình hóa bước chuyển từ khát vọng xã hội công bằng sang một học thuyết có cơ sở lịch sử, khoa học và lực lượng thực hiện.",
+            nodes: [
+                {
+                    title: "Ước mơ xã hội công bằng",
+                    description: "Các tư tưởng không tưởng phê phán xã hội cũ và hình dung một trật tự nhân đạo hơn.",
+                    icon: "fa-solid fa-cloud-sun"
+                },
+                {
+                    title: "Tiền đề kinh tế - xã hội",
+                    description: "Đại công nghiệp tư bản chủ nghĩa làm mâu thuẫn giai cấp bộc lộ rõ và phong trào công nhân phát triển.",
+                    icon: "fa-solid fa-industry"
+                },
+                {
+                    title: "Tiền đề khoa học và tư tưởng",
+                    description: "Khoa học tự nhiên và các nguồn lý luận trước Mác tạo nền cho cách nhìn duy vật, biện chứng.",
+                    icon: "fa-solid fa-flask"
+                },
+                {
+                    title: "Mác - Ăngghen xây dựng CNXHKH",
+                    description: "Ba phát kiến vĩ đại giúp CNXH vượt khỏi mơ ước đạo đức để trở thành học thuyết khoa học.",
+                    icon: "fa-solid fa-scroll"
+                }
+            ],
+            connections: [[0, 1], [1, 2], [2, 3]]
+        },
+        media: {
+            title: "CNXHKH ra đời trong bối cảnh nào?",
+            type: "video",
+            thumbnail: "",
+            description: "Gợi ý một video mở đầu về bối cảnh thế kỷ XIX, sự phát triển của công nghiệp và phong trào công nhân.",
+            sourceLabel: "Gợi ý học tập",
+            url: ""
+        },
+        caseStudy: {
+            title: "Từ mong muốn công bằng đến phân tích khoa học",
+            situation: "Một nhóm sinh viên tranh luận rằng xã hội công bằng chỉ cần xuất phát từ lòng tốt và sự chia sẻ tự nguyện.",
+            question: "Vì sao CNXHKH không dừng ở ước mơ đạo đức mà cần phân tích điều kiện lịch sử, lực lượng xã hội và quy luật vận động?",
+            analysisHints: [
+                "Phân biệt khát vọng công bằng với cách giải thích khoa học.",
+                "Liên hệ vai trò của tiền đề kinh tế - xã hội.",
+                "Chỉ ra lực lượng xã hội có khả năng thực hiện chuyển biến."
+            ]
+        },
+        comparison: {
+            title: "CNXH không tưởng và CNXH khoa học",
+            keyDifference: "Khác biệt chính nằm ở cơ sở giải thích và con đường thực hiện.",
+            left: {
+                label: "CNXH không tưởng",
+                points: [
+                    "Phê phán bất công xã hội bằng trực giác nhân đạo.",
+                    "Hình dung xã hội tốt đẹp nhưng thiếu cơ sở quy luật.",
+                    "Chưa chỉ ra lực lượng xã hội thực hiện chuyển biến."
+                ]
+            },
+            right: {
+                label: "CNXH khoa học",
+                points: [
+                    "Dựa trên phân tích lịch sử, kinh tế và giai cấp.",
+                    "Làm rõ quy luật vận động của xã hội hiện đại.",
+                    "Xác định vai trò lịch sử của giai cấp công nhân."
+                ]
+            }
+        }
+    },
+    {
+        id: 2,
+        room: {
+            number: "02",
+            name: "Giai cấp công nhân",
+            label: "Room 02",
+            visualMotif: "network"
+        },
+        conceptModel: {
+            type: "network",
+            title: "Sứ mệnh lịch sử của giai cấp công nhân",
+            description: "Mô hình node cho thấy sứ mệnh lịch sử không tách rời địa vị kinh tế - xã hội, tổ chức chính trị và hệ tư tưởng.",
+            nodes: [
+                {
+                    title: "Giai cấp công nhân",
+                    description: "Lực lượng trung tâm gắn với nền đại công nghiệp và sản xuất xã hội hóa.",
+                    icon: "fa-solid fa-helmet-safety"
+                },
+                {
+                    title: "Địa vị kinh tế - xã hội",
+                    description: "Vị trí trong sản xuất quy định khả năng đại diện cho lực lượng sản xuất tiến bộ.",
+                    icon: "fa-solid fa-gears"
+                },
+                {
+                    title: "Tổ chức chính trị",
+                    description: "Đảng Cộng sản là nhân tố chủ quan quan trọng để chuyển phong trào tự phát thành tự giác.",
+                    icon: "fa-solid fa-flag"
+                },
+                {
+                    title: "Hệ tư tưởng",
+                    description: "Lý luận khoa học giúp định hướng mục tiêu và phương pháp đấu tranh.",
+                    icon: "fa-solid fa-brain"
+                },
+                {
+                    title: "Mục tiêu giải phóng xã hội",
+                    description: "Không chỉ giải phóng một giai cấp mà hướng tới giải phóng con người khỏi áp bức bóc lột.",
+                    icon: "fa-solid fa-people-arrows"
+                }
+            ],
+            connections: [[0, 1], [0, 2], [0, 3], [1, 4], [2, 4], [3, 4]]
+        },
+        media: {
+            title: "Giai cấp công nhân trong xã hội hiện đại",
+            type: "video",
+            thumbnail: "",
+            description: "Gợi ý học bằng hình ảnh về công nhân trong công nghiệp, logistics, nền tảng số và kinh tế tri thức.",
+            sourceLabel: "Gợi ý học tập",
+            url: ""
+        },
+        caseStudy: {
+            title: "Công nhân trong khu công nghiệp và kỹ năng mới",
+            situation: "Một khu công nghiệp chuyển sang dây chuyền tự động hóa, công nhân phải học kỹ năng vận hành máy, dữ liệu và an toàn lao động.",
+            question: "Tình huống này gợi ý gì về việc trí thức hóa giai cấp công nhân hiện nay?",
+            analysisHints: [
+                "Liên hệ công nhân với lực lượng sản xuất hiện đại.",
+                "Chú ý vai trò kỹ năng, tổ chức và ý thức xã hội.",
+                "Không đồng nhất công nhân hiện đại với lao động giản đơn."
+            ]
+        }
+    },
+    {
+        id: 3,
+        room: {
+            number: "03",
+            name: "Con đường quá độ",
+            label: "Room 03",
+            visualMotif: "roadmap"
+        },
+        conceptModel: {
+            type: "roadmap",
+            title: "Con đường quá độ",
+            description: "Roadmap giúp nhìn thời kỳ quá độ như một quá trình cải biến nhiều mặt, không phải một bước nhảy tức thời.",
+            nodes: [
+                {
+                    title: "Xuất phát điểm",
+                    description: "Mỗi quốc gia bước vào quá độ từ điều kiện lịch sử, kinh tế và văn hóa khác nhau.",
+                    icon: "fa-solid fa-location-dot"
+                },
+                {
+                    title: "Cải biến kinh tế",
+                    description: "Xây dựng cơ sở vật chất, phát triển lực lượng sản xuất và quan hệ sản xuất phù hợp.",
+                    icon: "fa-solid fa-chart-line"
+                },
+                {
+                    title: "Cải biến chính trị",
+                    description: "Tổ chức quyền lực nhà nước và hệ thống chính trị theo định hướng vì nhân dân.",
+                    icon: "fa-solid fa-landmark"
+                },
+                {
+                    title: "Cải biến văn hóa - xã hội",
+                    description: "Phát triển con người, giáo dục, văn hóa và các quan hệ xã hội mới.",
+                    icon: "fa-solid fa-people-roof"
+                },
+                {
+                    title: "Xây dựng CNXH",
+                    description: "Mục tiêu là xã hội phát triển, dân chủ, công bằng và có nền tảng con người mới.",
+                    icon: "fa-solid fa-mountain-sun"
+                }
+            ],
+            connections: [[0, 1], [1, 2], [2, 3], [3, 4]]
+        },
+        media: {
+            title: "Thời kỳ quá độ là gì?",
+            type: "video",
+            thumbnail: "",
+            description: "Gợi ý một video giải thích bằng sơ đồ về quá độ, cải biến xã hội và con đường phát triển đặc thù.",
+            sourceLabel: "Gợi ý học tập",
+            url: ""
+        },
+        caseStudy: {
+            title: "Đổi mới và quá trình chuyển biến lâu dài",
+            situation: "Sau Đổi mới, Việt Nam phát triển kinh tế nhiều thành phần, hội nhập quốc tế nhưng vẫn nhấn mạnh định hướng xã hội chủ nghĩa.",
+            question: "Vì sao có thể xem đây là biểu hiện của quá trình quá độ lâu dài và nhiều bước?",
+            analysisHints: [
+                "Nhận diện yếu tố cũ và mới cùng tồn tại.",
+                "Liên hệ cải biến kinh tế với cải biến chính trị - xã hội.",
+                "Giải thích vai trò của định hướng phát triển."
+            ]
+        },
+        comparison: {
+            title: "Quá độ trực tiếp và quá độ gián tiếp",
+            keyDifference: "Khác biệt chính là xuất phát điểm phát triển của xã hội trước khi bước vào quá độ.",
+            left: {
+                label: "Quá độ trực tiếp",
+                points: [
+                    "Diễn ra ở nước tư bản chủ nghĩa đã phát triển cao.",
+                    "Cơ sở vật chất và lực lượng sản xuất đã tương đối hiện đại.",
+                    "Nhiệm vụ trọng tâm là cải biến quan hệ xã hội cũ."
+                ]
+            },
+            right: {
+                label: "Quá độ gián tiếp",
+                points: [
+                    "Diễn ra ở nước chưa trải qua tư bản chủ nghĩa phát triển đầy đủ.",
+                    "Cần xây dựng dần cơ sở vật chất và năng lực quản trị.",
+                    "Phải đi qua nhiều bước trung gian, lâu dài."
+                ]
+            }
+        }
+    },
+    {
+        id: 4,
+        room: {
+            number: "04",
+            name: "Dân chủ & Nhà nước",
+            label: "Room 04",
+            visualMotif: "comparison"
+        },
+        conceptModel: {
+            type: "comparison",
+            title: "Dân chủ và Nhà nước",
+            description: "Mô hình so sánh giúp phân biệt dân chủ như một giá trị chung với dân chủ XHCN và hình thức nhà nước tổ chức quyền lực.",
+            nodes: [
+                {
+                    title: "Dân chủ nói chung",
+                    description: "Giá trị và phương thức tổ chức quyền lực dựa trên sự tham gia của nhân dân.",
+                    icon: "fa-solid fa-users"
+                },
+                {
+                    title: "Dân chủ XHCN",
+                    description: "Nhấn mạnh quyền lực thuộc về nhân dân lao động và lợi ích của đại đa số.",
+                    icon: "fa-solid fa-hand-fist"
+                },
+                {
+                    title: "Nhà nước XHCN",
+                    description: "Công cụ tổ chức, quản lý xã hội và bảo đảm quyền làm chủ của nhân dân.",
+                    icon: "fa-solid fa-building-columns"
+                },
+                {
+                    title: "Nhà nước pháp quyền XHCN Việt Nam",
+                    description: "Quản lý xã hội bằng pháp luật, gắn quyền lực nhà nước với trách nhiệm phục vụ nhân dân.",
+                    icon: "fa-solid fa-scale-balanced"
+                }
+            ],
+            connections: [[0, 1], [1, 2], [2, 3]]
+        },
+        media: {
+            title: "Dân chủ và nhà nước pháp quyền",
+            type: "video",
+            thumbnail: "",
+            description: "Gợi ý học bằng sơ đồ về quyền làm chủ, pháp luật, nhà nước và trách nhiệm công dân.",
+            sourceLabel: "Gợi ý học tập",
+            url: ""
+        },
+        caseStudy: {
+            title: "Một quyết định cộng đồng cần được thảo luận",
+            situation: "Phường tổ chức lấy ý kiến người dân về chỉnh trang khu sinh hoạt chung, trong đó có nhóm ủng hộ, nhóm lo ngại chi phí và nhóm muốn ưu tiên an toàn.",
+            question: "Tình huống này cho thấy dân chủ và pháp luật cần phối hợp như thế nào trong quản lý xã hội?",
+            analysisHints: [
+                "Phân biệt tham gia ý kiến với quyết định tùy tiện.",
+                "Liên hệ quyền làm chủ của nhân dân.",
+                "Chú ý vai trò của quy trình pháp luật và trách nhiệm nhà nước."
+            ]
+        },
+        comparison: {
+            title: "Dân chủ tư sản và dân chủ XHCN",
+            keyDifference: "Cần so sánh ở mục tiêu xã hội, nền tảng quyền lực và phạm vi tham gia của nhân dân.",
+            left: {
+                label: "Dân chủ tư sản",
+                points: [
+                    "Gắn với nhà nước pháp quyền và quyền công dân trong xã hội tư bản.",
+                    "Nhấn mạnh cạnh tranh chính trị, đại diện và quyền tự do cá nhân.",
+                    "Bị giới hạn bởi cấu trúc sở hữu và lợi ích giai cấp trong xã hội tư bản."
+                ]
+            },
+            right: {
+                label: "Dân chủ XHCN",
+                points: [
+                    "Nhấn mạnh quyền lực thuộc về nhân dân lao động.",
+                    "Gắn dân chủ chính trị với dân chủ kinh tế, xã hội và văn hóa.",
+                    "Hướng tới bảo đảm lợi ích của đại đa số nhân dân."
+                ]
+            }
+        }
+    },
+    {
+        id: 5,
+        room: {
+            number: "05",
+            name: "Cơ cấu xã hội",
+            label: "Room 05",
+            visualMotif: "network"
+        },
+        conceptModel: {
+            type: "network",
+            title: "Cơ cấu xã hội - giai cấp",
+            description: "Network model cho thấy xã hội là một mạng quan hệ giữa nhiều giai cấp, tầng lớp; liên minh là trục kết nối lợi ích.",
+            nodes: [
+                {
+                    title: "Công nhân",
+                    description: "Lực lượng gắn với công nghiệp, sản xuất hiện đại và tổ chức lao động xã hội hóa.",
+                    icon: "fa-solid fa-helmet-safety"
+                },
+                {
+                    title: "Nông dân",
+                    description: "Lực lượng quan trọng trong nông nghiệp, nông thôn và an sinh xã hội.",
+                    icon: "fa-solid fa-wheat-awn"
+                },
+                {
+                    title: "Trí thức",
+                    description: "Lực lượng sáng tạo tri thức, khoa học, công nghệ và văn hóa.",
+                    icon: "fa-solid fa-graduation-cap"
+                },
+                {
+                    title: "Doanh nhân",
+                    description: "Chủ thể tham gia tổ chức sản xuất, kinh doanh và tạo việc làm trong nền kinh tế.",
+                    icon: "fa-solid fa-briefcase"
+                },
+                {
+                    title: "Các tầng lớp khác",
+                    description: "Những nhóm xã hội đa dạng tham gia vào đời sống kinh tế, văn hóa và cộng đồng.",
+                    icon: "fa-solid fa-people-line"
+                },
+                {
+                    title: "Liên minh giai cấp, tầng lớp",
+                    description: "Cơ chế liên kết lợi ích để tạo nền tảng cho đại đoàn kết và phát triển xã hội.",
+                    icon: "fa-solid fa-link"
+                }
+            ],
+            connections: [[5, 0], [5, 1], [5, 2], [5, 3], [5, 4]]
+        },
+        media: {
+            title: "Cơ cấu xã hội Việt Nam hiện nay",
+            type: "video",
+            thumbnail: "",
+            description: "Gợi ý học bằng infographic về chuyển dịch nghề nghiệp, đô thị hóa và liên minh các lực lượng xã hội.",
+            sourceLabel: "Gợi ý học tập",
+            url: ""
+        },
+        caseStudy: {
+            title: "Chuyển dịch nghề nghiệp và liên minh xã hội",
+            situation: "Trong quá trình công nghiệp hóa, công nhân, nông dân, trí thức và doanh nhân cùng tham gia phát triển kinh tế - xã hội ở một địa phương.",
+            question: "Vì sao liên minh các giai cấp, tầng lớp vẫn là vấn đề quan trọng trong bối cảnh cơ cấu xã hội thay đổi?",
+            analysisHints: [
+                "Nhìn xã hội như mạng lợi ích đa dạng.",
+                "Liên hệ vai trò của công - nông - trí thức.",
+                "Chú ý điều hòa lợi ích và đại đoàn kết."
+            ]
+        }
+    },
+    {
+        id: 6,
+        room: {
+            number: "06",
+            name: "Dân tộc & Tôn giáo",
+            label: "Room 06",
+            visualMotif: "balance"
+        },
+        conceptModel: {
+            type: "balance",
+            title: "Dân tộc và Tôn giáo",
+            description: "Harmony model nhấn mạnh nguyên tắc giải quyết vấn đề dân tộc, tôn giáo: tôn trọng khác biệt và củng cố ổn định xã hội.",
+            nodes: [
+                {
+                    title: "Bình đẳng",
+                    description: "Các cộng đồng dân tộc có quyền bình đẳng về chính trị, kinh tế, văn hóa và xã hội.",
+                    icon: "fa-solid fa-equals"
+                },
+                {
+                    title: "Đoàn kết",
+                    description: "Đoàn kết là điều kiện để chống chia rẽ và cùng phát triển.",
+                    icon: "fa-solid fa-handshake"
+                },
+                {
+                    title: "Tôn trọng",
+                    description: "Tôn trọng bản sắc, tín ngưỡng và quyền tự do chính đáng của người dân.",
+                    icon: "fa-solid fa-hands-praying"
+                },
+                {
+                    title: "Chính sách phù hợp",
+                    description: "Chính sách cần dựa trên đặc điểm từng vùng, từng cộng đồng và yêu cầu pháp luật.",
+                    icon: "fa-solid fa-file-signature"
+                },
+                {
+                    title: "Ổn định xã hội",
+                    description: "Mục tiêu là phát triển hài hòa, giảm xung đột và giữ vững khối đại đoàn kết.",
+                    icon: "fa-solid fa-shield-heart"
+                }
+            ],
+            connections: [[0, 4], [1, 4], [2, 4], [3, 4]]
+        },
+        media: {
+            title: "Đoàn kết dân tộc và tôn giáo",
+            type: "video",
+            thumbnail: "",
+            description: "Gợi ý học bằng tình huống về bản sắc cộng đồng, tín ngưỡng, pháp luật và đoàn kết xã hội.",
+            sourceLabel: "Gợi ý học tập",
+            url: ""
+        },
+        caseStudy: {
+            title: "Lễ hội cộng đồng và nguyên tắc tôn trọng",
+            situation: "Một địa phương tổ chức lễ hội có yếu tố tín ngưỡng, thu hút nhiều nhóm dân cư khác nhau. Chính quyền cần vừa bảo đảm tự do tín ngưỡng, vừa giữ trật tự và tránh thông tin chia rẽ.",
+            question: "Có thể vận dụng nguyên tắc nào để xử lý hài hòa tình huống này?",
+            analysisHints: [
+                "Tôn trọng quyền tự do tín ngưỡng hợp pháp.",
+                "Phân biệt sinh hoạt tôn giáo với hành vi lợi dụng chia rẽ.",
+                "Gắn chính sách với đoàn kết và ổn định xã hội."
+            ]
+        }
+    },
+    {
+        id: 7,
+        room: {
+            number: "07",
+            name: "Gia đình Việt Nam",
+            label: "Room 07",
+            visualMotif: "house"
+        },
+        conceptModel: {
+            type: "house",
+            title: "Gia đình là tế bào xã hội",
+            description: "House model cho thấy các chức năng của gia đình nâng đỡ cá nhân và kết nối với sự phát triển xã hội.",
+            nodes: [
+                {
+                    title: "Chức năng kinh tế",
+                    description: "Gia đình tổ chức tiêu dùng, lao động và bảo đảm đời sống vật chất.",
+                    icon: "fa-solid fa-coins"
+                },
+                {
+                    title: "Chức năng sinh sản",
+                    description: "Gia đình tái sản xuất con người và duy trì các thế hệ xã hội.",
+                    icon: "fa-solid fa-baby"
+                },
+                {
+                    title: "Chức năng giáo dục",
+                    description: "Gia đình là môi trường đầu tiên hình thành nhân cách, lối sống và giá trị.",
+                    icon: "fa-solid fa-book-open-reader"
+                },
+                {
+                    title: "Chức năng tâm lý - tình cảm",
+                    description: "Gia đình tạo sự gắn bó, chăm sóc, nâng đỡ tinh thần cho các thành viên.",
+                    icon: "fa-solid fa-heart"
+                },
+                {
+                    title: "Xây dựng gia đình Việt Nam",
+                    description: "Hướng tới gia đình no ấm, tiến bộ, hạnh phúc, văn minh và bình đẳng.",
+                    icon: "fa-solid fa-house-chimney"
+                }
+            ],
+            connections: [[0, 4], [1, 4], [2, 4], [3, 4]]
+        },
+        media: {
+            title: "Gia đình Việt Nam trong xã hội hiện đại",
+            type: "video",
+            thumbnail: "",
+            description: "Gợi ý học bằng câu chuyện về biến đổi gia đình, bình đẳng giới, trách nhiệm chăm sóc và giáo dục.",
+            sourceLabel: "Gợi ý học tập",
+            url: ""
+        },
+        caseStudy: {
+            title: "Gia đình trẻ và phân chia trách nhiệm",
+            situation: "Một cặp vợ chồng trẻ cùng đi làm, vừa chăm con nhỏ vừa phụng dưỡng cha mẹ. Cả hai phải thương lượng lại việc nhà, tài chính và thời gian học tập của con.",
+            question: "Tình huống này phản ánh những biến đổi nào của gia đình Việt Nam hiện đại?",
+            analysisHints: [
+                "Liên hệ chức năng kinh tế, giáo dục và tình cảm.",
+                "Chú ý bình đẳng trong hôn nhân và gia đình.",
+                "So sánh với một số đặc điểm của gia đình truyền thống."
+            ]
+        },
+        comparison: {
+            title: "Gia đình truyền thống và gia đình hiện đại",
+            keyDifference: "Khác biệt chính nằm ở cấu trúc, vai trò giới và cách tổ chức đời sống gia đình.",
+            left: {
+                label: "Gia đình truyền thống",
+                points: [
+                    "Thường có nhiều thế hệ cùng chung sống.",
+                    "Vai trò giới và thứ bậc gia đình rõ hơn.",
+                    "Gắn mạnh với phong tục, dòng họ và cộng đồng làng xã."
+                ]
+            },
+            right: {
+                label: "Gia đình hiện đại",
+                points: [
+                    "Quy mô nhỏ hơn, linh hoạt hơn trong tổ chức đời sống.",
+                    "Đề cao bình đẳng, tự nguyện và trách nhiệm chung.",
+                    "Đối diện thách thức mới về giáo dục, công việc và chăm sóc."
+                ]
+            }
+        }
+    }
+];
+
+const EXHIBITION_INTERACTIONS = {
+    buildConcept: {
+        title: "Build the Concept",
+        prompt: "Chọn 3 tiền đề giúp Chủ nghĩa xã hội khoa học ra đời.",
+        correctIds: ["economic", "science", "theory"],
+        options: [
+            {
+                id: "economic",
+                label: "Tiền đề kinh tế - xã hội",
+                correct: true,
+                explanation: "Đại công nghiệp và mâu thuẫn giai cấp tạo bối cảnh lịch sử trực tiếp."
+            },
+            {
+                id: "science",
+                label: "Tiền đề khoa học tự nhiên",
+                correct: true,
+                explanation: "Các phát kiến khoa học củng cố thế giới quan duy vật, biện chứng."
+            },
+            {
+                id: "theory",
+                label: "Tiền đề tư tưởng lý luận",
+                correct: true,
+                explanation: "Các nguồn lý luận trước Mác được kế thừa, phê phán và vượt lên."
+            },
+            {
+                id: "wish",
+                label: "Chỉ cần ước mơ công bằng",
+                correct: false,
+                explanation: "Khát vọng công bằng là quan trọng nhưng chưa đủ để hình thành học thuyết khoa học."
+            },
+            {
+                id: "technology",
+                label: "Chỉ do công nghệ hiện đại",
+                correct: false,
+                explanation: "Công nghệ là một phần của bối cảnh sản xuất, nhưng không thay thế các tiền đề lý luận và xã hội."
+            }
+        ],
+        feedbackCorrect: "Đúng. Ba tiền đề này giúp chuyển CNXH từ khát vọng không tưởng thành học thuyết khoa học.",
+        feedbackIncorrect: "Chưa đủ. Hãy chọn đúng ba tiền đề: kinh tế - xã hội, khoa học tự nhiên và tư tưởng lý luận."
+    },
+    decisionScenario: {
+        title: "Decision Scenario",
+        situation: "Một địa phương muốn phát triển khu công nghiệp mới. Một nhóm nhấn mạnh tăng trưởng nhanh, nhóm khác lo việc làm, môi trường và quyền tham gia ý kiến của người dân.",
+        question: "Cách phân tích nào phù hợp nhất với tinh thần học phần?",
+        options: [
+            {
+                id: "balanced",
+                label: "Phân tích lợi ích nhiều lực lượng và bảo đảm tham gia theo pháp luật",
+                correct: true,
+                feedback: "Đúng. Cách này kết nối phát triển kinh tế, lợi ích xã hội, dân chủ và trách nhiệm quản lý."
+            },
+            {
+                id: "growth-only",
+                label: "Chỉ ưu tiên tăng trưởng, các vấn đề khác xử lý sau",
+                correct: false,
+                feedback: "Chưa phù hợp. Học phần yêu cầu nhìn phát triển trong quan hệ xã hội rộng hơn, không chỉ một chỉ số kinh tế."
+            },
+            {
+                id: "avoid",
+                label: "Không nên thay đổi vì mọi biến đổi xã hội đều gây xáo trộn",
+                correct: false,
+                feedback: "Chưa phù hợp. Vấn đề không phải né tránh biến đổi, mà là định hướng và quản lý biến đổi bằng chính sách đúng."
+            }
+        ]
+    }
+};
+
+EXHIBITION_DATA.forEach((exhibition) => {
+    const chapter = CHAPTERS_DATA.find((item) => item.id === exhibition.id);
+    if (chapter) {
+        Object.assign(chapter, exhibition);
+    }
+});

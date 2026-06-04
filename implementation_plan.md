@@ -1,756 +1,683 @@
-# Implementation Plan: MLN131 Learning Journey
+# MLN131 Interactive Knowledge Exhibition Upgrade
+
+## 0. Pham vi va nguyen tac
 
-## 0. Pham vi va nguyen tac dung
+Muc tieu dot nang cap nay la chuyen website MLN131 tu **Learning Journey** thanh **interactive learning exhibition**:
 
-Tai lieu nay thay the huong polish ky thuat nho bang ke hoach redesign toan dien trai nghiem hoc tap cho `MLN131_CNXHKH`.
+- Ten concept: **MLN131 Interactive Knowledge Exhibition**.
+- Ten tieng Viet: **Trien lam tri thuc Chu nghia xa hoi khoa hoc**.
+- Stack giu nguyen: Vanilla HTML, CSS, JavaScript, `js/data.js`, `js/app.js`.
+- Khong them framework moi, khong dung thu vien nang.
+- Khong pha theme, progress, flashcards, quiz, review, glossary/search va localStorage hien co.
+- Sau khi viet plan nay se dung lai de duyet, chua trien khai code.
 
-Muc tieu cua dot tiep theo la bien website thanh **"MLN131 Learning Journey - Hanh trinh kham pha Chu nghia xa hoi khoa hoc"**: dep hon, nhe chu hon, mobile-first, co cam giac nhu mot hanh trinh tri thuc xa hoi thay vi mot dashboard/ban chep giao trinh.
+Nguon tham chieu da doc:
 
-Sau khi viet xong ke hoach nay se **dung lai de duyet**, chua sua `index.html`, `style.css`, `js/app.js` hay `js/data.js`.
+- Trang mau: `https://mln-122-web.vercel.app/`
+- Source mau: `https://github.com/huynd4104/MLN122_web`
+- Source hien tai MLN131: `index.html`, `style.css`, `js/app.js`, `js/data.js`, `js/validate_data.js`
 
-## 1. Phan tich van de hien tai
+## 1. Vi sao ban hien tai van nham chan?
 
-### 1.1. Cam giac san pham chua dung
+MLN131 hien tai da tot hon trang on tap co ban, nhung van chua tao cam giac "trien lam tri thuc" vi:
 
-- Website hien tai dang nghieng ve **dashboard hoc tap / archive toi mau**: sidebar, header, search, stat cards, progress circle, list chuong, mindmap, timeline.
-- Concept "History Archive" va nen toi lam giao dien co cam giac nang, hoc thuat, gan voi tai lieu hon la mot hanh trinh hoc de tiep can.
-- Hero hien tai co nhieu van ban dai, thong ke, mo ta mon hoc theo kieu gioi thieu hoc phan, chua tao du duoc cam giac bat dau mot hanh trinh.
-- Cac block "Muc tieu hoc phan", "Noi dung tom tat", "Cau hoi tu luan" dang hien thi voi mat do chu cao.
+- Homepage van bat dau gan voi pattern dashboard: header, search, progress panel, quick action, roadmap va knowledge branches. Nhung block nay huu ich, nhung chua co wow factor.
+- Hero hien tai co knowledge map 7 node, nhung visual con nho va mang tinh minh hoa phu, chua la trung tam cua cau chuyen.
+- Roadmap 7 chuong van la card grid/station card, moi card co mau rieng nhung chua giong "7 phong trien lam" co ban sac rieng.
+- Timeline dang hien tat ca noi dung ngay, nguoi hoc chi doc luot, chua co cam giac unlock tung moc.
+- Chapter detail da co story hero, micro cards, key ideas va accordion, nhung thieu visual model rieng, media card, case study, comparison va mini interaction.
+- Quiz/flashcard/review dang xuat hien kha som tren homepage, lam vibe nghieng ve web on tap hon la bao tang tri thuc so.
+- Chu de CNXHKH la ly luan nhieu chu. Neu chi cat chu thanh card, trai nghiem van la "doc giao trinh trong UI dep", chua thanh "kham pha qua mo hinh".
 
-### 1.2. Tong quan chuong bi qua tai
+Ket luan: ban hien tai co nen tang data va render tot, nhung can tang lop **visual storytelling, progressive discovery, concept modeling va interaction**.
 
-- Chapter card dang hien thi title dai, description dai va cac muc I/II/III cat ngan. Cach nay lam card giong muc luc giao trinh.
-- Nguoi hoc nhin tong quan 7 chuong nhung van gap qua nhieu thong tin tren mot man hinh.
-- Thieu "tram tri thuc" co ban sac rieng: station name, icon, mau rieng, cau hoi dan nhap, keyword ngan.
+## 2. Can hoc vibe gi tu MLN122_web?
 
-### 1.3. Trang chi tiet chuong chua co nhip hoc
+Khong copy UI y nguyen vi MLN122 dung React, Framer Motion, Tailwind, asset anh rieng va mot so scene nang nhu globe/drag. MLN131 se hoc tinh than:
 
-- Khi chon chuong, noi dung objectives, section summary, key points, terms, Vietnam connection va essay questions duoc do ra theo luong lon.
-- Thieu cau truc micro-learning mac dinh: cau hoi trung tam, 3 phut nam chuong, 5 keyword, 3 y chinh, vi du gan doi song, tu kiem tra.
-- Accordion/chia tab chua du ro de giam tai nhan thuc.
+- Hero co chu de ro ngay tu man hinh dau: nguoi hoc nhin vao phai thay day la mot hanh trinh/trien lam, khong phai dashboard.
+- Moi topic co danh tinh rieng: so thu tu, tag, icon, thoi diem/chu de, mau sac va visual motif.
+- Noi dung chia thanh cac cum kham pha ngan, moi cum co mot hanh dong hoac mot visual neo lai.
+- Card khong chi de chua chu; card can dong vai tro nhu "vat trung bay": co title ngan, tag, icon, detail mo khi bam.
+- Moi trang chi tiet co scene rieng: header, core ideas, mo hinh, mini game/interaction, data visual va cau hoi suy nghi.
+- Motion/interaction dung de tao nhip: hover, click unlock, modal, state da mo, feedback dung/sai. Khong can animation nang.
+- Visual learning phai mobile-safe: touch/tap thay cho hover-only, khong drag-drop bat buoc, khong layout ngang vo tren mobile.
 
-### 1.4. Mobile chua la diem xuat phat
+## 3. Homepage se thay doi the nao de co wow factor?
 
-- CSS hien tai co responsive o `1024px` va `768px`, nhung desktop-first: sidebar chuyen thanh bottom nav sau do.
-- Mobile chapter viewer dung layout slide voi chieu cao `calc(100vh - 190px)`, de gay cam giac bi dong khung, kho doc noi dung dai, va co nguy co bi bottom nav che noi dung cuoi.
-- Mindmap va timeline co cau truc desktop truoc, khi xuong mobile chi dieu chinh vi tri, chua chuyen doi thanh knowledge branch/list that su.
+Thu tu section moi:
 
-### 1.5. Doi chieu tinh than MLN122_web
+1. Hero Exhibition
+2. Exhibition Highlights
+3. Interactive Roadmap 7 Rooms
+4. Concept Models Preview
+5. Timeline Unlock
+6. Media Learning
+7. Case Study Preview
+8. Quick Study Tools
+9. Continue Learning
 
-Repo mau `MLN122_web` co nhung diem can hoc theo, khong copy:
+### 3.1. Hero Exhibition
 
-- Co metaphor ro rang: 12 thang/hanh trinh su kien, moi item co danh tinh rieng.
-- Homepage it chu, dung hero lon, stats gon, grid cards co icon/emoji/tag/year, hover va motion tao cam giac song dong.
-- Cac trang chi tiet co cau truc story: header ro, section ngan, core ideas, interactive module/game/visual block.
-- Motion duoc dung de tao nhip, khong phai de trang tri qua muc.
-- Moi chu de co mau/nhan dien rieng, khien nguoi hoc thay dang "kham pha" thay vi doc tai lieu.
+Hero moi khong mo dau bang progress/stat. Cau truc:
 
-Ket luan: MLN131 can giu do chinh xac noi dung, nhung doi cach trinh bay thanh **progressive disclosure + visual learning path + micro-learning cards**.
+- Kicker: `MLN131 Interactive Knowledge Exhibition`
+- Title: `Trien lam tri thuc Chu nghia xa hoi khoa hoc`
+- Subtitle ngan: `Kham pha 7 chu de lon ve xa hoi, con nguoi, dan chu, nha nuoc va con duong qua do len chu nghia xa hoi.`
+- CTA:
+  - `Bat dau kham pha`
+  - `Xem ban do tri thuc`
+  - `On tap nhanh`
+- Visual lon:
+  - CSS knowledge map voi 7 node chuong theo duong sang/curved path.
+  - Trung tam la "CNXHKH" nhu loi vao trien lam.
+  - 7 node co icon, room number, station name.
+  - Floating keyword chips: `Giai cap cong nhan`, `Dan chu`, `Nha nuoc`, `Dan toc`, `Gia dinh`, `Qua do`.
+- Nen sang am, co paper texture, grid/map line nhe, border mem.
 
-## 2. Dinh huong thiet ke moi
+### 3.2. Exhibition Highlights
 
-### 2.1. Concept chinh
+3 the lon gioi thieu trai nghiem, khong phai stat:
 
-**MLN131 Learning Journey - Hanh trinh kham pha Chu nghia xa hoi khoa hoc**
+- `Mo hinh hoa khai niem`: flow, network, roadmap, balance, house model.
+- `Case study Viet Nam`: tinh huong ngan, cau hoi suy nghi, goi y phan tich.
+- `Quiz & Flashcard tuong tac`: cong cu phu tro sau khi da kham pha.
 
-Nguoi hoc di qua 7 "tram tri thuc":
+### 3.3. Interactive Roadmap
 
-1. Tram 1: Khoi nguon ly luan
-2. Tram 2: Giai cap cong nhan
-3. Tram 3: Con duong qua do
-4. Tram 4: Dan chu & Nha nuoc
-5. Tram 5: Co cau xa hoi
-6. Tram 6: Dan toc & Ton giao
-7. Tram 7: Gia dinh Viet Nam
+7 chuong thanh 7 exhibition rooms:
 
-Moi tram phai co:
+- Desktop: path/stepped exhibition rooms, cac card lech nhip nhe, noi bang duong timeline.
+- Mobile: vertical exhibition path, moi room full width, nut toi thieu 44px.
+- Moi room hien:
+  - `Room 01`
+  - Ten phong
+  - Ten chuong
+  - Cau hoi trung tam
+  - 3 tag
+  - Icon/model type
+  - CTA `Vao phong trien lam`
 
-- So chuong
-- Ten ngan
-- Cau mo ta hap dan 1 dong
-- 3 keyword
-- Progress nho
-- Nut "Hoc chuong nay"
+### 3.4. Concept Models Preview
 
-### 2.2. Tone visual
+Preview 3 mo hinh noi bat tren homepage:
 
-- Modern academic
-- Digital knowledge map
-- Soft historical archive
-- Youthful but serious
-- Premium education website
+- `Tu khong tuong den khoa hoc`
+- `Su menh lich su cua giai cap cong nhan`
+- `Co cau xa hoi - giai cap`
 
-Light mode la giao dien chinh. Dark mode van giu, nhung khong con la mac dinh.
+Moi preview co mini illustration bang CSS/HTML va CTA mo chuong lien quan.
 
-### 2.3. Palette de xuat
+### 3.5. Timeline Unlock
 
-- Background light: `#FAF7F0` hoac `#F8F3E8`
-- Card: `#FFFFFF`, `#FFFDF8`
-- Navy: `#102A43`
-- Deep red: `#A32626`
-- Gold: `#D89B2B`
-- Muted text: `#64748B`
-- Border: `rgba(16, 42, 67, 0.12)`
+Timeline khong hien het noi dung. Moi moc la button/card:
 
-Can tranh:
+- Ban dau chi hien title ngan, icon, trang thai locked/unlocked.
+- Khi click, noi dung mo ra trong panel ben duoi hoac ngay trong card.
+- Moc da bam co class `unlocked`.
+- Luu localStorage neu don gian: `MLN131_unlockedTimeline`.
 
-- Nen toi lam mac dinh.
-- Glow toi mau qua nhieu.
-- Mot palette do/vang qua day khien giao dien tuyen truyen cung nhac.
-- Card noi dung qua dai.
-- Dashboard kho cung.
-
-### 2.4. Visual assets va minh hoa
-
-Do du an dang vanilla HTML/CSS/JS, uu tien asset bang CSS + icon FontAwesome san co:
-
-- Hero co knowledge map/timeline/book motif bang CSS: duong hanh trinh, node chuong, the sach, anh sang hoc thuat nhe.
-- Moi chuong co icon rieng tu FontAwesome.
-- Pattern giay/luu tru rat nhe bang CSS background texture.
-- Khong dung SVG phuc tap neu lam tang kho bao tri.
-
-## 3. Cau truc lai trai nghiem nguoi hoc
-
-### 3.1. Learning Home thay cho Dashboard
-
-Trang dau tien khong goi la dashboard nua. Doi thanh **Learning Home**.
-
-Thanh phan:
-
-- Hero ngan, co cam xuc:
-  - Title: "Hanh trinh kham pha Chu nghia xa hoi khoa hoc"
-  - Slogan ngan, toi da 2 dong.
-  - 3 CTA: "Bat dau hanh trinh", "On thi nhanh", "Kham pha 7 chuong"
-  - Visual knowledge journey ben canh hoac ben duoi tren mobile.
-- Progress journey:
-  - Hien "ban dang o tram nao", so chuong da hoc, flashcard da nam.
-  - Khong hien nhieu stat card cung luc.
-- Chuong dang hoc tiep:
-  - 1 card tiep tuc hoc voi CTA ro.
-- 3 quick actions:
-  - On thi nhanh
-  - Hoc thuat ngu
-  - Lam quiz
-- Roadmap 7 chuong:
-  - Dang vertical journey tren mobile.
-  - Dang curved/stepped map tren desktop.
-
-### 3.2. Learning Path 7 chuong
-
-Thay chapter grid day chu bang **Journey Stations**.
+### 3.6. Media Learning
 
-Moi card station chi gom:
-
-- Badge "Chuong 01"
-- `stationName`
-- `shortTitle`
-- `oneLineSummary`
-- 3 keyword chips
-- Mini progress/status
-- Nut "Hoc chuong nay"
+Section homepage hien media cards dep:
 
-Khong hien:
+- Thumbnail placeholder bang CSS, khong o xam.
+- Icon play, chapter label, source label.
+- Click mo modal chi tiet.
+- `url` co the rong va hien nut `Them link video sau`.
 
-- Description dai.
-- Objectives day du.
-- Cac muc I/II/III trong card tong quan.
-- Cau hoi tu luan o tong quan.
-
-### 3.3. Chapter Story Page
-
-Khi vao chuong, mac dinh chi hien cac block ngan:
-
-1. Header chuong:
-   - So chuong, station name, icon, color theme.
-   - `centralQuestion` that noi bat.
-   - `oneLineSummary`.
-2. "Chuong nay tra loi cau hoi gi?"
-3. "3 phut nam chuong":
-   - `quickUnderstand`, toi da 4 dong.
-4. "3 y chinh can nam":
-   - 3 card tu `keyIdeas`.
-5. "5 keyword can nho":
-   - Chip/card ngan.
-6. CTA:
-   - "Doc chi tiet"
-   - "Lam quiz chuong nay"
-   - "Danh dau da nam"
+### 3.7. Case Study Preview
 
-Noi dung chi tiet nam trong tab/accordion:
+Hien 2-3 case study ngan, co:
 
-- Tong quan
-- 3 y chinh
-- Thuat ngu
-- Lien he Viet Nam
-- On tap
+- Tinh huong.
+- Cau hoi suy nghi.
+- 2-3 hint dang chip/list.
+- CTA vao chapter detail de xem day du.
 
-### 3.4. Micro-learning blocks
+### 3.8. Quick Study Tools
 
-Moi chuong can co cac khoi hoc nho:
+Flashcard, quiz, review, glossary duoc dua ve section gan cuoi:
 
-- "Cau hoi dan nhap"
-- "Hieu nhanh"
-- "Nho nhanh"
-- "Vi du lien he"
-- "Tu kiem tra"
-- "On thi trong 60 giay"
+- Vai tro la tool phu tro.
+- Khong de tool/stats chiem vibe chinh cua homepage.
 
-Nguyen tac copy:
+### 3.9. Continue Learning
 
-- Moi paragraph toi da 3-4 dong tren mobile.
-- Moi card chi co 1 y chinh.
-- Neu can noi dung dai, dat vao accordion collapsed mac dinh.
-- Cau hoi/keyword/tag uu tien hon doan van dai.
+Cuoi homepage moi hien progress:
 
-## 4. Thiet ke mobile-first
+- Room tiep theo.
+- So room da hoan thanh.
+- So flashcard da biet.
+- Nut tiep tuc hoc.
 
-### 4.1. Nguyen tac
+## 4. 7 chuong se thanh 7 exhibition rooms nhu the nao?
 
-- Viet CSS tu mobile len desktop.
-- Base layout cho `390px` va `430px` truoc.
-- Desktop chi la phien ban mo rong, khong phai layout goc.
-- Khong co horizontal scroll ngoai y muon.
-- Button/action cao toi thieu `44px`.
-- Noi dung cuoi trang khong bi bottom nav che.
+### Room 01 - Khoi nguon ly luan
 
-### 4.2. Header mobile
+- Chuong: `Nhap mon Chu nghia xa hoi khoa hoc`
+- Vibe: nguon goc, tien de, su ra doi cua mot hoc thuyet khoa hoc.
+- Visual: flow tu `khong tuong` -> `tien de lich su` -> `khoa hoc`.
+- Cau hoi trung tam: vi sao CNXH tu khong tuong tro thanh khoa hoc?
 
-- Header gon, cao thap.
-- Logo/ten mon ngan: "MLN131".
-- Theme toggle va search khong chen vao hero.
-- Neu search giu lai, dat o tab tra cuu/glossary hoac thanh tim kiem mo rong, khong chiem header mac dinh.
+### Room 02 - Giai cap cong nhan
 
-### 4.3. Bottom navigation
+- Chuong: `Su menh lich su cua giai cap cong nhan`
+- Vibe: luc luong xa hoi, vai tro lich su, to chuc va muc tieu.
+- Visual: node diagram luc luong - dieu kien - su menh.
+- Cau hoi trung tam: vi sao giai cap cong nhan co su menh lich su?
 
-- Bottom nav toi da 5-6 item, icon ro.
-- Them `padding-bottom` cho main content bang `calc(nav height + safe-area + spacing)`.
-- Dung `env(safe-area-inset-bottom)` cho iOS.
-- Active state ro nhung khong day mau.
+### Room 03 - Con duong qua do
 
-### 4.4. Mobile chapter experience
+- Chuong: `Chu nghia xa hoi va thoi ky qua do`
+- Vibe: hanh trinh chuyen bien lau dai.
+- Visual: roadmap tu xuat phat diem -> cai bien -> muc tieu CNXH.
+- Cau hoi trung tam: vi sao qua do la qua trinh lau dai, phuc tap?
 
-- Chapter list la vertical journey, khong phai list dong trong khung co chieu cao co dinh.
-- Khi vao detail, trang cuon tu nhien; khong lock content trong viewer fixed-height.
-- Timeline chuyen thanh vertical cards.
-- Concept map chuyen thanh `Knowledge Branches` list.
-- Flashcard cao vua man hinh, khong tran; mat sau co scroll noi bo neu dinh nghia dai.
-- Quiz option full-width, de bam, text khong tran.
+### Room 04 - Dan chu & Nha nuoc
 
-### 4.5. Breakpoint can kiem thu
+- Chuong: `Dan chu XHCN va Nha nuoc XHCN`
+- Vibe: thiet che chinh tri, quyen lam chu, nha nuoc phap quyen.
+- Visual: comparison/split panel.
+- Cau hoi trung tam: dan chu XHCN khac gi voi cac hinh thuc dan chu truoc do?
 
-- `390px`: mobile nho, uu tien khong horizontal scroll, bottom nav khong che.
-- `430px`: mobile pho bien, card/quiz/flashcard phai thoang.
-- `768px`: tablet/doc, journey co the 2 cot.
-- `1024px`: tablet ngang/laptop nho, mo rong layout nhung van gon.
-- `1440px`: desktop, hero va roadmap co visual impact nhung khong de chu trai rong qua dai.
+### Room 05 - Co cau xa hoi
 
-## 5. Cach giam tai noi dung
+- Chuong: `Co cau xa hoi - giai cap va lien minh giai cap, tang lop`
+- Vibe: mang luoi xa hoi, cac nhom xa hoi va lien minh.
+- Visual: network diagram.
+- Cau hoi trung tam: vi sao lien minh cac giai cap, tang lop la nen tang cua dai doan ket?
 
-### 5.1. Khong xoa du lieu hoc tap
+### Room 06 - Dan toc & Ton giao
 
-Du lieu hien tai trong `js/data.js` co the giu lai lam nguon chi tiet:
+- Chuong: `Van de dan toc va ton giao`
+- Vibe: da dang, doan ket, hai hoa xa hoi.
+- Visual: harmony wheel/balance diagram.
+- Cau hoi trung tam: lam the nao giai quyet van de dan toc, ton giao ma van giu doan ket xa hoi?
 
-- `description`
-- `objectives`
-- `sections`
-- `keyTerms`
-- `vietnamConnection`
-- `essayQuestions`
-- `examTips`
-- `quizzes`
+### Room 07 - Gia dinh Viet Nam
 
-Nhung giao dien mac dinh khong render tat ca cung luc.
+- Chuong: `Van de gia dinh`
+- Vibe: te bao xa hoi, chuc nang gia dinh, bien doi hien dai.
+- Visual: house model.
+- Cau hoi trung tam: vi sao gia dinh duoc xem la te bao cua xa hoi?
 
-### 5.2. Them data layer moi
+## 5. Moi chuong co concept model gi?
 
-Moi chuong bo sung cac field:
+Bat buoc them `conceptModel` cho tung chuong trong `js/data.js`. Render co fallback neu thieu.
+
+### Chuong 1 - Flow Model
+
+- Type: `flow`
+- Title: `Tu khong tuong den khoa hoc`
+- Nodes:
+  - `Uoc mo xa hoi cong bang`
+  - `Tien de kinh te - xa hoi`
+  - `Tien de khoa hoc va tu tuong`
+  - `Mac - Angghen xay dung CNXHKH`
+- Render: cac step noi bang arrow/line; mobile stack doc.
+
+### Chuong 2 - Node Model
+
+- Type: `network`
+- Title: `Su menh lich su cua giai cap cong nhan`
+- Nodes:
+  - `Giai cap cong nhan`
+  - `Dia vi kinh te - xa hoi`
+  - `To chuc chinh tri`
+  - `He tu tuong`
+  - `Muc tieu giai phong xa hoi`
+- Render: node trung tam va cac node ve tinh; mobile chuyen thanh linked list.
+
+### Chuong 3 - Roadmap Model
+
+- Type: `roadmap`
+- Title: `Con duong qua do`
+- Nodes:
+  - `Xuat phat diem`
+  - `Cai bien kinh te`
+  - `Cai bien chinh tri`
+  - `Cai bien van hoa - xa hoi`
+  - `Xay dung CNXH`
+- Render: path/steps; mobile vertical path.
+
+### Chuong 4 - Comparison Model
+
+- Type: `comparison`
+- Title: `Dan chu va Nha nuoc`
+- Nodes:
+  - `Dan chu noi chung`
+  - `Dan chu XHCN`
+  - `Nha nuoc XHCN`
+  - `Nha nuoc phap quyen XHCN Viet Nam`
+- Render: split columns/panels; mobile stacked.
+
+### Chuong 5 - Network Model
+
+- Type: `network`
+- Title: `Co cau xa hoi - giai cap`
+- Nodes:
+  - `Cong nhan`
+  - `Nong dan`
+  - `Tri thuc`
+  - `Doanh nhan`
+  - `Cac tang lop khac`
+  - `Lien minh giai cap, tang lop`
+- Render: network; mobile list lien ket.
+
+### Chuong 6 - Balance/Harmony Model
+
+- Type: `balance`
+- Title: `Dan toc va Ton giao`
+- Nodes:
+  - `Binh dang`
+  - `Doan ket`
+  - `Ton trong`
+  - `Chinh sach phu hop`
+  - `On dinh xa hoi`
+- Render: balance wheel/harmony ring; mobile stacked principle cards.
+
+### Chuong 7 - House Model
+
+- Type: `house`
+- Title: `Gia dinh la te bao xa hoi`
+- Nodes:
+  - `Chuc nang kinh te`
+  - `Chuc nang sinh san`
+  - `Chuc nang giao duc`
+  - `Chuc nang tam ly - tinh cam`
+  - `Xay dung gia dinh Viet Nam`
+- Render: house CSS model; mobile sections as house parts/list.
+
+## 6. Media Learning se them gi?
+
+Them `media` cho moi chuong:
 
 ```js
-{
-  id,
-  title,
-  shortTitle,
-  stationName,
-  centralQuestion,
-  oneLineSummary,
-  whyItMatters,
-  keywords,
-  quickUnderstand,
-  keyIdeas,
-  sections,
-  keyTerms,
-  vietnamConnection,
-  examTips,
-  essayQuestions,
-  quizzes,
-  colorTheme,
-  icon
+media: {
+  title: "...",
+  type: "video",
+  thumbnail: "",
+  description: "...",
+  sourceLabel: "Goi y hoc tap",
+  url: ""
 }
 ```
 
-Ghi chu:
+Noi dung:
 
-- `keywords`: 5 keyword ngan dung cho "Nho nhanh".
-- `keyIdeas`: dung dung 3 y chinh, moi y co `title`, `shortExplain`, `visualHint`.
-- `sections`: giu noi dung chi tiet, render accordion collapsed.
-- `colorTheme`: gom accent, softBg, border, iconBg.
-- `icon`: FontAwesome class.
+- Chuong 1: `CNXHKH ra doi trong boi canh nao?`
+- Chuong 2: `Giai cap cong nhan trong xa hoi hien dai`
+- Chuong 3: `Thoi ky qua do la gi?`
+- Chuong 4: `Dan chu va nha nuoc phap quyen`
+- Chuong 5: `Co cau xa hoi Viet Nam hien nay`
+- Chuong 6: `Doan ket dan toc va ton giao`
+- Chuong 7: `Gia dinh Viet Nam trong xa hoi hien dai`
 
-### 5.3. Rewrite cach hien thi 7 chuong
+Render:
 
-Can viet lai copy ngan gon cho cac field moi:
+- Homepage co `Media Learning` grid/rail.
+- Chapter detail co 1 media card rieng.
+- Click card mo modal.
+- Neu `url` rong: modal hien description va button disabled/secondary `Them link video sau`.
+- Placeholder thumbnail la CSS illustration co icon play, room number, gradient mem theo chapter color.
+- Khong de thumbnail trong nhu o xam rong.
 
-- Chuong 1: Khoi nguon ly luan
-  - Cau hoi trung tam: Vi sao chu nghia xa hoi tu khong tuong tro thanh mot khoa hoc?
-- Chuong 2: Giai cap cong nhan
-  - Cau hoi trung tam: Vi sao giai cap cong nhan duoc xem la luc luong co su menh lich su?
-- Chuong 3: Con duong qua do
-  - Cau hoi trung tam: Vi sao qua do len CNXH la mot qua trinh lich su lau dai va phuc tap?
-- Chuong 4: Dan chu & Nha nuoc
-  - Cau hoi trung tam: Dan chu XHCN khac gi voi cac hinh thuc dan chu truoc do?
-- Chuong 5: Co cau xa hoi
-  - Cau hoi trung tam: Vi sao lien minh cac giai cap, tang lop la nen tang cua khoi dai doan ket?
-- Chuong 6: Dan toc & Ton giao
-  - Cau hoi trung tam: Lam the nao giai quyet van de dan toc, ton giao ma van giu doan ket xa hoi?
-- Chuong 7: Gia dinh Viet Nam
-  - Cau hoi trung tam: Vi sao gia dinh duoc xem la te bao cua xa hoi?
+## 7. Case study Viet Nam se them gi?
 
-## 6. Component can redesign
-
-### 6.1. App shell
-
-Viec can lam:
-
-- Doi light mode thanh mac dinh trong `body` va `appState.theme`.
-- Doi label "Tổng Quan" thanh "Hành trình" / "Learning Home".
-- Giam cam giac sidebar dashboard tren desktop: nav co the thanh rail/nav top gon hon tuy muc do refactor.
-- Tren mobile, bottom nav la dieu huong chinh.
-
-Thanh cong khi:
-
-- Lan dau mo trang thay giao dien sang, am, thoang.
-- Header khong chen ep noi dung.
-- Nav la cong cu dieu huong, khong phai yeu to thi giac chi phoi.
-
-### 6.2. Hero
-
-Viec can lam:
-
-- Viet lai hero ngan.
-- Them visual "knowledge journey": duong di 7 node, book/timeline motif, icon hoc thuat.
-- CTA:
-  - Bat dau hanh trinh -> chuyen den chuong tiep theo/chapter path.
-  - On thi nhanh -> review mode.
-  - Kham pha 7 chuong -> roadmap.
-
-Thanh cong khi:
-
-- Hero khong qua 2 paragraph ngan.
-- Tren mobile, hero khong chiem het man hinh bang chu.
-- Co mot dau hieu thi giac ro rang ve "hanh trinh".
-
-### 6.3. Learning Path / Chapter Cards
-
-Viec can lam:
-
-- Thay `renderOverviewDashboard()` phan chapter card bang `renderJourneyStations()`.
-- Card co station name, icon, 3 keyword, progress/status, CTA.
-- Dung mau rieng tung chuong nhung van nam trong palette chung.
-
-Thanh cong khi:
-
-- Nhung card nhin nhu cac tram tren ban do hoc tap, khong nhu muc luc.
-- Moi card doc xong trong 5-8 giay.
-
-### 6.4. Chapter Detail / Story Page
-
-Viec can lam:
-
-- Doi layout `chapters` thanh story reader.
-- Mac dinh hien central question, quick understand, 3 key ideas, 5 keywords.
-- Dua sections/objectives/detail vao accordion/tab.
-- Them mini quiz/self-check cuoi chuong.
-- Sua bug hien tai: code dang tim `chapterVietnamConnection` nhung HTML dung `viewChapterPractice`; can thong nhat ID trong dot implementation.
-
-Thanh cong khi:
-
-- Nguoi hoc co the nam y chinh truoc khi doc chi tiet.
-- Khong co man hinh toan chu dai.
-- Moi chuong co nhip "hoi -> hieu nhanh -> y chinh -> chi tiet -> on tap".
-
-### 6.5. Timeline
-
-Viec can lam:
-
-- Doi timeline thanh "Dòng chảy hình thành CNXHKH".
-- Moi moc chi 2-3 dong.
-- Them so moc, icon, label ngan.
-- Desktop co rhythm ziczac/step; mobile la vertical cards.
-
-Moc can giu:
-
-- Tien de kinh te - xa hoi
-- Tien de khoa hoc tu nhien
-- Tien de tu tuong ly luan
-- Mác & Ăngghen
-- Tuyen ngon Dang Cong san
-- Lenin phat trien
-- Van dung hien dai
-- Viet Nam
-
-### 6.6. Concept Map -> Knowledge Branches
-
-Viec can lam:
-
-- Bo layout mindmap phuc tap neu khong dam bao mobile.
-- Tao card trung tam "CNXHKH" va 7 branch cards.
-- Desktop co the dung grid quanh central card.
-- Mobile la list branch ro rang.
-- Moi branch co keyword, cau hoi dan nhap, nut hoc ngay.
-
-Thanh cong khi:
-
-- Khong vo layout o `390px`.
-- Card branch de quet mat va di den chuong.
-
-### 6.7. Flashcards
-
-Viec can lam:
-
-- Giam chu mat truoc: term + chapter + keyword category.
-- Mat sau co definition ngan hien truoc, memoryHint trong box rieng.
-- Them filter theo chuong.
-- Progress hien dang `12/35`.
-- Nut: "Chua chac" va "Biet roi" cao toi thieu `44px`.
-- Them completion state khi di het deck.
-
-Thanh cong khi:
-
-- Flashcard khong tran mobile.
-- Lien tuc hoc duoc ma khong can doc nhieu van ban quanh the.
-
-### 6.8. Quiz
-
-Viec can lam:
-
-- Doi quiz thanh one-question-per-card.
-- Progress bar ro.
-- Option lon, full-width mobile.
-- Sau khi chon va kiem tra, hien dung/sai + giai thich ngan.
-- Ket qua cuoi co loi khuyen on tap va CTA lam lai/hoc chuong lien quan.
-
-Thanh cong khi:
-
-- Quiz co cam giac game hoc tap nhe.
-- Khong can sidebar cau hinh day chu tren mobile.
-
-### 6.9. Review Mode
-
-Viec can lam:
-
-- Moi chuong hien:
-  - 1 cau "chuong nay noi ve gi"
-  - 5 y can nho
-  - 5 keyword
-  - 3 cau hoi hay gap
-  - Nut "Lam quiz chuong nay"
-- Dung accordion de mo tung chuong.
-
-Thanh cong khi:
-
-- On thi nhanh that su gọn, khong thanh ban tom tat dai.
-
-### 6.10. Glossary / Tra cuu
-
-Viec can lam:
-
-- Giu chuc nang search.
-- Doi giao dien thanh dictionary cards nhe.
-- Filter theo chuong/tag.
-- Mobile input ro, card thuat ngu ngan, definition co the expand.
-
-Thanh cong khi:
-
-- Tra cuu thuat ngu nhanh ma khong pha flow learning journey.
-
-## 7. Cau truc du lieu moi
-
-### 7.1. Du lieu chuong
-
-Cap nhat `CHAPTERS_DATA` theo huong:
+Them `caseStudy` cho moi chuong:
 
 ```js
-const CHAPTERS_DATA = [
-  {
-    id: 1,
-    title: "Nhập môn Chủ nghĩa xã hội khoa học",
-    shortTitle: "Nhập môn CNXHKH",
-    stationName: "Khởi nguồn lý luận",
-    centralQuestion: "Vì sao chủ nghĩa xã hội từ không tưởng trở thành một khoa học?",
-    oneLineSummary: "Chương này mở ra nguồn gốc, điều kiện ra đời và ý nghĩa của CNXHKH.",
-    whyItMatters: "Giúp sinh viên hiểu vì sao môn học có cơ sở khoa học, không chỉ là niềm tin chính trị.",
-    keywords: ["1848", "Mác - Ăngghen", "Không tưởng", "Giai cấp công nhân", "Quy luật"],
-    quickUnderstand: "Nếu CNXH không tưởng là ước mơ về xã hội công bằng, CNXHKH giải thích vì sao và bằng lực lượng nào xã hội ấy có thể hình thành.",
-    keyIdeas: [
-      {
-        title: "Điều kiện lịch sử",
-        shortExplain: "CNTB phát triển làm mâu thuẫn xã hội bộc lộ rõ.",
-        visualHint: "Nhà máy - đô thị - đấu tranh giai cấp"
-      }
-    ],
-    sections: [],
-    keyTerms: [],
-    vietnamConnection: "",
-    examTips: [],
-    essayQuestions: [],
-    quizzes: [],
-    colorTheme: {
-      accent: "#A32626",
-      softBg: "#FFF4F0",
-      border: "rgba(163, 38, 38, 0.18)"
-    },
-    icon: "fa-solid fa-scroll"
-  }
-];
+caseStudy: {
+  title: "...",
+  situation: "...",
+  question: "...",
+  analysisHints: ["...", "...", "..."]
+}
 ```
 
-### 7.2. Backward compatibility
-
-- Trong dot implementation, neu can tranh sua qua nhieu logic mot luc, co the giu cac field cu va them field moi.
-- Render moi uu tien field moi.
-- Neu field moi thieu, fallback sang `description`, `sections`, `keyTerms` cu de tranh loi.
-
-### 7.3. Derived data
-
-Co the tao helper trong `js/app.js`:
-
-- `getChapterProgress(chapter)`
-- `getNextChapter()`
-- `getChapterKeywords(chapter)`
-- `getChapterTheme(chapter)`
-- `getAllFlashcards(filterChapterId)`
-
-Khong tao framework moi; van Vanilla JS.
-
-## 8. Ke hoach trien khai tung buoc
-
-### Phase 1: Data va copy micro-learning
-
-Muc tieu:
-
-- Bo sung field moi cho 7 chuong trong `js/data.js`.
-- Viet station name, central question, one-line summary, why it matters, quick understand, 3 key ideas, keywords, color theme, icon.
-- Giu nguyen noi dung chi tiet, quiz, flashcard, exam tips.
-
-Kiem tra:
-
-- `js/data.js` khong loi syntax.
-- Tat ca 7 chuong co du field bat buoc.
-- Khong mat du lieu cu.
-
-### Phase 2: App shell va light theme
-
-Muc tieu:
-
-- Doi light theme lam default.
-- Chinh lai token CSS theo palette moi.
-- Giam dashboard/sidebar feel.
-- Thiet lap mobile-first spacing, safe-area bottom padding, button min-height.
-
-Kiem tra:
-
-- Lan dau load la light mode.
-- Toggle dark/light van hoat dong.
-- Khong loi console.
-
-### Phase 3: Learning Home va hero
-
-Muc tieu:
-
-- Rewrite overview thanh Learning Home.
-- Hero ngan + visual journey.
-- Progress journey.
-- Continue learning card.
-- Quick actions.
-- Roadmap 7 station.
-
-Kiem tra:
-
-- 390/430px khong horizontal scroll.
-- 1440px khong bi trong trai hoac card qua rong.
-- CTA dung tab/section can den.
-
-### Phase 4: Chapter Story Page
-
-Muc tieu:
-
-- Redesign tab chapters thanh story page.
-- Default view giam chu: central question, quick understand, 3 key ideas, 5 keywords.
-- Detail sections vao accordion/tabs.
-- Terms grid, Vietnam highlight, review/self-check.
-- Prev/next/mark complete/quiz CTA van hoat dong.
-
-Kiem tra:
-
-- Chon chuong tren roadmap vao dung story.
-- Mark complete cap nhat progress.
-- Mobile cuon tu nhien, khong bi fixed-height viewer gay ket noi dung.
-
-### Phase 5: Timeline va Knowledge Branches
-
-Muc tieu:
-
-- Timeline thanh journey milestones.
-- Mindmap thanh Knowledge Branches.
-- Mobile list, desktop grid/branch.
-
-Kiem tra:
-
-- Khong vo layout o 390px.
-- Moi branch co nut hoc ngay.
-
-### Phase 6: Flashcards redesign
-
-Muc tieu:
-
-- Them filter chuong.
-- Thiet ke the lon, it chu, flip animation nhe.
-- Progress `x/y`, status known/review.
-- Completion screen.
-
-Kiem tra:
-
-- Known/review luu localStorage nhu cu.
-- Card khong tran mobile.
-- Nut de bam.
-
-### Phase 7: Quiz redesign
-
-Muc tieu:
-
-- Cau hinh quiz gon.
-- Moi cau mot card.
-- Option lon.
-- Feedback dung/sai + explanation.
-- Result co advice va CTA.
-
-Kiem tra:
-
-- Quiz all/random va quiz theo chuong hoat dong.
-- High score luu localStorage.
-- Khong can sidebar dai tren mobile.
-
-### Phase 8: Review Mode va Glossary
-
-Muc tieu:
-
-- Review mode thanh on thi nhanh dung nghia.
-- Glossary card/filter gon.
-
-Kiem tra:
-
-- Moi chuong co 5 y/5 keyword/3 cau hoi.
-- Search glossary dung.
-
-### Phase 9: UI polish co kiem soat
-
-Muc tieu:
-
-- Hover/fade/scroll animation nhe.
-- Shadow, radius, border, pattern giay nhe.
-- Dam bao text khong tran button/card.
-- Dam bao dark mode la phu nhung van doc tot.
-
-Kiem tra:
-
-- CSS khong thanh mot bang mau don dieu.
-- Khong co glow toi mau lam nang mat.
-- Khong co card long card.
-
-### Phase 10: Verification
-
-Muc tieu:
-
-- Chay data validation neu co.
-- Kiem tra console.
-- Kiem tra responsive breakpoints.
-- Kiem tra flows chinh.
-
-Kiem tra:
-
-- `390px`, `430px`, `768px`, `1024px`, `1440px`.
-- No horizontal scroll.
-- Theme/progress/quiz/flashcard/localStorage on dinh.
-
-## 9. Checklist kiem thu UI/UX
-
-### 9.1. General
-
-- [ ] Light mode la default va dep hon dark mode hien tai.
-- [ ] Hero co title lon, slogan ngan, 3 CTA, visual journey.
-- [ ] Khong co man hinh nao bi day dac chu nhu giao trinh.
-- [ ] Moi section co khoang tho va diem nhan ro.
-- [ ] Icon/mau tung chuong nhat quan.
-- [ ] Animation nhe, khong gay mat tap trung.
-- [ ] Khong loi console.
-
-### 9.2. Mobile
-
-- [ ] `390px`: khong horizontal scroll.
-- [ ] `430px`: bottom nav khong che content cuoi.
-- [ ] `768px`: layout tablet de doc, card khong bi keo dai bat thuong.
-- [ ] Button/quiz option toi thieu `44px`.
-- [ ] Flashcard khong tran man hinh.
-- [ ] Timeline la vertical cards.
-- [ ] Knowledge Branches la list ro rang.
-
-### 9.3. Desktop
-
-- [ ] `1024px`: khong con cam giac sidebar chiem qua nhieu.
-- [ ] `1440px`: hero/roadmap co visual impact, line length khong qua dai.
-- [ ] Roadmap 7 chuong trong nhu hanh trinh, khong nhu card grid thong thuong.
-
-### 9.4. Learning flow
-
-- [ ] Bat dau hanh trinh dua den chuong tiep theo/chapter path.
-- [ ] Hoc chuong nay mo dung chapter story.
-- [ ] Mac dinh chuong chi hien quick learn, key ideas, keywords.
-- [ ] Doc chi tiet moi mo accordion.
-- [ ] Mark complete cap nhat progress.
-- [ ] Quiz theo chuong hoat dong.
-- [ ] Review mode thuc su ngan.
-
-### 9.5. State va logic
-
-- [ ] Theme toggle luu localStorage.
-- [ ] Completed chapters luu localStorage.
-- [ ] Flashcard known/review luu localStorage.
-- [ ] Quiz high scores luu localStorage.
-- [ ] Khong mat quiz data.
-- [ ] Khong mat key terms.
-
-## 10. Tieu chi nghiem thu cuoi cung
-
-Website duoc xem la dat khi:
-
-1. **Cam giac tong the**: nguoi dung nhin lan dau thay day la mot website hoc tap tuong tac, dep, co concept hanh trinh, khong phai dashboard hoc thuat.
-2. **Learning Home**: co hero cuon, progress journey, quick actions va roadmap 7 tram tri thuc.
-3. **Chapter cards**: moi chuong it chu, co icon, mau rieng, keyword, progress va CTA ro.
-4. **Chapter detail**: moi chuong la story page voi central question, quick understand, 3 key ideas, terms, Vietnam connection, review va accordion chi tiet.
-5. **Micro-learning**: nguoi hoc co the nam y chinh moi chuong trong 3 phut ma khong can doc toan bo noi dung.
-6. **Mobile-first**: cac breakpoint `390`, `430`, `768`, `1024`, `1440` khong horizontal scroll, khong bi bottom nav che, text/button/card khong vo.
-7. **Feature preservation**: theme, progress, flashcard, quiz, review, glossary van hoat dong va khong loi console.
-8. **Data maintainability**: du lieu hoc tap nam trong `js/data.js`, render logic nam trong `js/app.js`, CSS chia section ro.
-9. **Visual quality**: dat cung muc hap dan thi giac voi tinh than `MLN122_web`, nhung khong copy giao dien, khong copy framework, khong copy noi dung.
-10. **No academic dump**: khong co trang nao do toan bo giao trinh ra mac dinh; noi dung dai phai nam trong accordion/tab/expand.
-
-## 11. Quyet dinh can duyet truoc khi code
-
-Truoc khi bat dau implementation, can duyet cac diem sau:
-
-- Chap nhan concept **Learning Journey** lam huong chinh.
-- Chap nhan light mode la default.
-- Chap nhan them field moi vao `js/data.js` nhung giu du lieu cu.
-- Chap nhan redesign manh `index.html`, `style.css`, `js/app.js` trong pham vi vanilla HTML/CSS/JS.
-- Chap nhan khong copy MLN122, chi hoc tinh than: hero cuon, card co danh tinh, section ngan, motion nhe, interactive learning.
-
+Nguyen tac noi dung:
+
+- Ngan, gan doi song, khong thanh bai luan.
+- Moi case co mot tinh huong cu the o Viet Nam hoac gan voi sinh vien Viet Nam.
+- Cau hoi mo, khuyen khich ap dung khai niem chuong.
+- Goi y phan tich chi 2-4 y.
+
+Huong case theo chuong:
+
+- Chuong 1: Phan biet uoc mo cong bang xa hoi va cach tiep can khoa hoc trong phan tich bien doi xa hoi.
+- Chuong 2: Cong nhan trong nha may, khu cong nghiep, kinh te so va van de nang cao ky nang.
+- Chuong 3: Doi moi, cong nghiep hoa, kinh te nhieu thanh phan va dinh huong lau dai.
+- Chuong 4: Mot van de cong dong dia phuong can co dan chu, phap luat va trach nhiem nha nuoc.
+- Chuong 5: Bien doi nghe nghiep, cong nhan - nong dan - tri thuc - doanh nhan cung tham gia phat trien.
+- Chuong 6: Tinh huong doan ket dan toc, ton giao, tin nguong va phan biet voi loi dung chia re.
+- Chuong 7: Gia dinh tre, binh dang gioi, cham soc con cai/nguoi gia trong xa hoi hien dai.
+
+## 8. Interactive comparison se them gi?
+
+Them `comparison` cho cac chuong phu hop:
+
+```js
+comparison: {
+  title: "...",
+  keyDifference: "...",
+  left: {
+    label: "...",
+    points: ["...", "...", "..."]
+  },
+  right: {
+    label: "...",
+    points: ["...", "...", "..."]
+  }
+}
+```
+
+Noi dung bat buoc:
+
+- Chuong 1: `CNXH khong tuong` vs `CNXH khoa hoc`
+- Chuong 3: `Qua do truc tiep` vs `Qua do gian tiep`
+- Chuong 4: `Dan chu tu san` vs `Dan chu XHCN`
+- Chuong 7: `Gia dinh truyen thong` vs `Gia dinh hien dai`
+
+Nguyen tac:
+
+- Viet o muc hoc thuat, khai quat, khong cuc doan.
+- Moi ben toi da 3-4 bullet ngan.
+- Co `keyDifference` de neo y chinh.
+- Desktop: split cards.
+- Mobile: stacked cards.
+- Neu chuong khong co comparison, render bo qua an toan.
+
+## 9. Mini interaction se gom nhung gi?
+
+Can it nhat 3 interaction that su:
+
+### A. Build the Concept
+
+- Vi du homepage hoac Room 01: `Chon 3 tien de ra doi CNXHKH`.
+- Nguoi hoc tap vao cac option chip.
+- Khi bam `Kiem tra`, he thong bao dung/sai va giai thich ngan.
+- Khong dung drag-drop de tranh loi mobile.
+- Luu optional localStorage: `MLN131_buildConceptDone`.
+
+### B. Decision Scenario
+
+- Hien mot tinh huong ngan va 3 cach phan tich.
+- Nguoi hoc chon mot dap an.
+- UI phan hoi:
+  - Correct: giai thich vi sao phu hop khai niem.
+  - Incorrect: giai thich thieu diem nao.
+- Co the dat tren homepage `Case Study Preview` hoac trong chapter detail.
+- Luu optional localStorage: `MLN131_decisionScenarioDone`.
+
+### C. Timeline Unlock
+
+- Timeline ban dau khong mo het desc.
+- Click tung moc de unlock.
+- Moc da unlock co badge `Da mo`.
+- Co counter `x/8 moc da mo`.
+- Luu localStorage: `MLN131_unlockedTimeline`.
+
+Them interaction phu neu du thoi gian:
+
+- Concept model node click: bam node hien description.
+- Media modal.
+- Room filter/tag focus tren roadmap.
+
+## 10. Mobile se xu ly visual nhu the nao?
+
+Kiem thu bat buoc: `390px`, `430px`, `768px`, `1024px`, `1440px`.
+
+Nguyen tac:
+
+- Base CSS tu mobile len desktop.
+- Khong horizontal scroll toan trang.
+- Button, interactive chip, timeline node toi thieu 44px.
+- Hero visual tren mobile khong qua cao; target khoang 320-420px tuy content.
+- Roadmap mobile la vertical exhibition path, khong grid ngang.
+- Concept model:
+  - Flow/roadmap: stack doc.
+  - Network: chuyen thanh linked list neu khong du rong.
+  - Comparison: stacked.
+  - Balance/house: CSS simplified layout hoac list card.
+- Media cards full width tren mobile.
+- Modal co max-height va scroll noi bo, co nut dong de bam.
+- Chapter detail cuon tu nhien, khong lock vao fixed-height viewer.
+- Text button/card khong tran; dung `overflow-wrap`, `minmax(0, 1fr)`, stable dimensions.
+- Khong interaction hover-only; moi thu co click/tap state.
+- Flashcard/quiz/review/glossary giu layout hien co, chi polish neu can de khong bi lech voi exhibition theme.
+
+## 11. Data structure can bo sung field gi?
+
+Bo sung vao tung object chuong trong `CHAPTERS_DATA` hoac lop enrich cuoi file nhu `MICRO_LEARNING_DATA`.
+
+Field moi:
+
+```js
+room: {
+  number: "01",
+  name: "Khoi nguon ly luan",
+  label: "Room 01",
+  visualMotif: "flow"
+}
+```
+
+```js
+conceptModel: {
+  type: "flow",
+  title: "...",
+  description: "...",
+  nodes: [
+    {
+      title: "...",
+      description: "...",
+      icon: "fa-solid fa-..."
+    }
+  ],
+  connections: []
+}
+```
+
+```js
+media: {
+  title: "...",
+  type: "video",
+  thumbnail: "",
+  description: "...",
+  sourceLabel: "Goi y hoc tap",
+  url: ""
+}
+```
+
+```js
+caseStudy: {
+  title: "...",
+  situation: "...",
+  question: "...",
+  analysisHints: ["...", "...", "..."]
+}
+```
+
+```js
+comparison: {
+  title: "...",
+  keyDifference: "...",
+  left: {
+    label: "...",
+    points: ["...", "...", "..."]
+  },
+  right: {
+    label: "...",
+    points: ["...", "...", "..."]
+  }
+}
+```
+
+Data global moi:
+
+```js
+const EXHIBITION_INTERACTIONS = {
+  buildConcept: {...},
+  decisionScenario: {...}
+};
+```
+
+Validation:
+
+- Cap nhat `js/validate_data.js` de khong fail field cu.
+- Co the them check optional cho `conceptModel`, `media`, `caseStudy`.
+- Render logic phai fallback:
+  - Khong co `conceptModel`: an section.
+  - Khong co `media`: khong render card.
+  - Khong co `comparison`: khong render comparison.
+  - Khong co `caseStudy`: khong render case block.
+
+## 12. Phase trien khai cu the
+
+### Phase 1 - Data exhibition layer
+
+- Them `conceptModel`, `media`, `caseStudy`, `comparison`, `room` vao data.
+- Them `EXHIBITION_INTERACTIONS` cho Build the Concept va Decision Scenario.
+- Cap nhat validation nhe.
+- Chay `node js/validate_data.js`.
+
+### Phase 2 - Homepage restructure
+
+- Viet lai `renderOverview()` theo thu tu section moi.
+- Them helper render:
+  - `renderHeroExhibition()`
+  - `renderExhibitionHighlights()`
+  - `renderInteractiveRoadmap()`
+  - `renderConceptModelsPreview()`
+  - `renderTimelineUnlock()`
+  - `renderMediaLearning()`
+  - `renderCaseStudyPreview()`
+  - `renderQuickStudyTools()`
+  - `renderContinueLearning()`
+- Giu routing tab hien co.
+- Giu quick actions nhung dua ve gan cuoi.
+
+### Phase 3 - Concept model renderer
+
+- Them `renderConceptModel(model, chapter)`.
+- Ho tro type: `flow`, `network`, `roadmap`, `comparison`, `balance`, `house`.
+- Them event click node de hien description neu phu hop.
+- Mobile fallback cho network/balance/house.
+
+### Phase 4 - Chapter detail exhibition upgrade
+
+- Nang `buildChapterStoryHtml()`:
+  - Hero nho rieng theo room.
+  - Cau hoi trung tam.
+  - Concept model.
+  - Quick understand.
+  - 3 key ideas.
+  - Case study.
+  - Comparison neu co.
+  - Media card.
+  - Mini quiz/self-check.
+  - Accordion chi tiet.
+- Giu CTA quiz, complete, prev/next.
+
+### Phase 5 - Mini interactions
+
+- Build the Concept:
+  - Render option chips.
+  - Check answer.
+  - Feedback dung/sai.
+  - Optional localStorage.
+- Decision Scenario:
+  - Render scenario card.
+  - Check selected answer.
+  - Feedback va explanation.
+- Timeline Unlock:
+  - Render locked/unlocked state.
+  - Luu `MLN131_unlockedTimeline`.
+
+### Phase 6 - Media modal
+
+- Them modal HTML bang JS khi click media.
+- Them close by button, overlay click, Escape key.
+- Neu co `url`, mo link/new tab hoac hien CTA.
+- Neu `url` rong, hien `Them link video sau`.
+
+### Phase 7 - CSS exhibition system
+
+- Them visual system:
+  - Paper/map texture.
+  - Hero knowledge map.
+  - Exhibition rooms path.
+  - Concept model classes.
+  - Media thumbnail placeholder.
+  - Timeline unlock state.
+  - Modal.
+- Kiem soat palette: warm ivory, cream, card white, navy, deep red, gold, muted blue-gray.
+- Dark theme fallback van doc duoc nhung light mode la chinh.
+
+### Phase 8 - Regression va responsive test
+
+- Chay validation.
+- Mo local HTML/dev view.
+- Test manual cac viewport:
+  - `390px`
+  - `430px`
+  - `768px`
+  - `1024px`
+  - `1440px`
+- Kiem:
+  - Khong horizontal scroll.
+  - Button de bam.
+  - Modal dong duoc.
+  - Timeline unlock luu state.
+  - Quiz/flashcard/review/glossary van hoat dong.
+  - LocalStorage cu khong bi mat.
+
+## 13. Tieu chi nghiem thu
+
+### 13.1. Tieu chi trai nghiem
+
+- Man hinh dau tien tao cam giac day la **trien lam tri thuc CNXHKH**, khong phai dashboard hoc tap.
+- Hero co visual impact ro: 7 node/room, keyword chips, duong tri thuc, chu de CNXHKH nhin thay ngay.
+- Homepage co nhip kham pha: hero -> highlights -> rooms -> model -> timeline unlock -> media -> case -> tools -> continue.
+- Quiz/flashcard khong con la trung tam cua homepage.
+- Moi room co ban sac rieng ve icon, mau, cau hoi va concept model.
+- Nguoi hoc co it nhat 3 diem de bam va nhan feedback that su.
+- Noi dung van hoc thuat nhung khong do chu dai; paragraph ngan, card co muc dich.
+
+### 13.2. Tieu chi noi dung
+
+- 7 chuong deu co `conceptModel` dung type yeu cau.
+- 7 chuong deu co `media`.
+- 7 chuong deu co `caseStudy`.
+- Chuong 1, 3, 4, 7 co `comparison`.
+- Case study ngan, gan Viet Nam, co cau hoi va hint.
+- Comparison khach quan, khai quat, khong cuc doan.
+
+### 13.3. Tieu chi ky thuat
+
+- Khong them framework moi.
+- Khong them thu vien nang.
+- `js/data.js` load khong loi.
+- `js/app.js` co fallback cho field moi.
+- `node js/validate_data.js` pass sau khi cap nhat validation.
+- Theme toggle van hoat dong.
+- Completed chapters, flashcard progress, quiz high scores, streak va search/glossary khong bi mat.
+- Timeline unlock va mini interaction neu luu localStorage phai dung key moi, khong ghi de key cu.
+
+### 13.4. Tieu chi responsive
+
+- `390px`: khong ngang scroll, hero va room path doc tot, modal khong tran.
+- `430px`: tap targets du 44px, text trong button/card khong vo.
+- `768px`: layout tablet 2 cot hop ly, concept model khong chen nhau.
+- `1024px`: sidebar/nav hien dung, roadmap co cam giac exhibition map.
+- `1440px`: khong rong trai, section co max-width va visual can bang.
+
+### 13.5. Tieu chi "kham pha"
+
+Nguoi hoc sau 30 giay tren homepage phai hieu:
+
+- Day la mot trien lam tri thuc ve CNXHKH.
+- Co 7 phong/room de di qua.
+- Moi room co mo hinh truc quan, case, media va cau hoi.
+- Co the bam de mo timeline, xem media, thu build concept va lam scenario.
+- Flashcard/quiz la cong cu ho tro sau khi kham pha, khong phai toan bo san pham.
