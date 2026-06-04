@@ -3,62 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Học Viện MLN131 - Chủ Nghĩa Xã Hội Khoa Học</title>
-    <!-- Google Fonts: Be Vietnam Pro & Outfit -->
+    <title>Cổng Tri Thức MLN131 - Chủ Nghĩa Xã Hội Khoa Học</title>
+    <!-- Google Fonts: Lora (classical reading) & Outfit (modern controls) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="dark-theme">
-    <!-- Animated background layers -->
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress-container">
+        <div class="scroll-progress" id="scrollProgressBar"></div>
+    </div>
+
+    <!-- Animated Background Glows -->
     <div class="bg-glow bg-glow-1"></div>
     <div class="bg-glow bg-glow-2"></div>
     <div class="bg-glow bg-glow-3"></div>
 
+    <!-- Toast Notifications Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
     <div class="app-container">
-        <!-- Sidebar Navigation -->
+        <!-- Sidebar & Bottom Navigation Menu -->
         <aside class="sidebar">
             <div class="logo">
                 <div class="logo-icon">
-                    <i class="fa-solid fa-graduation-cap"></i>
+                    <i class="fa-solid fa-feather-pointed"></i>
                 </div>
                 <div class="logo-text">
                     <h1>MLN131</h1>
-                    <span>CNXHKH Portal</span>
+                    <span>History Archive</span>
                 </div>
             </div>
             
             <nav class="nav-menu">
                 <a href="#" class="nav-item active" data-tab="overview">
-                    <i class="fa-solid fa-chart-pie"></i>
+                    <i class="fa-solid fa-landmark"></i>
                     <span>Tổng Quan</span>
                 </a>
                 <a href="#" class="nav-item" data-tab="chapters">
                     <i class="fa-solid fa-book-open"></i>
                     <span>Bài Học</span>
                 </a>
+                <a href="#" class="nav-item" data-tab="flashcards">
+                    <i class="fa-solid fa-cards-blank"></i>
+                    <span>Flashcards</span>
+                </a>
                 <a href="#" class="nav-item" data-tab="quiz">
                     <i class="fa-solid fa-circle-question"></i>
                     <span>Trắc Nghiệm</span>
                 </a>
+                <a href="#" class="nav-item" data-tab="review">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                    <span>Ôn Thi Nhanh</span>
+                </a>
                 <a href="#" class="nav-item" data-tab="glossary">
-                    <i class="fa-solid fa-spell-check"></i>
-                    <span>Thuật Ngữ</span>
+                    <i class="fa-solid fa-magnifying-glass-chart"></i>
+                    <span>Tra Cứu</span>
                 </a>
             </nav>
 
             <div class="sidebar-footer">
                 <div class="user-profile">
-                    <div class="avatar">H</div>
+                    <div class="avatar"><i class="fa-solid fa-user-graduate"></i></div>
                     <div class="user-info">
                         <span class="user-name">Sinh Viên</span>
-                        <span class="user-role">Người học</span>
+                        <span class="user-role">Người học tri thức</span>
                     </div>
                 </div>
-                <button class="theme-toggle" id="themeToggleBtn">
+                <button class="theme-toggle" id="themeToggleBtn" title="Chuyển đổi giao diện">
                     <i class="fa-solid fa-sun"></i>
                 </button>
             </div>
@@ -66,43 +82,68 @@
 
         <!-- Main Content Area -->
         <main class="main-content">
-            <!-- Header -->
+            <!-- Header Sticky Bar -->
             <header class="top-header">
                 <div class="header-title">
-                    <h2 id="pageTitle">Cổng Học Tập MLN131</h2>
-                    <p id="pageSubtitle">Chủ nghĩa xã hội khoa học - Lý luận & Thực tiễn</p>
+                    <h2 id="pageTitle">Học Viện MLN131</h2>
+                    <p id="pageSubtitle">Chủ nghĩa xã hội khoa học - Bản đồ & Dòng chảy tư tưởng</p>
                 </div>
                 <div class="header-actions">
                     <div class="search-bar">
                         <i class="fa-solid fa-magnifying-glass"></i>
-                        <input type="text" placeholder="Tìm kiếm tài liệu, khái niệm..." id="globalSearch">
+                        <input type="text" placeholder="Tìm kiếm chương học, thuật ngữ..." id="globalSearch">
                     </div>
-                    <div class="notification-bell">
+                    <button class="notification-bell" onclick="showToast('Chào mừng bạn đến với Cổng học tập Chủ nghĩa xã hội khoa học!', 'success')" title="Thông báo">
                         <i class="fa-regular fa-bell"></i>
-                        <span class="badge"></span>
-                    </div>
+                    </button>
                 </div>
             </header>
 
             <!-- Container for Tab Panes -->
             <div class="tab-content">
-                <!-- Overview Tab -->
+                
+                <!-- 1. TAB OVERVIEW (LANDING / DASHBOARD) -->
                 <section class="tab-pane active" id="overview">
-                    <!-- Dashboard Cards Grid -->
-                    <div class="dashboard-grid">
-                        <div class="hero-card">
-                            <div class="hero-text">
-                                <h3>Chinh Phục MLN131</h3>
-                                <p>Học thuyết chính trị - xã hội khoa học về con đường giải phóng giai cấp công nhân và nhân dân lao động khỏi áp bức bóc lột.</p>
-                                <button class="btn btn-primary" onclick="switchTab('chapters')">Bắt Đầu Học Ngay <i class="fa-solid fa-arrow-right"></i></button>
-                            </div>
-                            <div class="hero-illustration">
-                                <i class="fa-solid fa-rocket-launch"></i>
+                    <!-- Hero Section -->
+                    <div class="hero-section">
+                        <div class="hero-content">
+                            <span class="hero-tag">Tư Liệu Học Thuật</span>
+                            <h2>Chủ nghĩa xã hội khoa học</h2>
+                            <p class="hero-subtitle">Hành trình tìm hiểu những quy luật, giá trị và vấn đề xã hội trong thời kỳ quá độ lên chủ nghĩa xã hội</p>
+                            <p class="hero-desc">Môn học giúp sinh viên xây dựng thế giới quan khoa học, hiểu rõ sứ mệnh của các giai cấp, nền dân chủ, nhà nước pháp quyền, liên minh xã hội, vấn đề dân tộc, tôn giáo và gia đình trong thời đại đổi mới.</p>
+                            
+                            <div class="hero-actions-row">
+                                <button class="btn btn-primary" onclick="switchTab('chapters')">Bắt đầu học <i class="fa-solid fa-arrow-right"></i></button>
+                                <button class="btn btn-secondary" onclick="switchTab('review')">Xem tóm tắt</button>
+                                <button class="btn btn-outline-gold" onclick="switchTab('quiz')">Luyện trắc nghiệm</button>
                             </div>
                         </div>
+                        
+                        <!-- Quick Stats Grid -->
+                        <div class="hero-stats-grid">
+                            <div class="h-stat-card">
+                                <span class="stat-num">7</span>
+                                <span class="stat-label">Chương lý thuyết</span>
+                            </div>
+                            <div class="h-stat-card">
+                                <span class="stat-num">21</span>
+                                <span class="stat-label">Chủ đề bài học</span>
+                            </div>
+                            <div class="h-stat-card">
+                                <span class="stat-num">35</span>
+                                <span class="stat-label">Câu hỏi trắc nghiệm</span>
+                            </div>
+                            <div class="h-stat-card">
+                                <span class="stat-num">35</span>
+                                <span class="stat-label">Thuật ngữ cốt lõi</span>
+                            </div>
+                        </div>
+                    </div>
 
-                        <div class="stat-card progress-card">
-                            <h4>Tiến Độ Học Tập</h4>
+                    <!-- Progress Cards Grid -->
+                    <div class="dashboard-progress-row">
+                        <div class="stat-card progress-circle-card">
+                            <h5>Tiến Độ Học Tập</h5>
                             <div class="progress-container">
                                 <div class="progress-circle">
                                     <svg>
@@ -114,119 +155,272 @@
                                     </div>
                                 </div>
                                 <div class="progress-details">
-                                    <p><strong id="completedCount">0/7</strong> Chương đã đọc</p>
-                                    <p><strong id="quizScore">0%</strong> Điểm trắc nghiệm</p>
+                                    <p><i class="fa-solid fa-book-open"></i> Đã đọc: <strong id="completedCount">0/7</strong> chương</p>
+                                    <p><i class="fa-solid fa-tags"></i> Thuộc lòng: <strong id="learnedCardsCount">0/35</strong> thuật ngữ</p>
                                 </div>
                             </div>
                         </div>
+
+                        <div class="stat-card streak-stat-card">
+                            <h5>Chuỗi Học Tập</h5>
+                            <div class="streak-box">
+                                <div class="streak-icon"><i class="fa-solid fa-fire-flame-curved"></i></div>
+                                <div class="streak-info">
+                                    <span class="streak-number" id="streakCount">0</span>
+                                    <span class="streak-label">Ngày học liên tục</span>
+                                </div>
+                            </div>
+                            <p class="streak-note">Học tập đều đặn mỗi ngày giúp ghi nhớ kiến thức tốt gấp 3 lần!</p>
+                        </div>
+
+                        <div class="stat-card score-stat-card">
+                            <h5>Điểm Luyện Thi</h5>
+                            <div class="score-box">
+                                <div class="score-val" id="quizAverageScore">0%</div>
+                                <div class="score-desc">Điểm trung bình cao nhất</div>
+                            </div>
+                            <button class="btn btn-xs btn-outline-gold w-100" onclick="switchTab('quiz')">Vào ôn luyện đề</button>
+                        </div>
                     </div>
 
-                    <!-- Chapters Summary List -->
+                    <!-- 7 Chapters Section Grid -->
                     <div class="section-container">
                         <div class="section-header">
-                            <h3>Danh Sách Chương Học</h3>
-                            <a href="#" class="view-all-link" onclick="switchTab('chapters')">Xem chi tiết <i class="fa-solid fa-chevron-right"></i></a>
+                            <h3>Bản đồ giáo trình 7 Chương học</h3>
                         </div>
                         <div class="chapter-cards-grid" id="chapterSummaryGrid">
                             <!-- Injected by JS -->
                         </div>
                     </div>
 
-                    <!-- Quick tips / Study guidelines -->
+                    <!-- Concept Map Section (Bản đồ tư duy) -->
+                    <div class="section-container">
+                        <div class="section-header">
+                            <h3>Sơ đồ tư duy cốt lõi môn học</h3>
+                            <p class="section-subtitle">Click vào các nút nhánh chương để xem thông tin tóm tắt nhanh và truy cập bài học.</p>
+                        </div>
+                        <div class="mindmap-wrapper" id="conceptMapContainer">
+                            <!-- Injected by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Knowledge Timeline Section (Dòng chảy tri thức) -->
+                    <div class="section-container">
+                        <div class="section-header">
+                            <h3>Dòng chảy lịch sử tư tưởng CNXHKH</h3>
+                            <p class="section-subtitle">Tiến trình phát triển từ các điều kiện kinh tế - xã hội đến thực tiễn đổi mới của Việt Nam hiện nay.</p>
+                        </div>
+                        <div class="timeline-wrapper" id="timelineContainer">
+                            <!-- Injected by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Study Tips Section -->
                     <div class="tips-section">
-                        <h3>Mẹo Học Tập Hiệu Quả</h3>
+                        <h3>Mẹo Ôn Thi Đạt Kết Quả Cao</h3>
                         <div class="tips-grid">
                             <div class="tip-card">
-                                <div class="tip-icon"><i class="fa-solid fa-key"></i></div>
-                                <h5>Nắm vững thuật ngữ</h5>
-                                <p>Sử dụng công cụ <strong>Thuật Ngữ</strong> để tra cứu nhanh các khái niệm nền tảng như <em>sứ mệnh lịch sử</em>, <em>quá độ lên chủ nghĩa xã hội</em>.</p>
+                                <div class="tip-icon"><i class="fa-solid fa-book-bookmark"></i></div>
+                                <h5>Ghi nhớ qua Flashcards</h5>
+                                <p>Thuật ngữ môn học chiếm 35% số câu hỏi trắc nghiệm. Hãy dùng công cụ <strong>Flashcards</strong> lật thẻ mỗi ngày để thuộc lòng khái niệm.</p>
                             </div>
                             <div class="tip-card">
-                                <div class="tip-icon"><i class="fa-solid fa-pen-clip"></i></div>
-                                <h5>Luyện trắc nghiệm</h5>
-                                <p>Sau mỗi chương học, hãy thử sức với bộ <strong>Trắc Nghiệm</strong> để củng cố kiến thức và quen với cấu trúc đề thi chính thức.</p>
+                                <div class="tip-icon"><i class="fa-solid fa-pen-to-square"></i></div>
+                                <h5>Phân tích liên hệ Việt Nam</h5>
+                                <p>Đề thi tự luận luôn yêu cầu phần liên hệ thực tế Việt Nam. Hãy đọc kỹ phần <strong>Liên hệ thực tiễn</strong> ở mỗi chương học.</p>
                             </div>
                             <div class="tip-card">
-                                <div class="tip-icon"><i class="fa-solid fa-diagram-project"></i></div>
-                                <h5>Liên hệ thực tiễn</h5>
-                                <p>Đặc biệt lưu ý các nội dung liên hệ thực tế Việt Nam ở Chương 3, Chương 4 và Chương 6 để làm bài luận tốt hơn.</p>
+                                <div class="tip-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
+                                <h5>Luyện đề trước khi thi</h5>
+                                <p>Chạy chế độ <strong>Ôn thi nhanh 10 câu ngẫu nhiên</strong> trong phần Trắc Nghiệm để làm quen với áp lực thời gian của đề thi cuối kỳ.</p>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                <!-- Chapters Tab -->
+                <!-- 2. TAB CHAPTERS (DETAILED CURRICULUM VIEW) -->
                 <section class="tab-pane" id="chapters">
                     <div class="chapters-layout">
-                        <!-- Left Panel: Chapter Selector -->
+                        <!-- Left Panel: Chapter Navigation List -->
                         <div class="chapter-sidebar">
+                            <h5 class="sidebar-title">Danh mục chương</h5>
                             <div class="chapter-list" id="chapterSelectorList">
                                 <!-- Injected by JS -->
                             </div>
                         </div>
 
-                        <!-- Right Panel: Chapter Content Viewer -->
+                        <!-- Right Panel: Chapter Reader -->
                         <div class="chapter-content-viewer">
                             <div id="emptyContentViewer" class="empty-viewer">
                                 <i class="fa-solid fa-book-open-reader"></i>
-                                <h4>Chọn một chương để bắt đầu học</h4>
-                                <p>Nội dung chi tiết chương, các định nghĩa trọng tâm và phần ôn tập sẽ hiển thị tại đây.</p>
+                                <h4>Chọn một chương học để bắt đầu nghiên cứu</h4>
+                                <p>Hệ thống sẽ tải toàn bộ tóm tắt khoa học, mục tiêu học tập, thuật ngữ, liên hệ thực tế và câu hỏi tự luận tại đây.</p>
                             </div>
+                            
+                            <!-- Detailed Chapter View Container -->
                             <div id="chapterBody" class="chapter-body hidden">
                                 <div class="chapter-content-header">
-                                    <button class="btn btn-secondary mobile-back-btn" id="chapterMobileBackBtn">
-                                        <i class="fa-solid fa-arrow-left"></i> Quay lại
+                                    <button class="btn btn-secondary btn-sm mobile-back-btn" id="chapterMobileBackBtn">
+                                        <i class="fa-solid fa-arrow-left"></i> Danh sách chương
                                     </button>
                                     <div class="chapter-meta">
                                         <span class="chapter-badge" id="viewChapterBadge">Chương 1</span>
-                                        <span class="read-status-indicator" id="readStatusBadge">
-                                            <i class="fa-regular fa-circle"></i> Chưa đọc
-                                        </span>
+                                        <span class="read-status-indicator" id="readStatusText">Chưa đọc</span>
                                     </div>
                                     <h2 class="chapter-detail-title" id="viewChapterTitle">Sứ mệnh lịch sử của giai cấp công nhân</h2>
+                                    <p class="chapter-desc-lead" id="viewChapterDesc"></p>
                                 </div>
                                 
                                 <div class="chapter-scrollable-content">
-                                    <div class="chapter-section-card">
-                                        <h4><i class="fa-solid fa-compass"></i> Nội dung cốt lõi</h4>
-                                        <p id="viewChapterCore"></p>
+                                    <!-- Objectives Panel -->
+                                    <div class="detail-row-grid">
+                                        <div class="chapter-section-card objectives-card">
+                                            <h4><i class="fa-solid fa-bullseye text-primary"></i> Mục tiêu học phần</h4>
+                                            <ul class="objectives-list">
+                                                <li><strong class="text-gold">Kiến thức:</strong> <span id="objKnowledge"></span></li>
+                                                <li><strong class="text-gold">Kỹ năng:</strong> <span id="objSkills"></span></li>
+                                                <li><strong class="text-gold">Thái độ:</strong> <span id="objAttitude"></span></li>
+                                            </ul>
+                                        </div>
+                                        
+                                        <!-- Mini Concept Map for Chapter -->
+                                        <div class="chapter-section-card mini-map-card">
+                                            <h4><i class="fa-solid fa-network-wired text-primary"></i> Trục kiến thức chương</h4>
+                                            <div class="mini-map-box" id="chapterMapContainer">
+                                                <!-- Injected by JS -->
+                                            </div>
+                                        </div>
                                     </div>
 
+                                    <!-- Sections Content I, II, III -->
+                                    <div class="chapter-full-sections" id="chapterSectionsContainer">
+                                        <!-- Accordions/Cards injected by JS -->
+                                    </div>
+
+                                    <!-- Definitions & Terms -->
                                     <div class="chapter-section-card">
-                                        <h4><i class="fa-solid fa-list-check"></i> Các định nghĩa quan trọng</h4>
-                                        <ul class="definitions-list" id="viewChapterDefinitions">
+                                        <h4><i class="fa-solid fa-book-bookmark text-primary"></i> 5 Thuật ngữ cần nhớ</h4>
+                                        <div class="chapter-terms-grid" id="chapterTermsContainer">
+                                            <!-- Injected by JS -->
+                                        </div>
+                                    </div>
+
+                                    <!-- Vietnam Connection -->
+                                    <div class="chapter-section-card vietnam-card">
+                                        <h4><i class="fa-solid fa-landmark text-primary"></i> Liên hệ thực tiễn Việt Nam</h4>
+                                        <p id="viewChapterPractice"></p>
+                                    </div>
+
+                                    <!-- Essay Review Questions -->
+                                    <div class="chapter-section-card">
+                                        <h4><i class="fa-solid fa-circle-question text-primary"></i> Câu hỏi tự luận ôn tập</h4>
+                                        <ul class="essay-list" id="chapterEssayContainer">
                                             <!-- Injected by JS -->
                                         </ul>
                                     </div>
-
-                                    <div class="chapter-section-card">
-                                        <h4><i class="fa-solid fa-landmark"></i> Liên hệ thực tiễn Việt Nam</h4>
-                                        <p id="viewChapterPractice"></p>
-                                    </div>
                                 </div>
 
+                                <!-- Chapter Viewer Footer Controls -->
                                 <div class="chapter-content-footer">
-                                    <button class="btn btn-secondary" id="markReadBtn">
-                                        <i class="fa-regular fa-square-check"></i> Đánh dấu đã đọc
-                                    </button>
-                                    <button class="btn btn-primary" id="takeQuizForChapter">
-                                        Làm trắc nghiệm <i class="fa-solid fa-chevron-right"></i>
-                                    </button>
+                                    <div class="chapter-page-nav">
+                                        <button class="btn btn-secondary btn-sm" id="prevChapterBtn"><i class="fa-solid fa-arrow-left"></i> Chương trước</button>
+                                        <button class="btn btn-secondary btn-sm" id="nextChapterBtn">Chương sau <i class="fa-solid fa-arrow-right"></i></button>
+                                    </div>
+                                    <div class="chapter-action-btns">
+                                        <button class="btn btn-outline" id="markReadBtn">Đánh dấu hoàn thành</button>
+                                        <button class="btn btn-primary" id="takeQuizForChapter">Ôn tập trắc nghiệm <i class="fa-solid fa-arrow-right"></i></button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                <!-- Quiz Tab -->
+                <!-- 3. TAB FLASHCARDS (STUDY TOOL) -->
+                <section class="tab-pane" id="flashcards">
+                    <div class="flashcards-container">
+                        <!-- Stats & Intro Header -->
+                        <div class="flashcard-intro-card">
+                            <h4><i class="fa-solid fa-cards-blank text-primary"></i> Học nhanh thuật ngữ qua Flashcards</h4>
+                            <p>Phương pháp lặp lại ngắt quãng giúp ghi nhớ nhanh các định nghĩa học thuật khó nhằn của môn học.</p>
+                            
+                            <div class="flashcard-stats-row">
+                                <div class="f-stat-card text-success">
+                                    <span class="f-num" id="knownCardsStats">0</span>
+                                    <span class="f-lbl">Đã thuộc</span>
+                                </div>
+                                <div class="f-stat-card text-info">
+                                    <span class="f-num" id="reviewCardsStats">0</span>
+                                    <span class="f-lbl">Cần ôn lại</span>
+                                </div>
+                                <div class="f-stat-card text-muted">
+                                    <span class="f-num" id="remainingCardsStats">0</span>
+                                    <span class="f-lbl">Chưa thuộc</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card Deck Area -->
+                        <div class="flashcard-deck-box">
+                            <span class="deck-index-indicator" id="cardIndexIndicator">Thẻ 0/0</span>
+                            
+                            <div class="flashcard-wrapper" id="flashcardWrapper">
+                                <div class="flashcard-inner" id="flashcardInner">
+                                    <!-- Card Front -->
+                                    <div class="flashcard-front">
+                                        <span class="card-category" id="cardFrontCategory">Chương 1</span>
+                                        <h3 class="card-title-word" id="cardFrontTitle">Chủ nghĩa xã hội khoa học</h3>
+                                        <div class="flip-prompt"><i class="fa-solid fa-arrows-rotate"></i> Bấm để lật xem định nghĩa</div>
+                                    </div>
+                                    
+                                    <!-- Card Back -->
+                                    <div class="flashcard-back">
+                                        <h5 class="back-title">Định nghĩa:</h5>
+                                        <p class="card-definition-text" id="cardBackDef"></p>
+                                        <div class="card-hint-box">
+                                            <span class="hint-lbl"><i class="fa-regular fa-lightbulb"></i> Mẹo ghi nhớ:</span>
+                                            <p class="hint-txt" id="cardBackHint"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Rating & Controls Row -->
+                            <div class="flashcard-actions-row">
+                                <button class="btn btn-danger" id="cardReviewBtn" title="Chưa nhớ kỹ, cần lặp lại nhiều lần">
+                                    <i class="fa-solid fa-rotate-left"></i> Cần ôn lại
+                                </button>
+                                <div class="deck-navigation">
+                                    <button class="btn btn-outline btn-circle" id="prevCardBtn"><i class="fa-solid fa-chevron-left"></i></button>
+                                    <button class="btn btn-outline btn-circle" id="nextCardBtn"><i class="fa-solid fa-chevron-right"></i></button>
+                                </div>
+                                <button class="btn btn-success" id="cardKnownBtn" title="Đã thuộc lòng thuật ngữ này">
+                                    <i class="fa-solid fa-check"></i> Biết rồi
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 4. TAB QUIZ (PRACTICE ENGINE) -->
                 <section class="tab-pane" id="quiz">
                     <div class="quiz-container">
-                        <!-- Left Panel: Quiz Stats & Controls -->
+                        <!-- Left Panel: Configurations and Stats -->
                         <div class="quiz-sidebar-info">
-                            <div class="quiz-hero-card">
-                                <h3>Ôn Tập Kiến Thức</h3>
-                                <p>Hệ thống trắc nghiệm bao quát 7 chương học MLN131, giúp bạn tự tin vượt qua kỳ thi cuối kỳ.</p>
+                            <div class="quiz-sidebar-header">
+                                <h4>Luyện Đề Trắc Nghiệm</h4>
+                                <p>Hệ thống trắc nghiệm giúp củng cố kiến thức lý thuyết theo từng bài học hoặc ôn tổng hợp.</p>
                             </div>
+                            
+                            <!-- Select Chapter Form -->
+                            <div class="quiz-config-card">
+                                <h6>Lọc câu hỏi theo:</h6>
+                                <select class="quiz-select-dropdown" id="quizChapterFilter">
+                                    <!-- Options injected by JS -->
+                                </select>
+                                <button class="btn btn-primary w-100 mt-3" id="startQuizBtn">Bắt đầu thi thử <i class="fa-solid fa-play"></i></button>
+                            </div>
+
                             <div class="quiz-stats-list">
                                 <div class="q-stat-item">
                                     <span class="q-stat-label">Số câu hỏi</span>
@@ -238,11 +432,13 @@
                                 </div>
                                 <div class="q-stat-item">
                                     <span class="q-stat-label">Đúng / Sai</span>
-                                    <span class="q-stat-value"><span class="correct-text" id="quizCorrectCount">0</span>/<span class="incorrect-text" id="quizIncorrectCount">0</span></span>
+                                    <span class="q-stat-value">
+                                        <span class="correct-text" id="quizCorrectCount">0</span> / <span class="incorrect-text" id="quizIncorrectCount">0</span>
+                                    </span>
                                 </div>
                             </div>
-                            <button class="btn btn-danger w-100 mt-4" id="resetQuizBtn">
-                                <i class="fa-solid fa-rotate-left"></i> Làm lại từ đầu
+                            <button class="btn btn-secondary w-100 mt-4 btn-sm" id="resetQuizBtn">
+                                <i class="fa-solid fa-rotate-left"></i> Chọn lại đề thi
                             </button>
                         </div>
 
@@ -250,10 +446,9 @@
                         <div class="quiz-window-card">
                             <!-- Question Selection or Intro -->
                             <div id="quizIntro" class="quiz-intro">
-                                <i class="fa-solid fa-gamepad"></i>
+                                <i class="fa-solid fa-award"></i>
                                 <h4>Trắc Nghiệm Khách Quan</h4>
-                                <p>Bộ đề gồm các câu hỏi trắc nghiệm tuyển chọn. Hãy lựa chọn phương án đúng nhất.</p>
-                                <button class="btn btn-primary" id="startQuizBtn">Bắt Đầu Trắc Nghiệm</button>
+                                <p>Hãy chọn chương bạn muốn ôn luyện bên cột trái hoặc chọn ôn thi tổng hợp 10 câu ngẫu nhiên để đánh giá năng lực của mình.</p>
                             </div>
 
                             <!-- Question Presentation -->
@@ -264,6 +459,7 @@
                                 <div class="quiz-header-info">
                                     <span class="question-number" id="questionNumberIndicator">Câu 1/5</span>
                                     <span class="question-category" id="questionCategoryIndicator">Chương 2</span>
+                                    <span class="quiz-high-score" id="quizActiveHighScore">Kỷ lục: 0%</span>
                                 </div>
                                 <h3 class="question-text" id="activeQuestionText">Chủ nghĩa xã hội khoa học ra đời vào thời gian nào?</h3>
                                 
@@ -277,9 +473,8 @@
                                 </div>
 
                                 <div class="quiz-navigation">
-                                    <button class="btn btn-secondary hidden" id="prevQuestionBtn"><i class="fa-solid fa-chevron-left"></i> Câu trước</button>
                                     <span class="spacer"></span>
-                                    <button class="btn btn-primary" id="nextQuestionBtn" disabled>Tiếp Tục <i class="fa-solid fa-chevron-right"></i></button>
+                                    <button class="btn btn-primary" id="quizNextBtn" disabled>Kiểm Tra Đáp Án <i class="fa-solid fa-circle-question"></i></button>
                                 </div>
                             </div>
 
@@ -290,30 +485,43 @@
                                 </div>
                                 <h4>Hoàn Thành Bài Trắc Nghiệm!</h4>
                                 <div class="score-display">
-                                    <span class="score-big" id="finalScoreVal">0/5</span>
+                                    <span class="score-big" id="finalScoreVal">0/0</span>
                                     <span class="score-label">Số câu trả lời đúng</span>
                                 </div>
                                 <p class="score-feedback" id="finalScoreFeedback">Cố gắng thêm chút nữa để nắm chắc lý thuyết nhé!</p>
                                 <div class="results-action-row">
                                     <button class="btn btn-secondary" onclick="switchTab('chapters')">Quay lại học bài</button>
-                                    <button class="btn btn-primary" id="restartQuizBtn">Làm lại bài thi</button>
+                                    <button class="btn btn-primary" id="restartQuizBtn">Làm lại đề thi</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                <!-- Glossary Tab -->
+                <!-- 5. TAB REVIEW MODE (CONDENSED CRAMMING CARDS) -->
+                <section class="tab-pane" id="review">
+                    <div class="review-mode-container">
+                        <div class="review-header">
+                            <h4>Chế độ Ôn thi nhanh (Review Mode)</h4>
+                            <p>Tóm lược cô đọng toàn bộ 7 chương học. Mỗi chương được đúc kết thành 5 ý trọng tâm cần nhớ khi đi thi, 5 thuật ngữ và 3 câu hỏi chính.</p>
+                        </div>
+                        <div class="review-cards-grid" id="reviewModeCardsContainer">
+                            <!-- Injected by JS -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 6. TAB GLOSSARY (DICTIONARY & SEARCH) -->
                 <section class="tab-pane" id="glossary">
                     <div class="glossary-header-row">
                         <div class="glossary-intro">
-                            <h3>Từ Điển Thuật Ngữ Học Phần</h3>
-                            <p>Tra cứu nhanh định nghĩa các thuật ngữ, khái niệm then chốt trong Chủ nghĩa xã hội khoa học.</p>
+                            <h3>Từ Điển Tra Cứu Thuật Ngữ</h3>
+                            <p>Hệ thống lọc toàn bộ từ khóa, định nghĩa cốt lõi của môn học. Hỗ trợ tìm kiếm từ khóa thông minh.</p>
                         </div>
                         <div class="glossary-filter-bar">
                             <div class="search-bar">
                                 <i class="fa-solid fa-magnifying-glass"></i>
-                                <input type="text" placeholder="Gõ từ khóa để lọc nhanh..." id="glossaryFilterInput">
+                                <input type="text" placeholder="Nhập từ khóa cần tìm..." id="glossaryFilterInput">
                             </div>
                         </div>
                     </div>
@@ -324,15 +532,22 @@
 
                     <div id="glossaryEmptyState" class="empty-viewer hidden">
                         <i class="fa-solid fa-face-frown"></i>
-                        <h4>Không tìm thấy thuật ngữ nào khớp</h4>
-                        <p>Hãy thử tìm kiếm với từ khóa khác như "công nhân", "dân chủ", "gia đình"...</p>
+                        <h4>Không tìm thấy thuật ngữ nào phù hợp</h4>
+                        <p>Hãy thử tìm với các từ khóa khác như "công nhân", "dân chủ", "sứ mệnh", "quá độ"...</p>
                     </div>
                 </section>
+                
             </div>
         </main>
     </div>
 
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTopBtn" title="Về đầu trang">
+        <i class="fa-solid fa-chevron-up"></i>
+    </button>
+
     <!-- Inject Project Data & Routing logic -->
-    <script src="app.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>
