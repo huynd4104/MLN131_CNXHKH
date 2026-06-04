@@ -2,18 +2,16 @@
  * MLN131 Learning Journey
  * Vanilla JS render logic with backward-compatible localStorage state.
  */
-
 let appState = {
     currentTab: 'overview',
     selectedChapterIndex: 0,
     completedChapters: [],
     flashcardProgress: {},
     quizHighScores: {},
-    theme: 'light',
+    theme: 'dark',
     streak: 0,
     lastActiveDate: ''
 };
-
 let selectedFlashcardChapterId = 'all';
 let flashcardsList = [];
 let currentCardIndex = 0;
@@ -27,40 +25,38 @@ let activeQuizChapterId = null;
 
 let glossaryQuery = '';
 let glossaryChapterFilter = 'all';
-
 const TAB_META = {
     overview: {
-        eyebrow: 'MLN131 Cosmic Knowledge Exhibition',
+        eyebrow: 'Triển lãm Vũ trụ Tri thức MLN131',
         title: 'Vũ trụ tri thức Chủ nghĩa xã hội khoa học',
         subtitle: 'Hành trình khám phá 7 hành tinh lý luận xã hội.'
     },
     chapters: {
-        eyebrow: 'Planet Exploration',
+        eyebrow: 'Hành tinh Tri thức',
         title: 'Khám phá hành tinh',
-        subtitle: 'Mô hình hóa lý luận, tình huống Việt Nam và kiến thức chi tiết.'
+        subtitle: 'Mô hình hóa lý luận, tình huống thực tế và kiến thức chi tiết.'
     },
     flashcards: {
-        eyebrow: 'Knowledge Signal Station',
+        eyebrow: 'Trạm tín hiệu tri thức',
         title: 'Thẻ nhớ thuật ngữ',
         subtitle: 'Nhận dạng sóng tín hiệu thuật ngữ cốt lõi từng chương.'
     },
     quiz: {
-        eyebrow: 'Mission Challenge',
+        eyebrow: 'Nhiệm vụ thử thách',
         title: 'Quiz ôn tập',
         subtitle: 'Tham gia nhiệm vụ thử thách tri thức và nhận phản hồi trực tiếp.'
     },
     review: {
-        eyebrow: 'Cosmic Summary Mode',
+        eyebrow: 'Chế độ tóm tắt vũ trụ',
         title: 'Ôn thi nhanh',
         subtitle: 'Tóm tắt cực gọn các tín hiệu tri thức cốt lõi.'
     },
     glossary: {
-        eyebrow: 'Satellite Terminal',
+        eyebrow: 'Trạm thu phát vệ tinh',
         title: 'Tra cứu thuật ngữ',
         subtitle: 'Truy lục nhanh các khái niệm khoa học chính trị.'
     }
 };
-
 function htmlEscape(value) {
     return String(value ?? '')
         .replace(/&/g, '&amp;')
@@ -310,7 +306,7 @@ function renderOverview() {
             <!-- 1. Cosmic Hero -->
             <section class="cosmic-hero-layout glass-panel" style="padding: 24px;">
                 <div class="hero-copy">
-                    <span class="hero-kicker" style="color: var(--station-accent, var(--primary));"><i class="fa-solid fa-shuttle-space"></i> MLN131 Cosmic Knowledge Exhibition</span>
+                    <span class="hero-kicker" style="color: var(--station-accent, var(--primary));"><i class="fa-solid fa-shuttle-space"></i> Triển lãm Vũ trụ Tri thức MLN131</span>
                     <h2 style="margin: 10px 0 14px; line-height: 1.1; font-family: var(--font-serif);">Vũ trụ tri thức Chủ nghĩa xã hội khoa học</h2>
                     <p class="hero-lead" style="margin-bottom: 20px; color: var(--text-secondary);">Khám phá 7 hành tinh tri thức về xã hội, con người, dân chủ, nhà nước và con đường quá độ lên chủ nghĩa xã hội.</p>
                     <div class="hero-actions">
@@ -1043,13 +1039,10 @@ function renderChaptersTab() {
     const pane = document.getElementById('chapters');
     if (!pane) return;
 
+
     const selected = getChapter(appState.selectedChapterIndex);
     pane.innerHTML = `
         <div class="page-stack">
-            <div class="section-heading">
-                <h2>Story page theo từng chương</h2>
-                <p>Bắt đầu bằng câu hỏi trung tâm, sau đó mở rộng từng lớp kiến thức.</p>
-            </div>
             <div class="chapters-layout">
                 <aside class="chapter-selector">
                     <select class="chapter-picker" id="chapterPicker" aria-label="Chọn chương">

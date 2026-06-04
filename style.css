@@ -1629,16 +1629,17 @@ mark.highlight {
     }
 
     .app-nav {
-        position: sticky;
+        position: fixed;
         top: 0;
-        right: auto;
-        bottom: auto;
-        left: auto;
+        bottom: 0;
+        left: 0;
+        width: 244px;
         height: 100vh;
         padding: 22px 14px;
         border-top: 0;
         border-right: 1px solid var(--border-color);
         background: color-mix(in srgb, var(--bg-main) 72%, var(--bg-card));
+        z-index: 1000;
     }
 
     .brand-mark {
