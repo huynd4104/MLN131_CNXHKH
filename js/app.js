@@ -412,19 +412,16 @@ function buildMissionCardsHtml(chapter) {
     const cards = [
         {
             icon: 'fa-stopwatch',
-            label: 'Quick Scan',
             title: '3 phút nắm chương',
             text: trimText(chapter.quickUnderstand || chapter.description, 145)
         },
         {
             icon: 'fa-compass-drafting',
-            label: 'Meaning Signal',
             title: 'Vì sao cần học',
             text: trimText(chapter.whyItMatters || chapter.objectives?.knowledge || '', 145)
         },
         {
             icon: 'fa-bolt',
-            label: 'Exam Pulse',
             title: 'Ôn thi trong 60 giây',
             text: trimText(examTip, 145)
         }
@@ -433,7 +430,6 @@ function buildMissionCardsHtml(chapter) {
     return cards.map((card) => `
         <article class="mission-card">
             <span class="mission-card-icon"><i class="fa-solid ${card.icon}"></i></span>
-            <span class="mission-card-label">${htmlEscape(card.label)}</span>
             <h3>${htmlEscape(card.title)}</h3>
             <p>${htmlEscape(card.text)}</p>
         </article>
@@ -470,10 +466,9 @@ function renderOverview() {
     pane.innerHTML = `
         <div class="page-stack">
             <!-- 1. Cosmic Hero -->
-            <section class="cosmic-landing-scene" aria-label="MLN131 Cosmic Knowledge Exhibition">
+            <section class="cosmic-landing-scene" aria-label="Triển lãm Vũ trụ Tri thức MLN131">
                 <div class="cosmic-landing-nebula" aria-hidden="true"></div>
                 <div class="landing-copy">
-                    <span class="hero-kicker"><i class="fa-solid fa-shuttle-space"></i> MLN131 Cosmic Knowledge Exhibition</span>
                     <h2>Vũ trụ tri thức Chủ nghĩa xã hội khoa học</h2>
                     <p class="hero-lead">Khám phá 7 hành tinh lý luận qua bản đồ tri thức điện ảnh, tương tác và dễ ôn tập.</p>
                     <div class="hero-actions">
@@ -567,19 +562,19 @@ function renderOverview() {
                 </div>
                 <div class="quick-actions" style="margin-top: 14px;">
                     <div class="glass-panel" style="padding: 16px; cursor: pointer;" data-chapter-preview="0">
-                        <span style="font-size: 0.72rem; font-weight: 800; color: #38BDF8; text-transform: uppercase;">Planet 01 · Flow Model</span>
+                        <span style="font-size: 0.72rem; font-weight: 800; color: #38BDF8; text-transform: uppercase;">Hành tinh 01 · Mô hình dòng chảy</span>
                         <h4 style="margin: 6px 0; font-family: var(--font-serif); font-size: 1.05rem;">Từ không tưởng đến khoa học</h4>
                         <p style="margin: 0 0 10px; font-size: 0.78rem; color: var(--text-secondary);">Dòng chảy năng lượng lý luận kết nối ước mơ với cơ sở khoa học biện chứng.</p>
                         <span style="font-size: 0.78rem; font-weight: 700; color: #38BDF8;">Xem mô hình <i class="fa-solid fa-arrow-right"></i></span>
                     </div>
                     <div class="glass-panel" style="padding: 16px; cursor: pointer;" data-chapter-preview="1">
-                        <span style="font-size: 0.72rem; font-weight: 800; color: #DC2626; text-transform: uppercase;">Planet 02 · Network Model</span>
+                        <span style="font-size: 0.72rem; font-weight: 800; color: #DC2626; text-transform: uppercase;">Hành tinh 02 · Mô hình mạng lưới</span>
                         <h4 style="margin: 6px 0; font-family: var(--font-serif); font-size: 1.05rem;">Sứ mệnh của giai cấp công nhân</h4>
                         <p style="margin: 0 0 10px; font-size: 0.78rem; color: var(--text-secondary);">Chòm sao liên kết địa vị sản xuất hiện đại và tổ chức Đảng tiên phong.</p>
                         <span style="font-size: 0.78rem; font-weight: 700; color: #DC2626;">Xem mô hình <i class="fa-solid fa-arrow-right"></i></span>
                     </div>
                     <div class="glass-panel" style="padding: 16px; cursor: pointer;" data-chapter-preview="4">
-                        <span style="font-size: 0.72rem; font-weight: 800; color: #8B5CF6; text-transform: uppercase;">Planet 05 · Network Model</span>
+                        <span style="font-size: 0.72rem; font-weight: 800; color: #8B5CF6; text-transform: uppercase;">Hành tinh 05 · Mô hình mạng lưới</span>
                         <h4 style="margin: 6px 0; font-family: var(--font-serif); font-size: 1.05rem;">Cơ cấu và liên minh giai cấp</h4>
                         <p style="margin: 0 0 10px; font-size: 0.78rem; color: var(--text-secondary);">Mạng lưới chòm sao kết nối đại đoàn kết giữa công, nông và trí thức.</p>
                         <span style="font-size: 0.78rem; font-weight: 700; color: #8B5CF6;">Xem mô hình <i class="fa-solid fa-arrow-right"></i></span>
@@ -606,7 +601,7 @@ function renderOverview() {
             <!-- 6. Media Learning Station -->
             <section>
                 <div class="section-heading">
-                    <h2>Trạm phát sóng bài giảng (Media Station)</h2>
+                    <h2>Trạm phát sóng bài giảng</h2>
                     <p>Theo dõi các sóng tín hiệu bài giảng tóm tắt của từng hành tinh tri thức.</p>
                 </div>
                 <div class="media-station-grid" id="mediaStationGrid" style="margin-top: 14px;"></div>
@@ -628,7 +623,7 @@ function renderOverview() {
             <!-- 8. Study Tools Dock -->
             <section>
                 <div class="section-heading">
-                    <h2>Bảng công cụ ôn tập (Study Tools Dock)</h2>
+                    <h2>Bảng công cụ ôn tập</h2>
                     <p>Truy cập nhanh các công cụ bổ trợ học tập và ôn thi trắc nghiệm.</p>
                 </div>
                 <div class="study-tools-dock-panel" style="margin-top: 14px;">
@@ -658,7 +653,7 @@ function renderOverview() {
                             <span class="tool-dock-icon" style="background: rgba(6, 182, 212, 0.1); color: #06B6D4;"><i class="fa-solid fa-satellite"></i></span>
                             <div class="tool-dock-info">
                                 <h4>Tra cứu nhanh</h4>
-                                <p>Satellite Terminal</p>
+                                <p>Trạm tra cứu vệ tinh</p>
                             </div>
                         </div>
                     </div>
@@ -832,7 +827,7 @@ function renderMediaStation(containerId) {
                     <span class="media-play-btn"><i class="fa-solid fa-play"></i></span>
                 </div>
                 <div class="media-card-body">
-                    <span>${htmlEscape(chapter.media.sourceLabel || 'Media Station')}</span>
+                    <span>${htmlEscape(chapter.media.sourceLabel || 'Trạm phát sóng')}</span>
                     <h4>${htmlEscape(chapter.media.title)}</h4>
                     <p>${htmlEscape(chapter.media.description)}</p>
                 </div>
@@ -1195,9 +1190,9 @@ function renderChaptersTab() {
                 `).join('')}
             </select>
             <div class="planet-exploration-layout">
-                <aside class="planet-coordinate-rail" aria-label="Planet Coordinates">
+                <aside class="planet-coordinate-rail" aria-label="Tọa độ hành tinh">
                     <div class="coordinate-rail-header">
-                        <span>Planet Coordinates</span>
+                        <span>Tọa độ hành tinh</span>
                         <strong>7 trạm tri thức</strong>
                     </div>
                     <div class="planet-coordinate-list">
@@ -1237,7 +1232,6 @@ function buildChapterStoryHtml(chapter, index) {
                 ${buildPlanetVisualHtml(chapter)}
             </div>
             <aside class="mission-briefing-panel">
-                <span class="briefing-kicker">Mission Briefing</span>
                 <div class="briefing-planet-number">${htmlEscape(chapter.planet.number || String(chapter.id).padStart(2, '0'))}</div>
                 <h2>${htmlEscape(chapter.planet.name)}</h2>
                 <p class="briefing-chapter-title">${htmlEscape(chapter.title)}</p>
@@ -1305,7 +1299,7 @@ function buildChapterStoryHtml(chapter, index) {
         ${chapter.id === 1 ? `
             <section class="interaction-section" style="margin-top: 24px;">
                 <div class="section-heading">
-                    <h3>Tương tác vũ trụ: Lắp ráp lý luận (Build the Concept)</h3>
+                    <h3>Tương tác vũ trụ: Lắp ráp lý luận</h3>
                     <p>Lắp ráp các mảnh ghép lý luận để thắp sáng trạm tri thức khởi nguồn.</p>
                 </div>
                 <div class="interaction-workspace" id="interactionWorkspace-${chapter.id}" style="${getChapterStyle(chapter)}">
@@ -1330,7 +1324,7 @@ function buildChapterStoryHtml(chapter, index) {
         ${chapter.id === 6 ? `
             <section class="interaction-section" style="margin-top: 24px;">
                 <div class="section-heading">
-                    <h3>Tương tác vũ trụ: Quyết định kịch bản (Decision Scenario)</h3>
+                    <h3>Tương tác vũ trụ: Quyết định kịch bản</h3>
                     <p>Đóng vai trò cán bộ địa phương để giải quyết các vấn đề thực tiễn phức tạp.</p>
                 </div>
                 <div class="interaction-workspace" id="interactionWorkspace-${chapter.id}" style="${getChapterStyle(chapter)}">
@@ -1368,7 +1362,7 @@ function buildChapterStoryHtml(chapter, index) {
                             <span class="media-play-btn"><i class="fa-solid fa-play"></i></span>
                         </div>
                         <div class="media-card-body">
-                            <span>${htmlEscape(chapter.media.sourceLabel || 'Media Station')}</span>
+                            <span>${htmlEscape(chapter.media.sourceLabel || 'Trạm phát sóng')}</span>
                             <h4>${htmlEscape(chapter.media.title)}</h4>
                             <p>${htmlEscape(chapter.media.description)}</p>
                         </div>
@@ -1421,7 +1415,7 @@ function buildChapterStoryHtml(chapter, index) {
 
         <section>
             <div class="section-heading">
-                <h3>5 keyword cần nhớ</h3>
+                <h3>5 từ khóa cần nhớ</h3>
             </div>
             <div class="chip-row" style="${getChapterStyle(chapter)}">
                 ${getKeywords(chapter).map((keyword) => `<span class="chip">${htmlEscape(keyword)}</span>`).join('')}
@@ -1726,11 +1720,11 @@ function initFlashcardsTab() {
     pane.innerHTML = `
         <div class="flashcards-container">
             <div class="tool-header">
-                <h2>Flashcards thuật ngữ</h2>
+                <h2>Thẻ nhớ thuật ngữ</h2>
                 <p>35 thuật ngữ cốt lõi được gom thành các thẻ học ngắn theo từng chương.</p>
             </div>
             <div class="tool-controls">
-                <select class="select-control" id="flashcardChapterFilter" aria-label="Lọc flashcard theo chương">
+                <select class="select-control" id="flashcardChapterFilter" aria-label="Lọc thẻ nhớ theo chương">
                     <option value="all">Tất cả chương</option>
                     ${CHAPTERS_DATA.map((chapter) => `
                         <option value="${chapter.id}" ${String(chapter.id) === String(selectedFlashcardChapterId) ? 'selected' : ''}>
