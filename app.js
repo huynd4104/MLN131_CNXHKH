@@ -472,11 +472,28 @@ function initChaptersTab() {
             startQuizAtQuestion(0);
         }
     });
+
+    // Action: Mobile Back Button
+    const backBtn = document.getElementById('chapterMobileBackBtn');
+    if (backBtn) {
+        backBtn.addEventListener('click', () => {
+            const layout = document.querySelector('.chapters-layout');
+            if (layout) {
+                layout.classList.remove('show-content');
+            }
+        });
+    }
 }
 
 function selectChapter(index) {
     appState.selectedChapterIndex = index;
     
+    // Slide transition for mobile layout
+    const layout = document.querySelector('.chapters-layout');
+    if (layout) {
+        layout.classList.add('show-content');
+    }
+
     // Highlight list item
     document.querySelectorAll('.list-chapter-item').forEach((item, idx) => {
         if (idx === index) {
