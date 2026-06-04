@@ -1120,12 +1120,73 @@ const MICRO_LEARNING_DATA = [
             }
         ],
         colorTheme: {
-            accent: "#A32626",
-            softBg: "#FFF1ED",
-            border: "rgba(163, 38, 38, 0.2)",
-            iconBg: "#F8D8D2"
+            accent: "#38BDF8",
+            softBg: "rgba(56, 189, 248, 0.12)",
+            border: "rgba(56, 189, 248, 0.25)",
+            iconBg: "rgba(56, 189, 248, 0.15)"
         },
-        icon: "fa-solid fa-scroll"
+        icon: "fa-solid fa-compass",
+        planet: {
+            number: "01",
+            name: "Hành tinh Khởi nguồn",
+            englishName: "Origin Planet",
+            visualMotif: "flow",
+            orbitLabel: "Planet 01"
+        },
+        conceptModel: {
+            type: "flow",
+            title: "Từ không tưởng đến khoa học",
+            description: "Dòng chảy lý luận đưa xã hội học từ ước mơ thành hiện thực dựa trên cơ sở khoa học.",
+            nodes: [
+                { id: "n1", title: "Khát vọng công bằng", description: "Các tư tưởng xã hội không tưởng phê phán xuất hiện nhưng thiếu con đường thực tiễn.", icon: "fa-solid fa-cloud-sun" },
+                { id: "n2", title: "Tiền đề kinh tế - xã hội", description: "Sự phát triển của đại công nghiệp và các cuộc đấu tranh của giai cấp vô sản làm bộc lộ mâu thuẫn.", icon: "fa-solid fa-industry" },
+                { id: "n3", title: "Tiền đề lý luận & khoa học", description: "Triết học cổ điển Đức, KTCT học Anh và 3 phát kiến khoa học tự nhiên lớn tạo nền tảng tư duy duy vật.", icon: "fa-solid fa-key" },
+                { id: "n4", title: "Sáng lập CNXHKH", description: "C.Mác và Ph.Ăngghen hệ thống hóa lý luận bằng các phát kiến vĩ đại, xuất bản Tuyên ngôn năm 1848.", icon: "fa-solid fa-file-signature" }
+            ],
+            connections: [
+                { from: "n1", to: "n2" },
+                { from: "n2", to: "n3" },
+                { from: "n3", to: "n4" }
+            ]
+        },
+        media: {
+            title: "CNXHKH ra đời trong bối cảnh lịch sử nào?",
+            type: "video",
+            thumbnail: "",
+            description: "Xem video tóm tắt bối cảnh cách mạng công nghiệp thế kỷ XIX và sự trỗi dậy của giai cấp vô sản để hiểu sâu lý do ra đời của môn học.",
+            sourceLabel: "Media Learning Station",
+            url: ""
+        },
+        caseStudy: {
+            title: "Cách tiếp cận khoa học trong phân tích đời sống thực tế",
+            situation: "Nhiều dự án thiện nguyện mong muốn hỗ trợ người nghèo bền vững nhưng chỉ thực hiện cứu trợ khẩn cấp nhất thời, thiếu nghiên cứu cơ cấu sản xuất và sinh kế thực tế của vùng.",
+            question: "Làm thế nào để sinh viên áp dụng phương pháp luận khoa học (đi từ điều kiện kinh tế thực tế và lực lượng nòng cốt) để xây dựng một giải pháp xã hội bền vững?",
+            analysisHints: [
+                "Xác định nguyên nhân gốc rễ dựa trên điều kiện kinh tế - xã hội của địa phương.",
+                "Tìm kiếm và phát huy vai trò chủ thể của chính lực lượng lao động tại chỗ.",
+                "Thiết lập giải pháp đi kèm các chỉ số đánh giá thực tế khách quan."
+            ]
+        },
+        comparison: {
+            title: "CNXH Không tưởng vs CNXH Khoa học",
+            keyDifference: "Phương pháp luận và Lực lượng thực hiện",
+            left: {
+                label: "Chủ nghĩa xã hội không tưởng",
+                points: [
+                    "Phê phán sâu sắc bản chất bóc lột của CNTB nhưng bằng lăng kính nhân văn cảm tính.",
+                    "Chưa chỉ ra được quy luật kinh tế - xã hội khách quan dẫn đến sự thay thế của các hình thái xã hội.",
+                    "Chưa xác định được lực lượng xã hội tiên phong có khả năng lãnh đạo cách mạng xóa bỏ áp bức."
+                ]
+            },
+            right: {
+                label: "Chủ nghĩa xã hội khoa học",
+                points: [
+                    "Chỉ ra con đường cách mạng xã hội thực tiễn để giải phóng giai cấp và nhân loại.",
+                    "Phát hiện quy luật vận động khách quan của lịch sử từ sự phát triển của phương thức sản xuất.",
+                    "Xác định rõ sứ mệnh lịch sử thế giới của giai cấp công nhân hiện đại."
+                ]
+            }
+        }
     },
     {
         id: 2,
@@ -1153,12 +1214,55 @@ const MICRO_LEARNING_DATA = [
             }
         ],
         colorTheme: {
-            accent: "#2563EB",
-            softBg: "#EEF5FF",
-            border: "rgba(37, 99, 235, 0.2)",
-            iconBg: "#DCEBFF"
+            accent: "#DC2626",
+            softBg: "rgba(220, 38, 38, 0.12)",
+            border: "rgba(220, 38, 38, 0.25)",
+            iconBg: "rgba(220, 38, 38, 0.15)"
         },
-        icon: "fa-solid fa-helmet-safety"
+        icon: "fa-solid fa-helmet-safety",
+        planet: {
+            number: "02",
+            name: "Hành tinh Giai cấp công nhân",
+            englishName: "Worker Class Planet",
+            visualMotif: "network",
+            orbitLabel: "Planet 02"
+        },
+        conceptModel: {
+            type: "network",
+            title: "Sứ mệnh lịch sử của giai cấp công nhân",
+            description: "Mạng lưới chòm sao kết nối các nhân tố quy định sứ mệnh lịch sử.",
+            nodes: [
+                { id: "n1", title: "Địa vị kinh tế - xã hội", description: "Đại biểu cho lực lượng sản xuất tiên tiến, làm việc trong nền sản xuất có tính xã hội hóa cao.", icon: "fa-solid fa-industry" },
+                { id: "n2", title: "Đặc điểm chính trị - xã hội", description: "Tính tổ chức, kỷ luật cao, mang tinh thần cách mạng triệt để và đoàn kết quốc tế.", icon: "fa-solid fa-shield-halved" },
+                { id: "n3", title: "Nhân tố chủ quan", description: "Số lượng, chất lượng giai cấp tăng lên và mức độ giác ngộ lý luận chính trị xã hội.", icon: "fa-solid fa-graduation-cap" },
+                { id: "n4", title: "Đảng Cộng sản lãnh đạo", description: "Đội tiên phong chính trị, hạt nhân quy tụ và dẫn đường cho phong trào đấu tranh đi đến thắng lợi.", icon: "fa-solid fa-flag" },
+                { id: "n5", title: "Liên minh giai cấp", description: "Liên kết chặt chẽ với giai cấp nông dân và các tầng lớp lao động khác để tạo sức mạnh tổng hợp.", icon: "fa-solid fa-people-group" }
+            ],
+            connections: [
+                { from: "n1", to: "n3" },
+                { from: "n2", to: "n3" },
+                { from: "n4", to: "n3" },
+                { from: "n5", to: "n4" }
+            ]
+        },
+        media: {
+            title: "Giai cấp công nhân trong thế kỷ XXI",
+            type: "video",
+            thumbnail: "",
+            description: "Khám phá vai trò của công nhân tri thức, lao động kỹ thuật cao và công nghệ số trong thời đại tự động hóa và toàn cầu hóa hiện nay.",
+            sourceLabel: "Media Learning Station",
+            url: ""
+        },
+        caseStudy: {
+            title: "Nâng cao kỹ năng và 'trí thức hóa' công nhân Việt Nam",
+            situation: "Tại các trung tâm công nghiệp lớn như Bình Dương, Bắc Ninh, làn sóng tự động hóa và chuyển đổi số đang đặt ra yêu cầu cấp bách: công nhân phải nâng cao trình độ tay nghề, chuyển sang vận hành thiết bị công nghệ cao thay vì lao động thủ công đơn giản.",
+            question: "Làm thế nào để đẩy nhanh tiến trình trí thức hóa công nhân nước ta nhằm đáp ứng yêu cầu công nghiệp hóa, hiện đại hóa hiện nay?",
+            analysisHints: [
+                "Đổi mới chương trình và liên kết đào tạo giữa cơ sở giáo dục nghề nghiệp và doanh nghiệp.",
+                "Tăng cường trang bị kỹ năng số, tác phong công nghiệp và tinh thần tự học của người lao động.",
+                "Chính sách đãi ngộ, tôn vinh và hỗ trợ của Nhà nước đối với lao động kỹ thuật cao."
+            ]
+        }
     },
     {
         id: 3,
@@ -1186,12 +1290,75 @@ const MICRO_LEARNING_DATA = [
             }
         ],
         colorTheme: {
-            accent: "#0F766E",
-            softBg: "#EAF7F4",
-            border: "rgba(15, 118, 110, 0.2)",
-            iconBg: "#D2F1EA"
+            accent: "#FBBF24",
+            softBg: "rgba(251, 191, 36, 0.12)",
+            border: "rgba(251, 191, 36, 0.25)",
+            iconBg: "rgba(251, 191, 36, 0.15)"
         },
-        icon: "fa-solid fa-route"
+        icon: "fa-solid fa-route",
+        planet: {
+            number: "03",
+            name: "Hành tinh Quá độ",
+            englishName: "Transition Planet",
+            visualMotif: "roadmap",
+            orbitLabel: "Planet 03"
+        },
+        conceptModel: {
+            type: "roadmap",
+            title: "Con đường quá độ lên chủ nghĩa xã hội",
+            description: "Lộ trình cải biến toàn diện qua các chặng đường phát triển kinh tế, chính trị và xã hội.",
+            nodes: [
+                { id: "n1", title: "Xuất phát điểm", description: "Bắt đầu từ nước nông nghiệp lạc hậu, chịu hậu quả chiến tranh nặng nề, lựa chọn con đường bỏ qua CNTB.", icon: "fa-solid fa-seedling" },
+                { id: "n2", title: "Cải biến chính trị", description: "Thiết lập chính quyền của giai cấp công nhân và nhân dân lao động, giữ vững ổn định chính trị dưới sự lãnh đạo của Đảng.", icon: "fa-solid fa-gavel" },
+                { id: "n3", title: "Cải biến kinh tế", description: "Xây dựng cơ cấu kinh tế thị trường định hướng XHCN, phát triển lực lượng sản xuất hiện đại và kinh tế nhiều thành phần.", icon: "fa-solid fa-chart-line" },
+                { id: "n4", title: "Cải biến văn hóa - xã hội", description: "Xây dựng nền văn hóa tiên tiến, đậm đà bản sắc, thực hiện tiến bộ và công bằng xã hội trong từng bước phát triển.", icon: "fa-solid fa-masks-theater" },
+                { id: "n5", title: "Xây dựng xong CNXH", description: "Hoàn thành các mục tiêu cốt lõi của CNXH, hướng tới xã hội dân giàu, nước mạnh, dân chủ, công bằng, văn minh.", icon: "fa-solid fa-trophy" }
+            ],
+            connections: [
+                { from: "n1", to: "n2" },
+                { from: "n2", to: "n3" },
+                { from: "n3", to: "n4" },
+                { from: "n4", to: "n5" }
+            ]
+        },
+        media: {
+            title: "Thời kỳ quá độ lên chủ nghĩa xã hội là gì?",
+            type: "video",
+            thumbnail: "",
+            description: "Tìm hiểu vì sao thời kỳ quá độ lại là một quy luật khách quan cho mọi nước đi lên chủ nghĩa xã hội, đặc biệt là các nước quá độ gián tiếp như Việt Nam.",
+            sourceLabel: "Media Learning Station",
+            url: ""
+        },
+        caseStudy: {
+            title: "Kinh tế thị trường định hướng xã hội chủ nghĩa ở Việt Nam",
+            situation: "Kinh tế thị trường giúp giải phóng sức sản xuất cực kỳ mạnh mẽ, nhưng cũng tạo ra các thách thức như phân hóa giàu nghèo, ô nhiễm môi trường và cạnh tranh khốc liệt. Việt Nam kiên trì mục tiêu tăng trưởng kinh tế phải đi đôi với tiến bộ, công bằng xã hội ngay trong từng bước phát triển.",
+            question: "Làm thế nào để nhà nước quản lý hiệu quả kinh tế thị trường mà vẫn đảm bảo tính định hướng XHCN nhân văn?",
+            analysisHints: [
+                "Sử dụng các công cụ điều tiết vĩ mô và luật pháp của Nhà nước để hạn chế các thất bại của thị trường.",
+                "Tập trung đầu tư ngân sách cho y tế, giáo dục, an sinh xã hội để bảo trợ các nhóm yếu thế.",
+                "Giữ vững vai trò chủ đạo của kinh tế nhà nước trong những lĩnh vực huyết mạch then chốt."
+            ]
+        },
+        comparison: {
+            title: "Quá độ trực tiếp vs Quá độ gián tiếp",
+            keyDifference: "Xuất phát điểm kinh tế và Phương thức cải biến",
+            left: {
+                label: "Quá độ trực tiếp",
+                points: [
+                    "Bắt đầu từ những nước có chủ nghĩa tư bản phát triển rất cao về mặt công nghiệp.",
+                    "Hệ thống cơ sở vật chất, hạ tầng công nghệ và trình độ xã hội hóa sản xuất đã có sẵn.",
+                    "Thời kỳ chuyển tiếp diễn ra tương đối ngắn, tập trung chủ yếu vào cải biến quan hệ sở hữu."
+                ]
+            },
+            right: {
+                label: "Quá độ gián tiếp",
+                points: [
+                    "Bắt đầu từ những nước tiền tư bản hoặc chưa qua giai đoạn phát triển tư bản chủ nghĩa hoàn chỉnh.",
+                    "Cơ sở hạ tầng kinh tế còn yếu kém, lạc hậu, phải thực hiện nhiệm vụ công nghiệp hóa song song.",
+                    "Thời kỳ quá độ kéo dài, phức tạp, đòi hỏi nhiều hình thức kinh tế trung gian đan xen."
+                ]
+            }
+        }
     },
     {
         id: 4,
@@ -1219,12 +1386,73 @@ const MICRO_LEARNING_DATA = [
             }
         ],
         colorTheme: {
-            accent: "#7C3AED",
-            softBg: "#F3EEFF",
-            border: "rgba(124, 58, 237, 0.2)",
-            iconBg: "#E8DCFF"
+            accent: "#10B981",
+            softBg: "rgba(16, 185, 129, 0.12)",
+            border: "rgba(16, 185, 129, 0.25)",
+            iconBg: "rgba(16, 185, 129, 0.15)"
         },
-        icon: "fa-solid fa-landmark"
+        icon: "fa-solid fa-scale-balanced",
+        planet: {
+            number: "04",
+            name: "Hành tinh Dân chủ & Nhà nước",
+            englishName: "Democracy & State Planet",
+            visualMotif: "comparison",
+            orbitLabel: "Planet 04"
+        },
+        conceptModel: {
+            type: "comparison",
+            title: "Cơ cấu tổ chức Dân chủ và Nhà nước",
+            description: "So sánh cấu trúc phân định quyền lực và bảo đảm quyền làm chủ của nhân dân.",
+            nodes: [
+                { id: "n1", title: "Quyền lực của Nhân dân", description: "Bản chất của dân chủ là quyền lực thuộc về toàn thể nhân dân lao động.", icon: "fa-solid fa-users" },
+                { id: "n2", title: "Thiết chế Nhà nước", description: "Công cụ quản lý hành chính, tổ chức thực thi các quyết sách vì lợi ích công cộng.", icon: "fa-solid fa-landmark" },
+                { id: "n3", title: "Hệ thống Pháp luật", description: "Công cụ bảo đảm trật tự xã hội, thiết lập hành lang pháp lý bảo vệ quyền làm chủ.", icon: "fa-solid fa-book" },
+                { id: "n4", title: "Đảng Cộng sản định hướng", description: "Hạt nhân chính trị, lãnh đạo nhà nước và xã hội đi đúng định hướng XHCN.", icon: "fa-solid fa-flag" }
+            ],
+            connections: [
+                { from: "n1", to: "n2" },
+                { from: "n2", to: "n3" },
+                { from: "n4", to: "n2" }
+            ]
+        },
+        media: {
+            title: "Nhà nước pháp quyền XHCN Việt Nam",
+            type: "video",
+            thumbnail: "",
+            description: "Nắm vững nguyên lý tổ chức bộ máy quyền lực nhà nước tại Việt Nam: thống nhất, phân công, phối hợp và kiểm soát quyền lực giữa các cơ quan nhà nước.",
+            sourceLabel: "Media Learning Station",
+            url: ""
+        },
+        caseStudy: {
+            title: "Thực thi Quy chế dân chủ ở cơ sở tại các địa phương",
+            situation: "Tại nhiều địa bàn nông thôn xây dựng nông thôn mới, phương châm 'Dân biết, dân bàn, dân làm, dân kiểm tra, dân giám sát, dân thụ hưởng' đã giúp người dân trực tiếp bàn bạc, quyết định mức đóng góp và trực tiếp kiểm tra việc thi công, chi phí xây dựng các công trình công cộng.",
+            question: "Làm thế nào để phát huy tốt vai trò giám sát thực chất của người dân cấp cơ sở, phòng tránh quan liêu và thất thoát ngân sách?",
+            analysisHints: [
+                "Tăng cường công khai, minh bạch các thông tin tài chính và quy hoạch bằng nhiều hình thức trực quan.",
+                "Kiện toàn, nâng cao vai trò hoạt động của Ban Thanh tra nhân dân và Ban giám sát đầu tư cộng đồng.",
+                "Ứng dụng công nghệ thông tin giúp người dân gửi ý kiến phản ánh nhanh chóng, bảo mật thông tin người tố cáo."
+            ]
+        },
+        comparison: {
+            title: "Dân chủ tư sản vs Dân chủ xã hội chủ nghĩa",
+            keyDifference: "Cơ sở xã hội, mục tiêu và cách thức tổ chức quyền lực",
+            left: {
+                label: "Nền dân chủ tư sản",
+                points: [
+                    "Cơ sở kinh tế dựa trên chế độ tư hữu tư bản chủ nghĩa về các tư liệu sản xuất.",
+                    "Quyền lực chính trị thuộc về giai cấp tư sản, chủ yếu phục vụ cho lợi ích của thiểu số nắm giữ tư bản.",
+                    "Tổ chức bộ máy nhà nước theo nguyên tắc tam quyền phân lập để kiểm soát quyền lực giữa các nhóm lợi ích tư sản."
+                ]
+            },
+            right: {
+                label: "Nền dân chủ xã hội chủ nghĩa",
+                points: [
+                    "Cơ sở kinh tế dựa trên chế độ công hữu về các tư liệu sản xuất chủ yếu trong xã hội.",
+                    "Quyền lực thuộc về nhân dân lao động, phục vụ cho đại đa số thành viên trong xã hội.",
+                    "Quyền lực nhà nước là thống nhất, có sự phân công, phối hợp và kiểm soát giữa các cơ quan lập pháp, hành pháp, tư pháp."
+                ]
+            }
+        }
     },
     {
         id: 5,
@@ -1252,12 +1480,57 @@ const MICRO_LEARNING_DATA = [
             }
         ],
         colorTheme: {
-            accent: "#B45309",
-            softBg: "#FFF5E6",
-            border: "rgba(180, 83, 9, 0.22)",
-            iconBg: "#FBE6C8"
+            accent: "#8B5CF6",
+            softBg: "rgba(139, 92, 246, 0.12)",
+            border: "rgba(139, 92, 246, 0.25)",
+            iconBg: "rgba(139, 92, 246, 0.15)"
         },
-        icon: "fa-solid fa-people-group"
+        icon: "fa-solid fa-people-group",
+        planet: {
+            number: "05",
+            name: "Hành tinh Cơ cấu xã hội",
+            englishName: "Social Structure Planet",
+            visualMotif: "network",
+            orbitLabel: "Planet 05"
+        },
+        conceptModel: {
+            type: "network",
+            title: "Cơ cấu giai cấp và liên minh xã hội",
+            description: "Chòm sao liên kết giai cấp công nhân, nông dân, trí thức và doanh nhân trong thời kỳ phát triển xã hội.",
+            nodes: [
+                { id: "n1", title: "Giai cấp công nhân", description: "Lực lượng giữ vai trò lãnh đạo liên minh thông qua Đảng, đi đầu trong sự nghiệp CNH, HĐH đất nước.", icon: "fa-solid fa-helmet-safety" },
+                { id: "n2", title: "Giai cấp nông dân", description: "Lực lượng nòng cốt đông đảo trong sản xuất nông nghiệp, giữ vị trí quan trọng trong bảo đảm an ninh lương thực.", icon: "fa-solid fa-tractor" },
+                { id: "n3", title: "Tầng lớp trí thức", description: "Đóng vai trò then chốt trong phát triển khoa học công nghệ, giáo dục, đóng góp tri thức cho xã hội.", icon: "fa-solid fa-graduation-cap" },
+                { id: "n4", title: "Tầng lớp doanh nhân", description: "Động lực phát triển sản xuất, tạo công ăn việc làm, thúc đẩy tăng trưởng kinh tế bền vững.", icon: "fa-solid fa-briefcase" },
+                { id: "n5", title: "Khối đại đoàn kết", description: "Đích đến tối cao của liên minh, tạo sự đồng thuận xã hội vì mục tiêu xây dựng đất nước định hướng XHCN.", icon: "fa-solid fa-arrows-to-circle" }
+            ],
+            connections: [
+                { from: "n1", to: "n5" },
+                { from: "n2", to: "n5" },
+                { from: "n3", to: "n5" },
+                { from: "n4", to: "n5" },
+                { from: "n1", to: "n2" },
+                { from: "n1", to: "n3" }
+            ]
+        },
+        media: {
+            title: "Liên minh công - nông - trí thức trong đổi mới",
+            type: "video",
+            thumbnail: "",
+            description: "Khám phá vì sao liên minh giai cấp, tầng lớp lại là một nhu cầu kinh tế - kỹ thuật khách quan và là động lực nền tảng cho sự phát triển đất nước.",
+            sourceLabel: "Media Learning Station",
+            url: ""
+        },
+        caseStudy: {
+            title: "Mô hình liên kết 'Bốn nhà' trong phát triển nông nghiệp Việt Nam",
+            situation: "Để nâng cao giá trị hàng hóa nông sản xuất khẩu, mô hình liên kết giữa Nhà nông (giai cấp nông dân) - Nhà doanh nghiệp (tầng lớp doanh nhân) - Nhà khoa học (tầng lớp trí thức) và Nhà nước đã được triển khai, giúp cải thiện chuỗi giá trị và ứng dụng công nghệ sinh học.",
+            question: "Làm thế nào để nâng cao tính cam kết, hạn chế tình trạng 'bẻ kèo' hợp đồng giữa doanh nghiệp và nông dân trong thực tế?",
+            analysisHints: [
+                "Thiết lập cơ chế chia sẻ lợi ích và phân bổ rủi ro rõ ràng bằng hợp đồng kinh tế có tính pháp lý cao.",
+                "Phát huy vai trò cầu nối của các Hợp tác xã nông nghiệp kiểu mới làm đại diện cho tiếng nói nông dân.",
+                "Nhà nước hỗ trợ hạ tầng kho bãi bảo quản, hỗ trợ tín dụng và làm trọng tài phân giải tranh chấp khách quan."
+            ]
+        }
     },
     {
         id: 6,
@@ -1285,12 +1558,54 @@ const MICRO_LEARNING_DATA = [
             }
         ],
         colorTheme: {
-            accent: "#0891B2",
-            softBg: "#EAF9FC",
-            border: "rgba(8, 145, 178, 0.2)",
-            iconBg: "#D2F3F8"
+            accent: "#06B6D4",
+            softBg: "rgba(6, 182, 212, 0.12)",
+            border: "rgba(6, 182, 212, 0.25)",
+            iconBg: "rgba(6, 182, 212, 0.15)"
         },
-        icon: "fa-solid fa-handshake"
+        icon: "fa-solid fa-handshake-angle",
+        planet: {
+            number: "06",
+            name: "Hành tinh Đoàn kết",
+            englishName: "Nation & Religion Planet",
+            visualMotif: "balance",
+            orbitLabel: "Planet 06"
+        },
+        conceptModel: {
+            type: "balance",
+            title: "Sự cân bằng trong giải quyết vấn đề Dân tộc và Tôn giáo",
+            description: "Mô hình quỹ đạo hài hòa kết hợp giữa quyền bình đẳng, tôn trọng niềm tin và bảo vệ trật tự an ninh.",
+            nodes: [
+                { id: "n1", title: "Bình đẳng dân tộc", description: "Mọi dân tộc không phân biệt đa số hay thiểu số đều có quyền lợi và nghĩa vụ ngang nhau trước pháp luật.", icon: "fa-solid fa-scale-balanced" },
+                { id: "n2", title: "Đoàn kết dân tộc", description: "Khối gắn kết keo sơn giữa các dân tộc, cùng tương trợ và giúp đỡ nhau phát triển kinh tế, văn hóa.", icon: "fa-solid fa-people-line" },
+                { id: "n3", title: "Tôn trọng tự do tín ngưỡng", description: "Quyền tự do theo hoặc không theo bất kỳ tôn giáo nào, sinh hoạt tôn giáo đúng hiến pháp, pháp luật.", icon: "fa-solid fa-hands-praying" },
+                { id: "n4", title: "Quản lý bằng pháp luật", description: "Quản lý các hoạt động tôn giáo bằng hành lang pháp lý rõ ràng, bảo vệ trật tự và thuần phong mỹ tục.", icon: "fa-solid fa-building-shield" },
+                { id: "n5", title: "Đấu tranh chống lợi dụng", description: "Kiên quyết đấu tranh chống lại các thế lực thù địch lợi dụng dân tộc, tôn giáo để chia rẽ khối đại đoàn kết.", icon: "fa-solid fa-shield-virus" }
+            ],
+            connections: [
+                { from: "n1", to: "n2" },
+                { from: "n3", to: "n4" },
+                { from: "n4", to: "n5" }
+            ]
+        },
+        media: {
+            title: "Chính sách dân tộc và tôn giáo của Việt Nam",
+            type: "video",
+            thumbnail: "",
+            description: "Xem để hiểu rõ cách Việt Nam tổ chức quản lý đời sống tín ngưỡng đa dạng và củng cố đoàn kết giữa 54 dân tộc anh em.",
+            sourceLabel: "Media Learning Station",
+            url: ""
+        },
+        caseStudy: {
+            title: "Phát triển du lịch cộng đồng gắn liền với bảo tồn văn hóa đồng bào thiểu số",
+            situation: "Tại Sapa (Lào Cai) hay Bản Lác (Hòa Bình), phát triển du lịch homestay đã giúp cải thiện sinh kế rõ rệt cho người Dao, người Thái. Tuy nhiên, việc thương mại hóa quá mức có nguy cơ biến đổi bản sắc văn hóa và các lễ hội tâm linh truyền thống.",
+            question: "Làm thế nào để phát triển du lịch nâng cao đời sống kinh tế nhưng vẫn bảo tồn được giá trị văn hóa nguyên bản của đồng bào?",
+            analysisHints: [
+                "Bảo đảm người dân bản địa đóng vai trò chủ thể quản lý du lịch và được phân phối lợi ích kinh tế công bằng.",
+                "Tuyên truyền, nâng cao ý thức tự hào và bảo vệ nét đẹp trang phục, kiến trúc, nghi lễ truyền thống.",
+                "Có sự giám sát chặt chẽ từ cơ quan văn hóa địa phương đối với việc dàn dựng biểu diễn nghệ thuật bản địa."
+            ]
+        }
     },
     {
         id: 7,
@@ -1318,14 +1633,116 @@ const MICRO_LEARNING_DATA = [
             }
         ],
         colorTheme: {
-            accent: "#DB2777",
-            softBg: "#FFF0F7",
-            border: "rgba(219, 39, 119, 0.2)",
-            iconBg: "#FBD4E6"
+            accent: "#EC4899",
+            softBg: "rgba(236, 72, 153, 0.12)",
+            border: "rgba(236, 72, 153, 0.25)",
+            iconBg: "rgba(236, 72, 153, 0.15)"
         },
-        icon: "fa-solid fa-house-chimney"
+        icon: "fa-solid fa-house-chimney",
+        planet: {
+            number: "07",
+            name: "Hành tinh Gia đình",
+            englishName: "Family Planet",
+            visualMotif: "house",
+            orbitLabel: "Planet 07"
+        },
+        conceptModel: {
+            type: "house",
+            title: "Trạm sinh thái chức năng Gia đình",
+            description: "Mô hình kết nối các chức năng thiết yếu xây dựng và duy trì sự sống của xã hội.",
+            nodes: [
+                { id: "n1", title: "Tái sản xuất con người", description: "Chức năng sinh học tự nhiên duy trì nòi giống, nuôi dưỡng chăm sóc thế hệ kế cận.", icon: "fa-solid fa-baby" },
+                { id: "n2", title: "Tổ chức đời sống kinh tế", description: "Tổ chức lao động sản xuất, tạo nguồn thu nhập và phân phối tiêu dùng ổn định trong gia đình.", icon: "fa-solid fa-basket-shopping" },
+                { id: "n3", title: "Giáo dục (Xã hội hóa)", description: "Truyền thụ các giá trị đạo đức, văn hóa truyền thống, hình thành nhân cách ban đầu cho trẻ.", icon: "fa-solid fa-chalkboard-user" },
+                { id: "n4", title: "Nuôi dưỡng tình cảm", description: "Nơi chia sẻ, động viên tinh thần, bảo đảm cân bằng tâm lý và hạnh phúc cho các thành viên.", icon: "fa-solid fa-heart-pulse" },
+                { id: "n5", title: "Xây dựng gia đình mới", description: "Hướng tới xây dựng gia đình Việt Nam ấm no, tiến bộ, hạnh phúc, văn minh trong thời đại mới.", icon: "fa-solid fa-hands-holding-child" }
+            ],
+            connections: [
+                { from: "n1", to: "n3" },
+                { from: "n2", to: "n1" },
+                { from: "n4", to: "n5" }
+            ]
+        },
+        media: {
+            title: "Gia đình Việt Nam trong thời đại số",
+            type: "video",
+            thumbnail: "",
+            description: "Thảo luận về sự thay đổi các mối quan hệ giữa cha mẹ và con cái, giữ gìn không gian sinh hoạt chung và giáo dục nhân cách trong bối cảnh bùng nổ thiết bị cá nhân.",
+            sourceLabel: "Media Learning Station",
+            url: ""
+        },
+        caseStudy: {
+            title: "Bình đẳng giới và sự chia sẻ trách nhiệm trong gia đình trẻ",
+            situation: "Trong xã hội hiện đại, phụ nữ cũng tham gia lực lượng lao động xã hội ngang hàng nam giới. Tuy nhiên, định kiến cũ vẫn đè nặng gánh nặng 'việc nhà, nuôi con' lên vai người vợ, gây mất cân bằng tâm lý và căng thẳng trong hôn nhân.",
+            question: "Làm thế nào để xây dựng nhận thức và thúc đẩy sự chia sẻ việc nhà thực chất giữa vợ và chồng trong các gia đình trẻ Việt Nam hiện nay?",
+            analysisHints: [
+                "Xóa bỏ các quan niệm định kiến cũ về vai trò giới thông qua truyền thông giáo dục và gương thực tiễn.",
+                "Thiết lập cơ chế đối thoại thẳng thắn, phân công trách nhiệm rõ ràng dựa trên lịch trình của cả hai.",
+                "Chính sách hỗ trợ thời gian nghỉ thai sản bình đẳng và dịch vụ hỗ trợ xã hội (nhà trẻ, bảo mẫu) chất lượng."
+            ]
+        },
+        comparison: {
+            title: "Gia đình truyền thống vs Gia đình hiện đại",
+            keyDifference: "Quy mô, Cấu trúc quyền lực và Quan hệ giữa các thành viên",
+            left: {
+                label: "Gia đình truyền thống",
+                points: [
+                    "Quy mô lớn, thường là gia đình tam đại đồng đường, tứ đại đồng đường sống chung.",
+                    "Cấu trúc quyền lực mang tính gia trưởng, mọi quyết định lớn đều do người nam lớn tuổi quyết định.",
+                    "Tính gắn kết dòng họ, làng xã rất chặt chẽ nhưng tự do lựa chọn cá nhân bị hạn chế nhiều."
+                ]
+            },
+            right: {
+                label: "Gia đình hiện đại",
+                points: [
+                    "Quy mô nhỏ (gia đình hạt nhân chỉ gồm vợ, chồng và con cái sinh sống).",
+                    "Quan hệ giữa các thành viên mang tính dân chủ, bình đẳng hơn, tôn trọng ý kiến con cái.",
+                    "Coi trọng quyền tự do phát triển của mỗi cá nhân, song liên kết giữa các thế hệ dễ bị lỏng lẻo."
+                ]
+            }
+        }
     }
 ];
+
+const COSMIC_INTERACTIONS = {
+    buildConcept: {
+        question: "Lắp ráp mô hình: Chọn đúng 3 tiền đề trực tiếp về lý luận và khoa học dẫn đến sự ra đời của CNXHKH.",
+        options: [
+            { id: "opt1", text: "Chủ nghĩa xã hội không tưởng phê phán Pháp", isCorrect: true, feedback: "Chính xác! Nguồn gốc lý luận trực tiếp quan trọng nhất." },
+            { id: "opt2", text: "Thuyết tiến hóa của Darwin", isCorrect: true, feedback: "Chính xác! Một trong ba phát kiến khoa học tự nhiên làm nền tảng thế giới quan." },
+            { id: "opt3", text: "Triết học cổ điển Đức (phần Duy vật & Biện chứng)", isCorrect: true, feedback: "Chính xác! Tiền đề triết học để cải biến lý luận." },
+            { id: "opt4", text: "Thuyết tương đối của Einstein", isCorrect: false, feedback: "Sai rồi! Thuyết tương đối ra đời đầu thế kỷ XX, sau khi CNXHKH đã hình thành từ lâu." },
+            { id: "opt5", text: "Kinh tế học vĩ mô Keynesian", isCorrect: false, feedback: "Sai rồi! Đây là lý thuyết kinh tế hiện đại nửa sau thế kỷ XX." }
+        ],
+        correctExplanation: "Tiền đề trực tiếp của CNXHKH gồm Triết học cổ điển Đức, Kinh tế chính trị học cổ điển Anh, CNXH không tưởng Pháp kết hợp với 3 phát kiến khoa học tự nhiên lớn (Học thuyết tế bào, Thuyết tiến hóa, Định luật bảo toàn và chuyển hóa năng lượng)."
+    },
+    
+    decisionScenario: {
+        title: "Nhiệm vụ Quyết định: Ứng phó tín ngưỡng tôn giáo tại cơ sở",
+        situation: "Tại một xã vùng cao đang xảy ra hiện tượng một số đối tượng xấu lợi dụng quyền tự do tín ngưỡng để truyền bá các hủ tục mê tín lạc hậu, lôi kéo bà con bỏ làm ăn nông nghiệp để cầu nguyện mong được giàu sang, gây bất ổn an ninh trật tự.",
+        question: "Với vai trò là cán bộ quản lý văn hóa - xã hội địa phương, bạn sẽ đưa ra quyết định xử lý như thế nào để vừa tôn trọng tự do tín ngưỡng vừa giữ vững trật tự xã hội?",
+        options: [
+            {
+                id: "dec1",
+                text: "Tuyên truyền giải thích cho người dân phân biệt rõ hoạt động tín ngưỡng hợp pháp với hành vi lợi dụng tín ngưỡng; phối hợp lực lượng chức năng xử lý nghiêm đối tượng cầm đầu kích động.",
+                isCorrect: true,
+                feedback: "Đưa ra quyết định xuất sắc! Phương án này phản ánh đúng chính sách tôn giáo của Đảng và Nhà nước (tôn trọng đức tin cá nhân hợp pháp nhưng kiên quyết ngăn chặn hành vi lợi dụng tôn giáo làm hại lợi ích chung)."
+            },
+            {
+                id: "dec2",
+                text: "Ra quyết định tạm đình chỉ toàn bộ mọi hoạt động thờ cúng, sinh hoạt tôn giáo trong toàn xã để lập lại trật tự tuyệt đối trước mắt.",
+                isCorrect: false,
+                feedback: "Lựa chọn chưa phù hợp! Việc này vi phạm quyền tự do tín ngưỡng hợp pháp của công dân, dễ tạo cớ để các thế lực thù địch bên ngoài kích động, đẩy mâu thuẫn lên cao."
+            },
+            {
+                id: "dec3",
+                text: "Mặc kệ người dân tự do cầu nguyện vì đó là tự do đức tin cá nhân, chính quyền không có quyền can thiệp vào hành vi thờ cúng.",
+                isCorrect: false,
+                feedback: "Lựa chọn thiếu trách nhiệm! Để mặc các đối tượng lợi dụng lôi kéo người dân bỏ bê sản xuất sẽ hủy hoại đời sống kinh tế xã hội và gây mất ổn định an ninh cơ sở."
+            }
+        ]
+    }
+};
 
 MICRO_LEARNING_DATA.forEach((micro) => {
     const chapter = CHAPTERS_DATA.find((item) => item.id === micro.id);
