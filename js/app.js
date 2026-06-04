@@ -1100,7 +1100,19 @@ function buildChapterStoryHtml(chapter, index) {
                 <p class="muted" style="margin: 0; font-size: 0.85rem; line-height: 1.45;">${htmlEscape(chapter.oneLineSummary || chapter.description)}</p>
             </div>
             <div class="planet-story-visual-side">
-                <div class="planet-story-globe" style="--station-accent: ${chapter.colorTheme.accent || '#38BDF8'}"></div>
+                <div class="planet-showcase-container" style="--station-accent: ${chapter.colorTheme.accent || '#38BDF8'}">
+                    <div class="planet-glow"></div>
+                    <div class="planet-orbit planet-orbit-1"></div>
+                    <div class="planet-orbit planet-orbit-2"></div>
+                    <div class="planet-core">
+                        <div class="planet-surface"></div>
+                        <div class="planet-shading"></div>
+                        <div class="planet-atmosphere"></div>
+                    </div>
+                    <div class="planet-satellite sat-1"><i class="fa-solid fa-user-astronaut"></i></div>
+                    <div class="planet-satellite sat-2"><i class="fa-solid fa-satellite"></i></div>
+                    <div class="planet-satellite sat-3"><i class="fa-solid fa-rocket"></i></div>
+                </div>
             </div>
         </section>
 

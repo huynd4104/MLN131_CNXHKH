@@ -3036,9 +3036,10 @@ body.light-theme .tool-dock-card {
 
 @media (min-width: 768px) {
     .planet-story-hero {
-        grid-template-columns: 1fr 180px;
+        grid-template-columns: minmax(0, 1fr) 260px;
         align-items: center;
         padding: 40px;
+        gap: 32px;
     }
 }
 
@@ -3049,16 +3050,164 @@ body.light-theme .planet-story-hero {
 .planet-story-visual-side {
     display: flex;
     justify-content: center;
+    align-items: center;
+    position: relative;
 }
 
-.planet-story-globe {
-    width: 120px;
-    height: 120px;
+.planet-showcase-container {
+    position: relative;
+    width: 240px;
+    height: 240px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+}
+
+.planet-glow {
+    position: absolute;
+    width: 210px;
+    height: 210px;
     border-radius: 50%;
-    border: 2px solid var(--station-accent, var(--primary));
-    box-shadow: 0 0 30px var(--station-accent, rgba(56, 189, 248, 0.4));
-    background: radial-gradient(circle at 30% 30%, var(--station-accent, var(--primary)) 0%, #050816 80%);
-    animation: rotateSlow 15s infinite linear;
+    background: radial-gradient(circle, var(--station-accent, var(--primary)) 0%, transparent 70%);
+    opacity: 0.28;
+    filter: blur(8px);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.planet-orbit {
+    position: absolute;
+    border: 1px dashed var(--station-border, rgba(255, 255, 255, 0.15));
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.planet-orbit-1 {
+    width: 210px;
+    height: 80px;
+    transform: rotate(-15deg);
+}
+
+.planet-orbit-2 {
+    width: 230px;
+    height: 110px;
+    transform: rotate(25deg);
+}
+
+.planet-core {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    z-index: 10;
+    cursor: pointer;
+    box-shadow: 0 0 35px var(--station-accent, rgba(56, 189, 248, 0.4));
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.planet-core:hover {
+    transform: scale(1.08);
+}
+
+.planet-surface {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background-image: 
+        radial-gradient(circle at 30% 30%, transparent 10%, rgba(0, 0, 0, 0.6) 80%),
+        repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.035) 0px, rgba(255, 255, 255, 0.035) 2px, transparent 2px, transparent 8px),
+        radial-gradient(circle at 35% 35%, var(--station-accent, var(--primary)) 0%, #060b26 80%);
+    z-index: 11;
+}
+
+body.light-theme .planet-surface {
+    background-image: 
+        radial-gradient(circle at 30% 30%, transparent 10%, rgba(15, 23, 42, 0.15) 85%),
+        repeating-linear-gradient(45deg, rgba(15, 23, 42, 0.02) 0px, rgba(15, 23, 42, 0.02) 2px, transparent 2px, transparent 8px),
+        radial-gradient(circle at 35% 35%, var(--station-accent, var(--primary)) 0%, #F1F5F9 80%);
+}
+
+.planet-shading {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle at 80% 80%, transparent 35%, rgba(0, 0, 0, 0.82) 80%);
+    pointer-events: none;
+    z-index: 12;
+}
+
+body.light-theme .planet-shading {
+    background: radial-gradient(circle at 80% 80%, transparent 40%, rgba(15, 23, 42, 0.25) 85%);
+}
+
+.planet-atmosphere {
+    position: absolute;
+    inset: -1px;
+    border-radius: 50%;
+    box-shadow: inset 0 0 16px rgba(255, 255, 255, 0.35), 0 0 12px var(--station-accent, var(--primary));
+    z-index: 13;
+    pointer-events: none;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.planet-satellite {
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: rgba(11, 16, 38, 0.9);
+    border: 1.5px solid var(--station-accent, var(--primary));
+    color: var(--station-accent, var(--primary));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.65rem;
+    z-index: 15;
+    box-shadow: 0 0 8px var(--station-accent, rgba(56, 189, 248, 0.3));
+    pointer-events: none;
+}
+
+body.light-theme .planet-satellite {
+    background: #FFFFFF;
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.08);
+}
+
+.sat-1 {
+    top: 10%;
+    left: 10%;
+    animation: orbitFloat1 6s infinite ease-in-out;
+}
+
+.sat-2 {
+    bottom: 12%;
+    right: 5%;
+    animation: orbitFloat2 8s infinite ease-in-out;
+}
+
+.sat-3 {
+    top: 60%;
+    left: 88%;
+    animation: orbitFloat3 7s infinite ease-in-out;
+}
+
+@keyframes orbitFloat1 {
+    0% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-6px) scale(1.05); }
+    100% { transform: translateY(0) scale(1); }
+}
+
+@keyframes orbitFloat2 {
+    0% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(6px) scale(0.95); }
+    100% { transform: translateY(0) scale(1); }
+}
+
+@keyframes orbitFloat3 {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(-5px) translateY(-3px); }
+    100% { transform: translateX(0); }
 }
 
 .planet-central-question-box {
