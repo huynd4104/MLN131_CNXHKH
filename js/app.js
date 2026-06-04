@@ -472,50 +472,90 @@ function renderOverview() {
             <!-- 1. Cosmic Hero -->
             <section class="cosmic-landing-scene" aria-label="MLN131 Cosmic Knowledge Exhibition">
                 <div class="cosmic-landing-nebula" aria-hidden="true"></div>
-                <div class="landing-copy">
-                    <span class="hero-kicker"><i class="fa-solid fa-shuttle-space"></i> MLN131 Cosmic Knowledge Exhibition</span>
-                    <h2>Vũ trụ tri thức Chủ nghĩa xã hội khoa học</h2>
-                    <p class="hero-lead">Khám phá 7 hành tinh lý luận qua bản đồ tri thức điện ảnh, tương tác và dễ ôn tập.</p>
-                    <div class="hero-actions">
-                        <button class="btn btn-primary" type="button" data-action="start-journey">
-                            <i class="fa-solid fa-rocket"></i> Bắt đầu khám phá
-                        </button>
-                        <button class="btn btn-secondary" type="button" data-action="scroll-galaxy">
-                            <i class="fa-solid fa-circle-nodes"></i> Mở bản đồ vũ trụ
-                        </button>
-                        <button class="btn btn-quiet" type="button" data-tab-target="review">
-                            <i class="fa-solid fa-bolt"></i> Ôn tập nhanh
-                        </button>
+                
+                <!-- Desktop Hero Layout -->
+                <div class="desktop-hero-layout">
+                    <div class="landing-copy">
+                        <span class="hero-kicker"><i class="fa-solid fa-shuttle-space"></i> MLN131 Cosmic Knowledge Exhibition</span>
+                        <h2>Vũ trụ tri thức Chủ nghĩa xã hội khoa học</h2>
+                        <p class="hero-lead">Khám phá 7 hành tinh lý luận qua bản đồ tri thức điện ảnh, tương tác và dễ ôn tập.</p>
+                        <div class="hero-actions">
+                            <button class="btn btn-primary" type="button" data-action="start-journey">
+                                <i class="fa-solid fa-rocket"></i> Bắt đầu khám phá
+                            </button>
+                            <button class="btn btn-secondary" type="button" data-action="scroll-galaxy">
+                                <i class="fa-solid fa-circle-nodes"></i> Mở bản đồ vũ trụ
+                            </button>
+                            <button class="btn btn-quiet" type="button" data-tab-target="review">
+                                <i class="fa-solid fa-bolt"></i> Ôn tập nhanh
+                            </button>
+                        </div>
+                        <div class="landing-signal-chips" aria-label="Từ khóa nổi bật">
+                            <span>Giai cấp công nhân</span>
+                            <span>Dân chủ</span>
+                            <span>Nhà nước</span>
+                            <span>Dân tộc</span>
+                            <span>Gia đình</span>
+                        </div>
                     </div>
-                    <div class="landing-signal-chips" aria-label="Từ khóa nổi bật">
-                        <span>Giai cấp công nhân</span>
-                        <span>Dân chủ</span>
-                        <span>Nhà nước</span>
-                        <span>Dân tộc</span>
-                        <span>Gia đình</span>
+                    <div class="landing-galaxy-stage" aria-label="Bản đồ vũ trụ 7 hành tinh">
+                        <div class="galaxy-core-glow" aria-hidden="true"></div>
+                        <div class="landing-orbit orbit-a" aria-hidden="true"></div>
+                        <div class="landing-orbit orbit-b" aria-hidden="true"></div>
+                        <div class="landing-orbit orbit-c" aria-hidden="true"></div>
+                        <div class="landing-orbit orbit-d" aria-hidden="true"></div>
+                        <div class="knowledge-core">
+                            <span>MLN131</span>
+                            <strong>CNXHKH</strong>
+                        </div>
+                        <div class="floating-keyword-container" aria-hidden="true">
+                            <span class="floating-chip" style="left: 8%; top: 18%; animation-delay: 0s;">Quy luật</span>
+                            <span class="floating-chip" style="right: 12%; top: 14%; animation-delay: 2s;">Đoàn kết</span>
+                            <span class="floating-chip" style="left: 12%; bottom: 20%; animation-delay: 4s;">Pháp quyền</span>
+                            <span class="floating-chip" style="right: 10%; bottom: 18%; animation-delay: 1s;">Quá độ</span>
+                            <span class="floating-chip" style="left: 46%; top: 7%; animation-delay: 3s;">1848</span>
+                        </div>
+                        ${buildHeroPlanetNodes()}
                     </div>
                 </div>
-                <div class="landing-galaxy-stage" aria-label="Bản đồ vũ trụ 7 hành tinh">
-                    <div class="galaxy-core-glow" aria-hidden="true"></div>
-                    <div class="landing-orbit orbit-a" aria-hidden="true"></div>
-                    <div class="landing-orbit orbit-b" aria-hidden="true"></div>
-                    <div class="landing-orbit orbit-c" aria-hidden="true"></div>
-                    <div class="landing-orbit orbit-d" aria-hidden="true"></div>
-                    <div class="knowledge-core">
-                        <span>MLN131</span>
-                        <strong>CNXHKH</strong>
+
+                <!-- Mobile Hero Layout -->
+                <div class="mobile-hero-layout">
+                    <div class="mobile-hero-header">
+                        <span class="mobile-kicker"><i class="fa-solid fa-shuttle-space"></i> MLN131 Cosmic Exhibition</span>
+                        <h2>Vũ trụ tri thức CNXHKH</h2>
+                        <p class="mobile-lead">Khám phá 7 hành tinh lý luận qua tương tác.</p>
                     </div>
-                    <div class="floating-keyword-container" aria-hidden="true">
-                        <span class="floating-chip" style="left: 8%; top: 18%; animation-delay: 0s;">Quy luật</span>
-                        <span class="floating-chip" style="right: 12%; top: 14%; animation-delay: 2s;">Đoàn kết</span>
-                        <span class="floating-chip" style="left: 12%; bottom: 20%; animation-delay: 4s;">Pháp quyền</span>
-                        <span class="floating-chip" style="right: 10%; bottom: 18%; animation-delay: 1s;">Quá độ</span>
-                        <span class="floating-chip" style="left: 46%; top: 7%; animation-delay: 3s;">1848</span>
+                    
+                    <!-- Carousel Viewport -->
+                    <div class="mobile-carousel-viewport" id="mobileCarouselViewport">
+                        <button class="mobile-carousel-nav-btn prev-btn" type="button" aria-label="Hành tinh trước">
+                            <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+                        <button class="mobile-carousel-nav-btn next-btn" type="button" aria-label="Hành tinh sau">
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </button>
+
+                        <div class="mobile-carousel-track" id="mobileCarouselTrack">
+                            ${buildMobileCarouselSlides()}
+                        </div>
                     </div>
-                    ${buildHeroPlanetNodes()}
-                </div>
-                <div class="mobile-planet-strip" aria-label="7 hành tinh tri thức">
-                    ${buildMobilePlanetStrip()}
+
+                    <!-- Carousel Controls -->
+                    <div class="mobile-carousel-controls">
+                        <div class="mobile-carousel-counter">
+                            <span id="mobileCarouselActiveNum">01</span> / 07
+                        </div>
+                        <div class="mobile-carousel-dots" id="mobileCarouselDots">
+                            ${buildMobileCarouselDots()}
+                        </div>
+                        <div class="mobile-swipe-hint">
+                            <i class="fa-solid fa-arrows-left-right"></i> Vuốt ngang để chuyển hành tinh
+                        </div>
+                    </div>
+
+                    <!-- Mission Card Stack for active planet -->
+                    <div class="mobile-mission-stack" id="mobileMissionStack"></div>
                 </div>
             </section>
 
@@ -719,6 +759,238 @@ function renderOverview() {
     renderTimeline('orbitTimeline');
     renderMediaStation('mediaStationGrid');
     renderCaseStudyGrid('caseStudyGrid');
+
+    // Initialize mobile carousel
+    initMobileCarousel();
+}
+
+function buildMobileCarouselSlides() {
+    return CHAPTERS_DATA.map((chapter, index) => {
+        const keywords = getKeywords(chapter).slice(0, 3);
+        const centralQuestion = chapter.centralQuestion || chapter.description;
+        return `
+            <div class="mobile-carousel-slide ${index === appState.selectedChapterIndex ? 'active-slide' : ''}" data-index="${index}" style="${getPlanetVisualStyle(chapter)}">
+                <div class="mobile-planet-wrapper">
+                    <!-- Cosmic Planet Visual -->
+                    <div class="cosmic-planet-visual mobile-carousel-planet-visual ${getPlanetMotifClass(chapter)}" style="${getPlanetVisualStyle(chapter)}" aria-label="Hành tinh ${htmlEscape(chapter.planet.name)}">
+                        <div class="planet-glow" aria-hidden="true"></div>
+                        <div class="planet-orbit-ring planet-orbit-ring-a" aria-hidden="true"></div>
+                        <div class="planet-orbit-ring planet-orbit-ring-b" aria-hidden="true"></div>
+                        <div class="planet-core">
+                            <div class="planet-surface"></div>
+                            <div class="planet-rim-light"></div>
+                            <div class="planet-shadow"></div>
+                            <div class="planet-atmosphere"></div>
+                        </div>
+                    </div>
+                    <span class="mobile-planet-number">${chapter.planet.number || String(chapter.id).padStart(2, '0')}</span>
+                </div>
+                <div class="mobile-carousel-slide-info">
+                    <h3 class="mobile-carousel-planet-name">Chương ${chapter.id}: ${htmlEscape(chapter.planet.name)}</h3>
+                    <p class="mobile-carousel-chapter-title">${htmlEscape(chapter.title)}</p>
+                    <p class="mobile-carousel-planet-question">"${htmlEscape(centralQuestion)}"</p>
+                    <div class="mobile-carousel-planet-tags">
+                        ${keywords.map(kw => `<span class="mobile-carousel-tag" style="background: var(--station-bg); border-color: var(--station-border); color: var(--text-secondary);">${htmlEscape(kw)}</span>`).join('')}
+                    </div>
+                    <button class="btn btn-primary mobile-carousel-explore-btn" type="button" data-action="explore-current-planet" data-index="${index}" style="background: var(--station-accent); border-color: var(--station-accent);">
+                        <i class="fa-solid fa-rocket"></i> Khám phá hành tinh này
+                    </button>
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+
+function buildMobileCarouselDots() {
+    return CHAPTERS_DATA.map((_, index) => `
+        <button class="mobile-carousel-dot ${index === appState.selectedChapterIndex ? 'active' : ''}" type="button" data-index="${index}" aria-label="Đến hành tinh ${index + 1}"></button>
+    `).join('');
+}
+
+function renderMobileMissionCards(index) {
+    const container = document.getElementById('mobileMissionStack');
+    if (!container) return;
+
+    const chapter = CHAPTERS_DATA[index];
+    if (!chapter) return;
+
+    const examTip = (chapter.examTips || [])[0] || 'Nắm câu hỏi trung tâm, keyword và 3 ý chính trước khi đọc chi tiết.';
+    
+    container.innerHTML = `
+        <div class="mobile-mission-panel glass-panel" style="${getPlanetVisualStyle(chapter)}">
+            <div class="mission-panel-header">
+                <span class="mission-panel-badge"><i class="fa-solid fa-user-astronaut"></i> Hồ sơ nhiệm vụ</span>
+                <h3>Nhiệm vụ: ${htmlEscape(chapter.planet.name)}</h3>
+            </div>
+            <div class="mobile-mission-list">
+                <div class="mobile-mission-item">
+                    <div class="mission-item-icon" style="background: var(--station-bg); color: var(--station-accent);">
+                        <i class="fa-solid fa-stopwatch"></i>
+                    </div>
+                    <div class="mission-item-content">
+                        <h4>3 phút nắm chương</h4>
+                        <p>${htmlEscape(chapter.quickUnderstand || chapter.description)}</p>
+                    </div>
+                </div>
+                <div class="mobile-mission-item">
+                    <div class="mission-item-icon" style="background: rgba(251, 191, 36, 0.15); color: #FBBF24;">
+                        <i class="fa-solid fa-compass-drafting"></i>
+                    </div>
+                    <div class="mission-item-content">
+                        <h4>Vì sao cần học</h4>
+                        <p>${htmlEscape(chapter.whyItMatters || chapter.objectives?.knowledge || '')}</p>
+                    </div>
+                </div>
+                <div class="mobile-mission-item">
+                    <div class="mission-item-icon" style="background: rgba(244, 63, 94, 0.15); color: #F43F5E;">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <div class="mission-item-content">
+                        <h4>Ôn thi trong 60 giây</h4>
+                        <p>${htmlEscape(examTip)}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+function initMobileCarousel() {
+    const track = document.getElementById('mobileCarouselTrack');
+    if (!track) return;
+
+    const viewport = document.getElementById('mobileCarouselViewport');
+    const dotsContainer = document.getElementById('mobileCarouselDots');
+    const activeNum = document.getElementById('mobileCarouselActiveNum');
+    const prevBtn = viewport?.querySelector('.prev-btn');
+    const nextBtn = viewport?.querySelector('.next-btn');
+
+    let currentIndex = appState.selectedChapterIndex;
+
+    const updateCarousel = (index) => {
+        if (index < 0) index = 0;
+        if (index >= CHAPTERS_DATA.length) index = CHAPTERS_DATA.length - 1;
+
+        currentIndex = index;
+        appState.selectedChapterIndex = index;
+
+        // Apply translations: 15% starting offset, 12px margin, slide width is 70% + 24px spacing
+        track.style.transform = `translateX(calc(15% - 12px - ${currentIndex} * (70% + 24px)))`;
+
+        // Update active classes
+        track.querySelectorAll('.mobile-carousel-slide').forEach((slide, idx) => {
+            slide.classList.toggle('active-slide', idx === currentIndex);
+        });
+
+        // Update dots
+        if (dotsContainer) {
+            dotsContainer.querySelectorAll('.mobile-carousel-dot').forEach((dot, idx) => {
+                dot.classList.toggle('active', idx === currentIndex);
+            });
+        }
+
+        // Update counter
+        if (activeNum) {
+            activeNum.textContent = String(currentIndex + 1).padStart(2, '0');
+        }
+
+        // Update nav buttons
+        if (prevBtn) prevBtn.style.opacity = currentIndex === 0 ? '0.3' : '1';
+        if (nextBtn) nextBtn.style.opacity = currentIndex === CHAPTERS_DATA.length - 1 ? '0.3' : '1';
+
+        // Update dynamic accent color variable on container
+        const activeChapter = CHAPTERS_DATA[currentIndex];
+        const accentColor = activeChapter.colorTheme.accent || '#38BDF8';
+        viewport.style.setProperty('--active-accent', accentColor);
+
+        // Update active dot color by bubble variable
+        if (dotsContainer) {
+            dotsContainer.style.setProperty('--active-accent', accentColor);
+        }
+
+        // Update mission cards
+        renderMobileMissionCards(currentIndex);
+    };
+
+    // Nav button click events
+    prevBtn?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (currentIndex > 0) updateCarousel(currentIndex - 1);
+    });
+
+    nextBtn?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (currentIndex < CHAPTERS_DATA.length - 1) updateCarousel(currentIndex + 1);
+    });
+
+    // Dot click events
+    dotsContainer?.querySelectorAll('.mobile-carousel-dot').forEach((dot) => {
+        dot.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const index = Number(dot.getAttribute('data-index'));
+            updateCarousel(index);
+        });
+    });
+
+    // Swipe handler support for touch + mouse events
+    let startX = 0;
+    let isSwiping = false;
+
+    const handleStart = (clientX) => {
+        startX = clientX;
+        isSwiping = true;
+    };
+
+    const handleEnd = (clientX) => {
+        if (!isSwiping) return;
+        const diffX = clientX - startX;
+        const threshold = 40; // pixels
+
+        if (diffX < -threshold) {
+            if (currentIndex < CHAPTERS_DATA.length - 1) {
+                updateCarousel(currentIndex + 1);
+            }
+        } else if (diffX > threshold) {
+            if (currentIndex > 0) {
+                updateCarousel(currentIndex - 1);
+            }
+        }
+        isSwiping = false;
+    };
+
+    track.addEventListener('touchstart', (e) => {
+        handleStart(e.touches[0].clientX);
+    }, { passive: true });
+
+    track.addEventListener('touchend', (e) => {
+        handleEnd(e.changedTouches[0].clientX);
+    }, { passive: true });
+
+    track.addEventListener('mousedown', (e) => {
+        handleStart(e.clientX);
+    });
+
+    track.addEventListener('mouseup', (e) => {
+        handleEnd(e.clientX);
+    });
+
+    track.addEventListener('mouseleave', () => {
+        isSwiping = false;
+    });
+
+    // Initial position trigger
+    updateCarousel(currentIndex);
+
+    // Explorer buttons inside slides click events
+    track.querySelectorAll('[data-action="explore-current-planet"]').forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const index = Number(btn.getAttribute('data-index'));
+            appState.selectedChapterIndex = index;
+            switchTab('chapters');
+        });
+    });
 }
 
 function renderGalaxyMap(containerId) {
