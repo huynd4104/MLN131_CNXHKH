@@ -4187,6 +4187,12 @@ body.light-theme.cosmic-scene-tab .icon-button {
         radial-gradient(circle, color-mix(in srgb, var(--planet-secondary) 28%, transparent), transparent 78%);
     filter: blur(24px);
     opacity: 0.68;
+    animation: planetGlowPulse 6s ease-in-out infinite alternate;
+}
+
+@keyframes planetGlowPulse {
+    0%   { opacity: 0.54; transform: scale(0.96); }
+    100% { opacity: 0.82; transform: scale(1.06); }
 }
 
 .planet-orbit-ring {
@@ -4198,12 +4204,15 @@ body.light-theme.cosmic-scene-tab .icon-button {
     border-radius: 50%;
     pointer-events: none;
     transform: translate(-50%, -50%) rotate(var(--ring-rotate));
+    animation: var(--ring-anim) linear infinite;
+    will-change: transform;
 }
 
 .planet-orbit-ring-a {
     width: 84%;
     height: 34%;
     --ring-rotate: -13deg;
+    --ring-anim: orbitRingSpinA 28s;
 }
 
 .planet-orbit-ring-b {
@@ -4211,6 +4220,7 @@ body.light-theme.cosmic-scene-tab .icon-button {
     height: 42%;
     --ring-rotate: 24deg;
     border-color: color-mix(in srgb, var(--planet-secondary) 34%, rgba(255, 255, 255, 0.1));
+    --ring-anim: orbitRingSpinB 36s;
 }
 
 .planet-orbit-ring-c {
@@ -4219,6 +4229,23 @@ body.light-theme.cosmic-scene-tab .icon-button {
     --ring-rotate: 58deg;
     border-style: dashed;
     border-color: rgba(226, 232, 240, 0.16);
+    --ring-anim: orbitRingSpinC 22s;
+}
+
+/* --- Orbit Ring Rotation Keyframes --- */
+@keyframes orbitRingSpinA {
+    from { transform: translate(-50%, -50%) rotate(-13deg); }
+    to   { transform: translate(-50%, -50%) rotate(347deg); }
+}
+
+@keyframes orbitRingSpinB {
+    from { transform: translate(-50%, -50%) rotate(24deg); }
+    to   { transform: translate(-50%, -50%) rotate(-336deg); }
+}
+
+@keyframes orbitRingSpinC {
+    from { transform: translate(-50%, -50%) rotate(58deg); }
+    to   { transform: translate(-50%, -50%) rotate(418deg); }
 }
 
 .cosmic-planet-visual .planet-core {
@@ -4259,6 +4286,13 @@ body.light-theme.cosmic-scene-tab .icon-button {
         radial-gradient(circle at 38% 34%, color-mix(in srgb, var(--planet-tertiary) 72%, transparent), transparent 18%),
         radial-gradient(circle at 54% 54%, var(--planet-accent), var(--planet-secondary) 48%, var(--planet-deep) 92%),
         repeating-linear-gradient(35deg, rgba(255, 255, 255, 0.08) 0 2px, transparent 2px 12px);
+    animation: planetSurfaceSpin 45s linear infinite;
+    will-change: transform;
+}
+
+@keyframes planetSurfaceSpin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
 }
 
 .cosmic-planet-visual .planet-surface::before {
@@ -4297,6 +4331,12 @@ body.light-theme.cosmic-scene-tab .icon-button {
         inset 0 0 26px rgba(255, 255, 255, 0.16),
         0 0 30px color-mix(in srgb, var(--planet-accent) 46%, transparent),
         0 0 80px color-mix(in srgb, var(--planet-secondary) 18%, transparent);
+    animation: atmosphereShimmer 8s ease-in-out infinite alternate;
+}
+
+@keyframes atmosphereShimmer {
+    0%   { box-shadow: inset 0 0 26px rgba(255,255,255,0.16), 0 0 30px color-mix(in srgb, var(--planet-accent) 46%, transparent), 0 0 80px color-mix(in srgb, var(--planet-secondary) 18%, transparent); }
+    100% { box-shadow: inset 0 0 38px rgba(255,255,255,0.22), 0 0 48px color-mix(in srgb, var(--planet-accent) 58%, transparent), 0 0 110px color-mix(in srgb, var(--planet-secondary) 28%, transparent); }
 }
 
 .cosmic-planet-visual .planet-satellite {
@@ -4351,6 +4391,12 @@ body.light-theme.cosmic-scene-tab .icon-button {
     inset: 0;
     z-index: 6;
     pointer-events: none;
+    animation: motifLayerDrift 55s linear infinite;
+}
+
+@keyframes motifLayerDrift {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
 }
 
 .planet-motif-layer span {
@@ -4937,6 +4983,11 @@ body.light-theme .mobile-planet-chip {
     .cosmic-planet-visual .sat-1,
     .cosmic-planet-visual .sat-2,
     .cosmic-planet-visual .sat-3,
+    .cosmic-planet-visual .planet-surface,
+    .cosmic-planet-visual .planet-glow,
+    .cosmic-planet-visual .planet-atmosphere,
+    .cosmic-planet-visual .planet-motif-layer,
+    .planet-orbit-ring,
     .floating-chip {
         animation: none !important;
     }
