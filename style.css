@@ -1712,6 +1712,7 @@ mark.highlight {
     }
 
     .main-content {
+        grid-column: 2;
         max-width: 1260px;
         padding: 24px 30px 48px;
     }
