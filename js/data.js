@@ -1090,3 +1090,246 @@ const CONCEPT_MAP_DATA = [
         keywords: ["Tế bào xã hội", "Hôn nhân tiến bộ", "Sinh sản nòi giống", "Gia đình văn hóa"]
     }
 ];
+
+// Lớp dữ liệu micro-learning cho trải nghiệm MLN131 Learning Journey.
+// Dữ liệu học thuật cũ vẫn được giữ nguyên; phần này chỉ bổ sung field mới để render ngắn gọn hơn.
+const MICRO_LEARNING_DATA = [
+    {
+        id: 1,
+        stationName: "Khởi nguồn lý luận",
+        centralQuestion: "Vì sao chủ nghĩa xã hội từ không tưởng trở thành một khoa học?",
+        oneLineSummary: "Chương này mở ra nguồn gốc, điều kiện ra đời và ý nghĩa của CNXHKH.",
+        whyItMatters: "Giúp sinh viên hiểu vì sao môn học có cơ sở khoa học, không chỉ là khẩu hiệu hay niềm tin chung chung.",
+        keywords: ["1848", "Mác - Ăngghen", "Không tưởng", "Giai cấp công nhân", "Quy luật"],
+        quickUnderstand: "Nếu CNXH không tưởng là ước mơ về xã hội công bằng, CNXHKH giải thích vì sao xã hội ấy có thể hình thành, lực lượng nào thực hiện và quy luật nào dẫn đường.",
+        keyIdeas: [
+            {
+                title: "Bối cảnh lịch sử",
+                shortExplain: "Đại công nghiệp tư bản tạo ra mâu thuẫn xã hội sâu sắc và phong trào đấu tranh của giai cấp vô sản.",
+                visualHint: "Nhà máy - đô thị - đấu tranh"
+            },
+            {
+                title: "Tiền đề tư tưởng",
+                shortExplain: "Mác và Ăngghen kế thừa có phê phán các nguồn lý luận trước đó để xây dựng học thuyết mới.",
+                visualHint: "Kế thừa - phê phán - vượt lên"
+            },
+            {
+                title: "Từ mơ ước đến khoa học",
+                shortExplain: "Ba phát kiến vĩ đại làm rõ quy luật xã hội và vai trò lịch sử của giai cấp công nhân.",
+                visualHint: "Quy luật - lực lượng - con đường"
+            }
+        ],
+        colorTheme: {
+            accent: "#A32626",
+            softBg: "#FFF1ED",
+            border: "rgba(163, 38, 38, 0.2)",
+            iconBg: "#F8D8D2"
+        },
+        icon: "fa-solid fa-scroll"
+    },
+    {
+        id: 2,
+        stationName: "Giai cấp công nhân",
+        centralQuestion: "Vì sao giai cấp công nhân được xem là lực lượng có sứ mệnh lịch sử?",
+        oneLineSummary: "Chương này giải thích vị trí, vai trò và sứ mệnh của giai cấp công nhân trong xã hội hiện đại.",
+        whyItMatters: "Giúp người học hiểu hạt nhân lực lượng của cách mạng xã hội chủ nghĩa và cách liên hệ với công nhân Việt Nam hôm nay.",
+        keywords: ["Đại công nghiệp", "Sứ mệnh", "Đảng Cộng sản", "Giá trị thặng dư", "Trí thức hóa"],
+        quickUnderstand: "Giai cấp công nhân không chỉ là người lao động trong nhà máy. Trong lý luận Mác - Lênin, họ đại diện cho lực lượng sản xuất hiện đại và có khả năng tổ chức xã hội mới.",
+        keyIdeas: [
+            {
+                title: "Vị trí kinh tế",
+                shortExplain: "Công nhân gắn với nền đại công nghiệp và phương thức sản xuất có tính xã hội hóa cao.",
+                visualHint: "Máy móc - dây chuyền - hợp tác"
+            },
+            {
+                title: "Sứ mệnh lịch sử",
+                shortExplain: "Nhiệm vụ cốt lõi là xóa bỏ áp bức bóc lột, xây dựng xã hội mới và giải phóng con người.",
+                visualHint: "Giải phóng - xây dựng - phát triển"
+            },
+            {
+                title: "Nhân tố lãnh đạo",
+                shortExplain: "Đảng Cộng sản là nhân tố chủ quan quyết định để giai cấp công nhân hoàn thành sứ mệnh.",
+                visualHint: "Tổ chức - lý luận - hành động"
+            }
+        ],
+        colorTheme: {
+            accent: "#2563EB",
+            softBg: "#EEF5FF",
+            border: "rgba(37, 99, 235, 0.2)",
+            iconBg: "#DCEBFF"
+        },
+        icon: "fa-solid fa-helmet-safety"
+    },
+    {
+        id: 3,
+        stationName: "Con đường quá độ",
+        centralQuestion: "Vì sao quá độ lên chủ nghĩa xã hội là một quá trình lâu dài và phức tạp?",
+        oneLineSummary: "Chương này giúp hình dung con đường chuyển biến từ xã hội cũ sang xã hội mới.",
+        whyItMatters: "Giúp sinh viên hiểu vì sao Việt Nam có thể lựa chọn con đường quá độ đặc thù và vì sao quá trình này cần nhiều bước.",
+        keywords: ["Quá độ", "Bỏ qua CNTB", "Kinh tế nhiều thành phần", "Đổi mới", "8 đặc trưng"],
+        quickUnderstand: "Thời kỳ quá độ là giai đoạn vừa xây cái mới, vừa cải biến cái cũ. Vì thế nó có nhiều thành phần kinh tế, nhiều mâu thuẫn và cần định hướng lâu dài.",
+        keyIdeas: [
+            {
+                title: "Một thời kỳ chuyển tiếp",
+                shortExplain: "Xã hội không đổi ngay lập tức mà đi qua giai đoạn cải biến sâu sắc trên nhiều lĩnh vực.",
+                visualHint: "Cũ - mới - chuyển hóa"
+            },
+            {
+                title: "Đặc thù Việt Nam",
+                shortExplain: "Việt Nam quá độ lên CNXH bỏ qua chế độ tư bản chủ nghĩa với nhiều bước phát triển trung gian.",
+                visualHint: "Đổi mới - hội nhập - định hướng"
+            },
+            {
+                title: "Xây nền tảng mới",
+                shortExplain: "Mục tiêu là tạo cơ sở kinh tế, chính trị, văn hóa và con người cho xã hội xã hội chủ nghĩa.",
+                visualHint: "Kinh tế - chính trị - văn hóa"
+            }
+        ],
+        colorTheme: {
+            accent: "#0F766E",
+            softBg: "#EAF7F4",
+            border: "rgba(15, 118, 110, 0.2)",
+            iconBg: "#D2F1EA"
+        },
+        icon: "fa-solid fa-route"
+    },
+    {
+        id: 4,
+        stationName: "Dân chủ & Nhà nước",
+        centralQuestion: "Dân chủ xã hội chủ nghĩa khác gì với các hình thức dân chủ trước đó?",
+        oneLineSummary: "Chương này nối khái niệm dân chủ với nhà nước, quyền lực nhân dân và pháp quyền XHCN.",
+        whyItMatters: "Giúp sinh viên phân biệt dân chủ như một giá trị, một chế độ chính trị và một cách tổ chức quyền lực nhà nước.",
+        keywords: ["Dân chủ XHCN", "Nhân dân", "Nhà nước", "Pháp quyền", "Quyền lực"],
+        quickUnderstand: "Dân chủ XHCN nhấn mạnh quyền lực thuộc về nhân dân. Nhà nước XHCN là công cụ tổ chức quyền lực ấy, quản lý xã hội bằng pháp luật và phục vụ lợi ích nhân dân.",
+        keyIdeas: [
+            {
+                title: "Dân chủ là quyền lực nhân dân",
+                shortExplain: "Điểm cốt lõi là nhân dân tham gia, kiểm soát và thụ hưởng quyền lực chính trị.",
+                visualHint: "Dân biết - dân bàn - dân làm"
+            },
+            {
+                title: "Nhà nước XHCN",
+                shortExplain: "Nhà nước vừa tổ chức quản lý xã hội, vừa bảo đảm định hướng vì lợi ích đại đa số.",
+                visualHint: "Luật pháp - quản trị - phục vụ"
+            },
+            {
+                title: "Liên hệ Việt Nam",
+                shortExplain: "Nhà nước pháp quyền XHCN Việt Nam gắn quyền lực nhà nước với quyền làm chủ của nhân dân.",
+                visualHint: "Pháp quyền - nhân dân - Đảng lãnh đạo"
+            }
+        ],
+        colorTheme: {
+            accent: "#7C3AED",
+            softBg: "#F3EEFF",
+            border: "rgba(124, 58, 237, 0.2)",
+            iconBg: "#E8DCFF"
+        },
+        icon: "fa-solid fa-landmark"
+    },
+    {
+        id: 5,
+        stationName: "Cơ cấu xã hội",
+        centralQuestion: "Vì sao liên minh các giai cấp, tầng lớp là nền tảng của khối đại đoàn kết?",
+        oneLineSummary: "Chương này nhìn xã hội như một cấu trúc đang biến đổi với các giai cấp, tầng lớp và liên minh.",
+        whyItMatters: "Giúp người học hiểu vì sao xây dựng xã hội mới cần phối hợp lợi ích của nhiều lực lượng, không chỉ một nhóm riêng lẻ.",
+        keywords: ["Cơ cấu", "Liên minh", "Công - nông - trí thức", "Đại đoàn kết", "Lợi ích"],
+        quickUnderstand: "Xã hội có nhiều giai cấp và tầng lớp với lợi ích khác nhau. Liên minh đúng giúp tập hợp lực lượng, giảm xung đột và tạo động lực phát triển.",
+        keyIdeas: [
+            {
+                title: "Xã hội luôn biến đổi",
+                shortExplain: "Công nghiệp hóa, đô thị hóa và kinh tế thị trường làm cơ cấu xã hội thay đổi liên tục.",
+                visualHint: "Tầng lớp - nghề nghiệp - dịch chuyển"
+            },
+            {
+                title: "Liên minh là nền tảng",
+                shortExplain: "Liên minh công nhân, nông dân và trí thức tạo trục chính cho khối đại đoàn kết.",
+                visualHint: "Công - nông - trí thức"
+            },
+            {
+                title: "Điều hòa lợi ích",
+                shortExplain: "Xây dựng liên minh cần gắn lợi ích kinh tế, chính trị, văn hóa và xã hội.",
+                visualHint: "Lợi ích - hợp tác - phát triển"
+            }
+        ],
+        colorTheme: {
+            accent: "#B45309",
+            softBg: "#FFF5E6",
+            border: "rgba(180, 83, 9, 0.22)",
+            iconBg: "#FBE6C8"
+        },
+        icon: "fa-solid fa-people-group"
+    },
+    {
+        id: 6,
+        stationName: "Dân tộc & Tôn giáo",
+        centralQuestion: "Làm thế nào giải quyết vấn đề dân tộc, tôn giáo mà vẫn giữ đoàn kết xã hội?",
+        oneLineSummary: "Chương này đi vào các vấn đề nhạy cảm của cộng đồng: bản sắc, niềm tin và chính sách đoàn kết.",
+        whyItMatters: "Giúp sinh viên nhìn vấn đề dân tộc, tôn giáo bằng nguyên tắc khoa học, tôn trọng quyền tự do và chống chia rẽ.",
+        keywords: ["Bình đẳng", "Tự quyết", "Tín ngưỡng", "Đoàn kết", "Chính sách"],
+        quickUnderstand: "Dân tộc và tôn giáo đều gắn với bản sắc, niềm tin và đời sống cộng đồng. Giải quyết đúng cần tôn trọng quyền chính đáng, đồng thời bảo vệ đoàn kết xã hội.",
+        keyIdeas: [
+            {
+                title: "Vấn đề dân tộc",
+                shortExplain: "Cần bảo đảm bình đẳng, đoàn kết, tôn trọng quyền tự quyết và hỗ trợ cùng phát triển.",
+                visualHint: "Bản sắc - bình đẳng - phát triển"
+            },
+            {
+                title: "Vấn đề tôn giáo",
+                shortExplain: "Tôn giáo là hiện tượng xã hội có nguồn gốc lâu dài, cần phân biệt niềm tin với lợi dụng chính trị.",
+                visualHint: "Niềm tin - pháp luật - cộng đồng"
+            },
+            {
+                title: "Chính sách Việt Nam",
+                shortExplain: "Việt Nam tôn trọng tự do tín ngưỡng, tôn giáo và củng cố khối đại đoàn kết toàn dân tộc.",
+                visualHint: "Tự do - tôn trọng - đoàn kết"
+            }
+        ],
+        colorTheme: {
+            accent: "#0891B2",
+            softBg: "#EAF9FC",
+            border: "rgba(8, 145, 178, 0.2)",
+            iconBg: "#D2F3F8"
+        },
+        icon: "fa-solid fa-handshake"
+    },
+    {
+        id: 7,
+        stationName: "Gia đình Việt Nam",
+        centralQuestion: "Vì sao gia đình được xem là tế bào của xã hội?",
+        oneLineSummary: "Chương này khép lại hành trình bằng nơi gần gũi nhất: gia đình, nhân cách và đời sống xã hội.",
+        whyItMatters: "Giúp sinh viên liên hệ môn học với đời sống cá nhân, bình đẳng giới, trách nhiệm gia đình và văn hóa Việt Nam.",
+        keywords: ["Tế bào xã hội", "Hôn nhân", "Bình đẳng", "Giáo dục", "Hạnh phúc"],
+        quickUnderstand: "Gia đình là môi trường đầu tiên nuôi dưỡng con người. Một xã hội muốn bền vững cần những gia đình tiến bộ, bình đẳng, hạnh phúc và có trách nhiệm.",
+        keyIdeas: [
+            {
+                title: "Vị trí của gia đình",
+                shortExplain: "Gia đình là tế bào xã hội, cầu nối giữa cá nhân và cộng đồng.",
+                visualHint: "Cá nhân - gia đình - xã hội"
+            },
+            {
+                title: "Gia đình mới",
+                shortExplain: "Gia đình trong thời kỳ quá độ hướng tới hôn nhân tự nguyện, một vợ một chồng và bình đẳng.",
+                visualHint: "Tự nguyện - bình đẳng - trách nhiệm"
+            },
+            {
+                title: "Biến đổi ở Việt Nam",
+                shortExplain: "Gia đình Việt Nam đang nhỏ hơn, linh hoạt hơn và đối diện nhiều thách thức giáo dục, văn hóa.",
+                visualHint: "Truyền thống - hiện đại - thích nghi"
+            }
+        ],
+        colorTheme: {
+            accent: "#DB2777",
+            softBg: "#FFF0F7",
+            border: "rgba(219, 39, 119, 0.2)",
+            iconBg: "#FBD4E6"
+        },
+        icon: "fa-solid fa-house-chimney"
+    }
+];
+
+MICRO_LEARNING_DATA.forEach((micro) => {
+    const chapter = CHAPTERS_DATA.find((item) => item.id === micro.id);
+    if (chapter) {
+        Object.assign(chapter, micro);
+    }
+});
