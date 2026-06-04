@@ -4817,23 +4817,23 @@ body.light-theme .mobile-planet-chip {
     }
 
     .cosmic-landing-scene {
-        padding: 78px 14px 22px;
-        gap: 22px;
+        padding: 74px 14px 22px;
+        gap: 18px;
         border-radius: 8px;
     }
 
     .landing-copy {
-        gap: 13px;
+        gap: 12px;
     }
 
     .landing-copy h2 {
-        font-size: 2.35rem;
-        line-height: 1.08;
+        font-size: 2.2rem;
+        line-height: 1.06;
     }
 
     .landing-copy .hero-lead {
-        font-size: 0.96rem;
-        line-height: 1.52;
+        font-size: 0.94rem;
+        line-height: 1.5;
     }
 
     .cosmic-landing-scene .hero-actions {
@@ -4850,17 +4850,37 @@ body.light-theme .mobile-planet-chip {
     }
 
     .landing-galaxy-stage {
-        width: min(100%, 300px);
+        width: min(100%, 360px);
         margin: 0 auto;
     }
 
     .knowledge-core {
-        width: 92px;
-        height: 92px;
+        width: 72px;
+        height: 72px;
+        box-shadow: 0 0 28px rgba(56, 189, 248, 0.34), 0 12px 34px rgba(0, 0, 0, 0.34);
+    }
+
+    .knowledge-core span {
+        font-size: 0.48rem;
+        letter-spacing: 0.06em;
+    }
+
+    .knowledge-core strong {
+        font-size: 0.7rem;
     }
 
     .landing-planet-node {
+        display: block;
+        --node-size: 50px !important;
+        touch-action: manipulation;
+    }
+
+    .landing-planet-node .landing-planet-tooltip {
         display: none;
+    }
+
+    .landing-planet-node .landing-planet-code {
+        font-size: 0.68rem;
     }
 
     .floating-keyword-container .floating-chip {
@@ -4868,18 +4888,35 @@ body.light-theme .mobile-planet-chip {
     }
 
     .mobile-planet-strip {
-        display: flex;
-        gap: 10px;
-        width: 100%;
-        overflow-x: auto;
-        overflow-y: hidden;
-        padding: 2px 0 6px;
-        scroll-snap-type: x proximity;
-        scrollbar-width: none;
+        display: none;
     }
 
-    .mobile-planet-strip::-webkit-scrollbar {
-        display: none;
+    .landing-planet-node[data-chapter-index="0"] { --orbit-x: 0px !important; --orbit-y: -128px !important; }
+    .landing-planet-node[data-chapter-index="1"] { --orbit-x: 96px !important; --orbit-y: -82px !important; }
+    .landing-planet-node[data-chapter-index="2"] { --orbit-x: 126px !important; --orbit-y: 14px !important; }
+    .landing-planet-node[data-chapter-index="3"] { --orbit-x: 84px !important; --orbit-y: 102px !important; }
+    .landing-planet-node[data-chapter-index="4"] { --orbit-x: -6px !important; --orbit-y: 130px !important; }
+    .landing-planet-node[data-chapter-index="5"] { --orbit-x: -102px !important; --orbit-y: 84px !important; }
+    .landing-planet-node[data-chapter-index="6"] { --orbit-x: -128px !important; --orbit-y: -10px !important; }
+
+    .landing-orbit.orbit-a {
+        width: 42%;
+        height: 30%;
+    }
+
+    .landing-orbit.orbit-b {
+        width: 62%;
+        height: 44%;
+    }
+
+    .landing-orbit.orbit-c {
+        width: 80%;
+        height: 58%;
+    }
+
+    .landing-orbit.orbit-d {
+        width: 92%;
+        height: 72%;
     }
 
     .planet-exploration-page {
@@ -4948,11 +4985,7 @@ body.light-theme .mobile-planet-chip {
     }
 
     .landing-galaxy-stage {
-        width: min(100%, 280px);
-    }
-
-    .mobile-planet-chip {
-        min-width: 184px;
+        width: min(100%, 340px);
     }
 
     .coordinate-item {
@@ -4962,6 +4995,14 @@ body.light-theme .mobile-planet-chip {
     .cosmic-planet-visual {
         width: min(100%, 300px);
     }
+
+    .landing-planet-node[data-chapter-index="0"] { --orbit-y: -122px !important; }
+    .landing-planet-node[data-chapter-index="1"] { --orbit-x: 90px !important; --orbit-y: -78px !important; }
+    .landing-planet-node[data-chapter-index="2"] { --orbit-x: 118px !important; --orbit-y: 12px !important; }
+    .landing-planet-node[data-chapter-index="3"] { --orbit-x: 78px !important; --orbit-y: 96px !important; }
+    .landing-planet-node[data-chapter-index="4"] { --orbit-y: 124px !important; }
+    .landing-planet-node[data-chapter-index="5"] { --orbit-x: -96px !important; --orbit-y: 80px !important; }
+    .landing-planet-node[data-chapter-index="6"] { --orbit-x: -120px !important; --orbit-y: -8px !important; }
 }
 
 @media (max-width: 390px) {
@@ -4974,17 +5015,21 @@ body.light-theme .mobile-planet-chip {
         padding-left: 12px;
     }
 
-    .mobile-planet-chip {
-        min-width: 176px;
-    }
-
     .landing-galaxy-stage {
-        width: min(100%, 240px);
+        width: min(100%, 320px);
     }
 
     .mission-briefing-panel {
         padding: 16px;
     }
+
+    .landing-planet-node[data-chapter-index="0"] { --orbit-y: -116px !important; }
+    .landing-planet-node[data-chapter-index="1"] { --orbit-x: 84px !important; --orbit-y: -74px !important; }
+    .landing-planet-node[data-chapter-index="2"] { --orbit-x: 108px !important; --orbit-y: 10px !important; }
+    .landing-planet-node[data-chapter-index="3"] { --orbit-x: 72px !important; --orbit-y: 90px !important; }
+    .landing-planet-node[data-chapter-index="4"] { --orbit-y: 118px !important; }
+    .landing-planet-node[data-chapter-index="5"] { --orbit-x: -88px !important; --orbit-y: 76px !important; }
+    .landing-planet-node[data-chapter-index="6"] { --orbit-x: -112px !important; --orbit-y: -6px !important; }
 }
 
 @media (prefers-reduced-motion: reduce) {
