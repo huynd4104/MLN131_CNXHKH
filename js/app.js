@@ -832,7 +832,7 @@ function renderMediaStation(containerId) {
             if (chapter.media.url) {
                 bodyHtml = `
                     <div style="aspect-ratio: 16/9; width: 100%; overflow: hidden; border-radius: 8px; background: #000;">
-                        <iframe src="${htmlEscape(chapter.media.url)}" style="width: 100%; height: 100%; border: none;" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                        <iframe src="${htmlEscape(chapter.media.url)}" style="width: 100%; height: 100%; border: none;" allow="autoplay; encrypted-media" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     </div>
                 `;
             } else {
@@ -1561,7 +1561,7 @@ function attachChapterStoryEvents(scope) {
             if (chapter.media.url) {
                 bodyHtml = `
                     <div style="aspect-ratio: 16/9; width: 100%; overflow: hidden; border-radius: 8px; background: #000;">
-                        <iframe src="${htmlEscape(chapter.media.url)}" style="width: 100%; height: 100%; border: none;" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                        <iframe src="${htmlEscape(chapter.media.url)}" style="width: 100%; height: 100%; border: none;" allow="autoplay; encrypted-media" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     </div>
                 `;
             } else {

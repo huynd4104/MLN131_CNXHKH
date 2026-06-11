@@ -1152,10 +1152,10 @@ const MICRO_LEARNING_DATA = [
         media: {
             title: "CNXHKH ra đời trong bối cảnh lịch sử nào?",
             type: "video",
-            thumbnail: "",
+            thumbnail: "https://img.youtube.com/vi/Feo7EN2vkmM/hqdefault.jpg",
             description: "Xem video tóm tắt bối cảnh cách mạng công nghiệp thế kỷ XIX và sự trỗi dậy của giai cấp vô sản để hiểu sâu lý do ra đời của môn học.",
             sourceLabel: "Media Learning Station",
-            url: ""
+            url: "https://www.youtube-nocookie.com/embed/Feo7EN2vkmM"
         },
         caseStudy: {
             title: "Cách tiếp cận khoa học trong phân tích đời sống thực tế",
@@ -1248,10 +1248,10 @@ const MICRO_LEARNING_DATA = [
         media: {
             title: "Giai cấp công nhân trong thế kỷ XXI",
             type: "video",
-            thumbnail: "",
+            thumbnail: "https://img.youtube.com/vi/AFSWDL0Iwo0/hqdefault.jpg",
             description: "Khám phá vai trò của công nhân tri thức, lao động kỹ thuật cao và công nghệ số trong thời đại tự động hóa và toàn cầu hóa hiện nay.",
             sourceLabel: "Media Learning Station",
-            url: ""
+            url: "https://www.youtube-nocookie.com/embed/AFSWDL0Iwo0"
         },
         caseStudy: {
             title: "Nâng cao kỹ năng và 'trí thức hóa' công nhân Việt Nam",
@@ -1324,10 +1324,10 @@ const MICRO_LEARNING_DATA = [
         media: {
             title: "Thời kỳ quá độ lên chủ nghĩa xã hội là gì?",
             type: "video",
-            thumbnail: "",
+            thumbnail: "https://img.youtube.com/vi/UjomtvcsMVg/hqdefault.jpg",
             description: "Tìm hiểu vì sao thời kỳ quá độ lại là một quy luật khách quan cho mọi nước đi lên chủ nghĩa xã hội, đặc biệt là các nước quá độ gián tiếp như Việt Nam.",
             sourceLabel: "Media Learning Station",
-            url: ""
+            url: "https://www.youtube-nocookie.com/embed/UjomtvcsMVg"
         },
         caseStudy: {
             title: "Kinh tế thị trường định hướng xã hội chủ nghĩa ở Việt Nam",
@@ -1418,10 +1418,10 @@ const MICRO_LEARNING_DATA = [
         media: {
             title: "Nhà nước pháp quyền XHCN Việt Nam",
             type: "video",
-            thumbnail: "",
+            thumbnail: "https://img.youtube.com/vi/QrW9NZEkjyA/hqdefault.jpg",
             description: "Nắm vững nguyên lý tổ chức bộ máy quyền lực nhà nước tại Việt Nam: thống nhất, phân công, phối hợp và kiểm soát quyền lực giữa các cơ quan nhà nước.",
             sourceLabel: "Media Learning Station",
-            url: ""
+            url: "https://www.youtube-nocookie.com/embed/QrW9NZEkjyA"
         },
         caseStudy: {
             title: "Thực thi Quy chế dân chủ ở cơ sở tại các địa phương",
@@ -1516,10 +1516,10 @@ const MICRO_LEARNING_DATA = [
         media: {
             title: "Liên minh công - nông - trí thức trong đổi mới",
             type: "video",
-            thumbnail: "",
+            thumbnail: "https://img.youtube.com/vi/U_rH3pV8Dvg/hqdefault.jpg",
             description: "Khám phá vì sao liên minh giai cấp, tầng lớp lại là một nhu cầu kinh tế - kỹ thuật khách quan và là động lực nền tảng cho sự phát triển đất nước.",
             sourceLabel: "Media Learning Station",
-            url: ""
+            url: "https://www.youtube-nocookie.com/embed/U_rH3pV8Dvg"
         },
         caseStudy: {
             title: "Mô hình liên kết 'Bốn nhà' trong phát triển nông nghiệp Việt Nam",
@@ -1591,10 +1591,10 @@ const MICRO_LEARNING_DATA = [
         media: {
             title: "Chính sách dân tộc và tôn giáo của Việt Nam",
             type: "video",
-            thumbnail: "",
+            thumbnail: "https://img.youtube.com/vi/IXhc9ME7Zs0/hqdefault.jpg",
             description: "Xem để hiểu rõ cách Việt Nam tổ chức quản lý đời sống tín ngưỡng đa dạng và củng cố đoàn kết giữa 54 dân tộc anh em.",
             sourceLabel: "Media Learning Station",
-            url: ""
+            url: "https://www.youtube-nocookie.com/embed/IXhc9ME7Zs0"
         },
         caseStudy: {
             title: "Phát triển du lịch cộng đồng gắn liền với bảo tồn văn hóa đồng bào thiểu số",
@@ -1666,10 +1666,10 @@ const MICRO_LEARNING_DATA = [
         media: {
             title: "Gia đình Việt Nam trong thời đại số",
             type: "video",
-            thumbnail: "",
+            thumbnail: "https://img.youtube.com/vi/E6N9eCHR6l4/hqdefault.jpg",
             description: "Thảo luận về sự thay đổi các mối quan hệ giữa cha mẹ và con cái, giữ gìn không gian sinh hoạt chung và giáo dục nhân cách trong bối cảnh bùng nổ thiết bị cá nhân.",
             sourceLabel: "Media Learning Station",
-            url: ""
+            url: "https://www.youtube-nocookie.com/embed/E6N9eCHR6l4"
         },
         caseStudy: {
             title: "Bình đẳng giới và sự chia sẻ trách nhiệm trong gia đình trẻ",
