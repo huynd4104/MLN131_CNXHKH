@@ -130,9 +130,7 @@ function loadState() {
     appState.completedChapters = safeParse(localStorage.getItem('MLN131_completedChapters'), []);
     appState.flashcardProgress = safeParse(localStorage.getItem('MLN131_flashcardProgress'), {});
     appState.quizHighScores = safeParse(localStorage.getItem('MLN131_quizHighScores'), {});
-    appState.theme = ['light', 'dark'].includes(localStorage.getItem('MLN131_theme'))
-        ? localStorage.getItem('MLN131_theme')
-        : 'dark';
+    appState.theme = 'dark';
     appState.streak = parseInt(localStorage.getItem('MLN131_streak') || '0', 10) || 0;
     appState.lastActiveDate = localStorage.getItem('MLN131_lastActiveDate') || '';
     updateStreak();
@@ -178,26 +176,12 @@ function showToast(message, type = 'info') {
 }
 
 function initTheme() {
-    const themeToggleBtn = document.getElementById('themeToggleBtn');
-    applyTheme(appState.theme);
-
-    themeToggleBtn?.addEventListener('click', () => {
-        appState.theme = document.body.classList.contains('dark-theme') ? 'light' : 'dark';
-        localStorage.setItem('MLN131_theme', appState.theme);
-        applyTheme(appState.theme);
-        showToast(appState.theme === 'dark' ? 'Đã bật dark mode' : 'Đã bật light mode', 'success');
-    });
+    applyTheme('dark');
 }
 
 function applyTheme(theme) {
-    const themeToggleBtn = document.getElementById('themeToggleBtn');
-    document.body.classList.toggle('dark-theme', theme === 'dark');
-    document.body.classList.toggle('light-theme', theme !== 'dark');
-    if (themeToggleBtn) {
-        themeToggleBtn.innerHTML = theme === 'dark'
-            ? '<i class="fa-solid fa-sun"></i>'
-            : '<i class="fa-solid fa-moon"></i>';
-    }
+    document.body.classList.add('dark-theme');
+    document.body.classList.remove('light-theme');
 }
 
 function initRouting() {
@@ -468,6 +452,9 @@ function renderOverview() {
             <!-- 1. Cosmic Hero -->
             <section class="cosmic-landing-scene" aria-label="Triển lãm Vũ trụ Tri thức MLN131">
                 <div class="cosmic-landing-nebula" aria-hidden="true"></div>
+                <div class="stars-layer stars-layer-1" aria-hidden="true"></div>
+                <div class="stars-layer stars-layer-2" aria-hidden="true"></div>
+                <div class="stars-layer stars-layer-3" aria-hidden="true"></div>
                 <div class="landing-copy">
                     <h2>Vũ trụ tri thức Chủ nghĩa xã hội khoa học</h2>
                     <p class="hero-lead">Khám phá 7 hành tinh lý luận qua bản đồ tri thức điện ảnh, tương tác và dễ ôn tập.</p>
